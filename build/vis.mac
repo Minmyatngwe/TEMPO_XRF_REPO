@@ -1,0 +1,53 @@
+
+    /xrf/sampleMaterial G4_Fe
+    /xrf/sampleMaterialDensity 7.874 g/cm3
+    /xrf/sampleSize 5 5 0.005 mm
+    /xrf/fileName /home/minmyatngwe/geant_4_xrf/XRF_ONLY/python_code/root_output_file/coll_test.root
+    /xrf/incidentAngle 90.0
+    /xrf/sourceDistance 15.0
+    /xrf/detectorthickness 1.0
+    /xrf/detectorArea 20.0
+    /xrf/detectorDistance 17.0
+    /xrf/takeoffAngle 45.0
+    /xrf/worldmat G4_AIR
+    /xrf/sampleMaterialDensity 8.44
+    /xrf/sampleMaterialIsCustom false
+    /xrf/focalspotdiameter 0.0002
+/xrf/addSampleElement Ni 0.61
+
+/xrf/addSampleElement Cr 0.215
+
+/xrf/addSampleElement Mo 0.09
+
+/xrf/addSampleElement Fe 0.05
+
+/xrf/addSampleElement Nb 0.035
+/xrf/sampleToCollimatorDistance 10
+/xrf/sourceCollimatoryDiameter 0.5
+/xrf/detectorCollimatorIsEnabled True
+/xrf/detectorCollimatorIsCustom False
+/xrf/detectorCollimatorMaterial G4_Pb
+/xrf/sampleToDetectorCollimatorDistance 10.0
+/xrf/detectorCollimatoryAngleFromSample 45.0
+/xrf/detectorCollimatorDensity 10.0
+/xrf/detectorCollimatorThickness 1.0
+/xrf/detectorCollimatorOuterRadius 5.0
+/xrf/detectorCollimatorInnerRadius 1.0
+
+/run/numberOfThreads 20
+    
+    /run/initialize
+    /gps/particle gamma
+
+    
+  
+        
+        /gps/energy 50 keV
+        /vis/open OGLSQt
+                                        /vis/drawVolume
+
+                                        /vis/scene/add/axes 0 0 0 30 mm
+                                        /tracking/storeTrajectory 1
+                                        /vis/scene/add/trajectories smooth
+                                        /vis/scene/endOfEventAction accumulate 10
+                                        /run/beamOn 100
