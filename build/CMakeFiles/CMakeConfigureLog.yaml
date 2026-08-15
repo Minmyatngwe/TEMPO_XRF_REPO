@@ -61,8 +61,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -70,13 +70,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9acfe/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_9acfe.dir/build.make CMakeFiles/cmTC_9acfe.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW'
-        Building C object CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ccd22/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ccd22.dir/build.make CMakeFiles/cmTC_ccd22.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE'
+        Building C object CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -86,8 +86,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9acfe.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccaoDXgt.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ccd22.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccW4iY9Y.s
         GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -104,15 +104,15 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/'
-         as -v --64 -o CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o /tmp/ccaoDXgt.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/'
+         as -v --64 -o CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o /tmp/ccW4iY9Y.s
         GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_9acfe
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9acfe.dir/link.txt --verbose=1
-        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -o cmTC_9acfe 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_ccd22
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccd22.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -o cmTC_ccd22 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -125,10 +125,10 @@ events:
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9acfe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9acfe.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBS4ea2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_9acfe /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9acfe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9acfe.'
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ccd22' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ccd22.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc0Juzk7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ccd22 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ccd22' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ccd22.'
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE'
         
       exitCode: 0
   -
@@ -162,13 +162,13 @@ events:
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW']
+        ignore line: [Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9acfe/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_9acfe.dir/build.make CMakeFiles/cmTC_9acfe.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-HZhSuW']
-        ignore line: [Building C object CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ccd22/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_ccd22.dir/build.make CMakeFiles/cmTC_ccd22.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CLMiaE']
+        ignore line: [Building C object CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -178,8 +178,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9acfe.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccaoDXgt.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ccd22.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccW4iY9Y.s]
         ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -196,15 +196,15 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o /tmp/ccaoDXgt.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o /tmp/ccW4iY9Y.s]
         ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_9acfe]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9acfe.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -o cmTC_9acfe ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_ccd22]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccd22.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -o cmTC_ccd22 ]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -217,13 +217,13 @@ events:
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9acfe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9acfe.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBS4ea2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_9acfe /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ccd22' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ccd22.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc0Juzk7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ccd22 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccBS4ea2.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc0Juzk7.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -242,7 +242,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_9acfe] ==> ignore
+          arg [cmTC_ccd22] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -254,7 +254,7 @@ events:
           arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
-          arg [CMakeFiles/cmTC_9acfe.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_ccd22.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -294,8 +294,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -303,13 +303,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_35c74/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_35c74.dir/build.make CMakeFiles/cmTC_35c74.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf'
-        Building CXX object CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1be9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d1be9.dir/build.make CMakeFiles/cmTC_d1be9.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc'
+        Building CXX object CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -319,8 +319,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_35c74.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMmx1bn.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d1be9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccb1BTjT.s
         GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -341,15 +341,15 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 7896445e4990772fdae9dc0659a99266
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/'
-         as -v --64 -o CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccMmx1bn.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/'
+         as -v --64 -o CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccb1BTjT.s
         GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_35c74
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35c74.dir/link.txt --verbose=1
-        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_35c74 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_d1be9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1be9.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_d1be9 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -362,10 +362,10 @@ events:
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_35c74' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_35c74.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccE9wiN5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_35c74 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_35c74' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_35c74.'
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_d1be9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d1be9.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6ztAUr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d1be9 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_d1be9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d1be9.'
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc'
         
       exitCode: 0
   -
@@ -405,13 +405,13 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf']
+        ignore line: [Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_35c74/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_35c74.dir/build.make CMakeFiles/cmTC_35c74.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Vu2nTf']
-        ignore line: [Building CXX object CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1be9/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_d1be9.dir/build.make CMakeFiles/cmTC_d1be9.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-DM5onc']
+        ignore line: [Building CXX object CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -421,8 +421,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_35c74.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMmx1bn.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d1be9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccb1BTjT.s]
         ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -443,15 +443,15 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 7896445e4990772fdae9dc0659a99266]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccMmx1bn.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccb1BTjT.s]
         ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_35c74]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35c74.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_35c74 ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_d1be9]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1be9.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_d1be9 ]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -464,13 +464,13 @@ events:
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_35c74' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_35c74.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccE9wiN5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_35c74 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_d1be9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d1be9.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6ztAUr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d1be9 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccE9wiN5.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc6ztAUr.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -489,7 +489,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_35c74] ==> ignore
+          arg [cmTC_d1be9] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -501,7 +501,7 @@ events:
           arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
-          arg [CMakeFiles/cmTC_35c74.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_d1be9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -536,106 +536,35 @@ events:
       - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
       - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/PTL/PTLConfig.cmake:56 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/PTL/PTLConfig.cmake:56 (find_dependency)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:301 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:301 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_64286/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_64286.dir/build.make CMakeFiles/cmTC_64286.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn'
-        Building C object CMakeFiles/cmTC_64286.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_64286.dir/src.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn/src.c
-        Linking C executable cmTC_64286
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64286.dir/link.txt --verbose=1
-        /usr/bin/cc CMakeFiles/cmTC_64286.dir/src.c.o -o cmTC_64286 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-It0mrn'
-        
-      exitCode: 0
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-hNoGah"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-hNoGah"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-hNoGah'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_38727/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_38727.dir/build.make CMakeFiles/cmTC_38727.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-hNoGah'
-        Building C object CMakeFiles/cmTC_38727.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_38727.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_38727.dir/build.make:78: CMakeFiles/cmTC_38727.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-hNoGah'
-        gmake: *** [Makefile:127: cmTC_38727/fast] Error 2
-        
-      exitCode: 2
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/G4HDF5Shim.cmake:15 (check_cxx_symbol_exists)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:330 (include)"
-      - "CMakeLists.txt:4 (find_package)"
-    checks:
-      - "Looking for H5_HAVE_THREADSAFE"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo"
-    cmakeVariables:
-      CMAKE_CXX_FLAGS: ""
-      CMAKE_CXX_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "GEANT4_HAVE_H5_HAVE_THREADSAFE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f8d34/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_f8d34.dir/build.make CMakeFiles/cmTC_f8d34.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo'
-        Building CXX object CMakeFiles/cmTC_f8d34.dir/CheckSymbolExists.cxx.o
-        /usr/bin/c++  -I/usr/include/hdf5/serial  -o CMakeFiles/cmTC_f8d34.dir/CheckSymbolExists.cxx.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo/CheckSymbolExists.cxx
-        Linking CXX executable cmTC_f8d34
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f8d34.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_f8d34.dir/CheckSymbolExists.cxx.o -o cmTC_f8d34 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-KsxcTo'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_da5c1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_da5c1.dir/build.make CMakeFiles/cmTC_da5c1.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa'
+        Building C object CMakeFiles/cmTC_da5c1.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_da5c1.dir/src.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa/src.c
+        Linking C executable cmTC_da5c1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da5c1.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_da5c1.dir/src.c.o -o cmTC_da5c1 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-JJYqHa'
         
       exitCode: 0
   -
@@ -649,33 +578,33 @@ events:
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreDependencies.cmake:30 (_qt_internal_find_third_party_dependencies)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreConfig.cmake:50 (include)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:370 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:370 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_99a22/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_99a22.dir/build.make CMakeFiles/cmTC_99a22.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako'
-        Building CXX object CMakeFiles/cmTC_99a22.dir/src.cxx.o
-        /usr/bin/c++ -DHAVE_STDATOMIC   -o CMakeFiles/cmTC_99a22.dir/src.cxx.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako/src.cxx
-        Linking CXX executable cmTC_99a22
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_99a22.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_99a22.dir/src.cxx.o -o cmTC_99a22 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-785ako'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b8756/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b8756.dir/build.make CMakeFiles/cmTC_b8756.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q'
+        Building CXX object CMakeFiles/cmTC_b8756.dir/src.cxx.o
+        /usr/bin/c++ -DHAVE_STDATOMIC   -o CMakeFiles/cmTC_b8756.dir/src.cxx.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q/src.cxx
+        Linking CXX executable cmTC_b8756
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8756.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_b8756.dir/src.cxx.o -o cmTC_b8756 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ae7d6q'
         
       exitCode: 0
   -
@@ -684,33 +613,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:682 (check_library_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "X11_LIB_X11_SOLO"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_66294/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_66294.dir/build.make CMakeFiles/cmTC_66294.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf'
-        Building C object CMakeFiles/cmTC_66294.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_66294.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf/CheckFunctionExists.c
-        Linking C executable cmTC_66294
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66294.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_66294.dir/CheckFunctionExists.c.o -o cmTC_66294  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-uuTUFf'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_001e6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_001e6.dir/build.make CMakeFiles/cmTC_001e6.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP'
+        Building C object CMakeFiles/cmTC_001e6.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_001e6.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP/CheckFunctionExists.c
+        Linking C executable cmTC_001e6
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_001e6.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_001e6.dir/CheckFunctionExists.c.o -o cmTC_001e6  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mzY8EP'
         
       exitCode: 0
   -
@@ -719,33 +648,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:697 (check_function_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for gethostbyname"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "CMAKE_HAVE_GETHOSTBYNAME"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4d0b1/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_4d0b1.dir/build.make CMakeFiles/cmTC_4d0b1.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY'
-        Building C object CMakeFiles/cmTC_4d0b1.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_4d0b1.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY/CheckFunctionExists.c
-        Linking C executable cmTC_4d0b1
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d0b1.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_4d0b1.dir/CheckFunctionExists.c.o -o cmTC_4d0b1 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-3CvOJY'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6dbef/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6dbef.dir/build.make CMakeFiles/cmTC_6dbef.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA'
+        Building C object CMakeFiles/cmTC_6dbef.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_6dbef.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA/CheckFunctionExists.c
+        Linking C executable cmTC_6dbef
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6dbef.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_6dbef.dir/CheckFunctionExists.c.o -o cmTC_6dbef 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-peB4yA'
         
       exitCode: 0
   -
@@ -754,33 +683,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:711 (check_function_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for connect"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "CMAKE_HAVE_CONNECT"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c4ad5/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_c4ad5.dir/build.make CMakeFiles/cmTC_c4ad5.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB'
-        Building C object CMakeFiles/cmTC_c4ad5.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_c4ad5.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB/CheckFunctionExists.c
-        Linking C executable cmTC_c4ad5
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4ad5.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_c4ad5.dir/CheckFunctionExists.c.o -o cmTC_c4ad5 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-xVxiGB'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_186b8/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_186b8.dir/build.make CMakeFiles/cmTC_186b8.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK'
+        Building C object CMakeFiles/cmTC_186b8.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_186b8.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK/CheckFunctionExists.c
+        Linking C executable cmTC_186b8
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_186b8.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_186b8.dir/CheckFunctionExists.c.o -o cmTC_186b8 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QUDIoK'
         
       exitCode: 0
   -
@@ -789,33 +718,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:720 (check_function_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for remove"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "CMAKE_HAVE_REMOVE"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_144d8/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_144d8.dir/build.make CMakeFiles/cmTC_144d8.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl'
-        Building C object CMakeFiles/cmTC_144d8.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_144d8.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl/CheckFunctionExists.c
-        Linking C executable cmTC_144d8
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_144d8.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_144d8.dir/CheckFunctionExists.c.o -o cmTC_144d8 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EIk5Xl'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e3ece/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e3ece.dir/build.make CMakeFiles/cmTC_e3ece.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv'
+        Building C object CMakeFiles/cmTC_e3ece.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_e3ece.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv/CheckFunctionExists.c
+        Linking C executable cmTC_e3ece
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3ece.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_e3ece.dir/CheckFunctionExists.c.o -o cmTC_e3ece 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-YrTdyv'
         
       exitCode: 0
   -
@@ -824,33 +753,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:729 (check_function_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for shmat"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "CMAKE_HAVE_SHMAT"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ee16b/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_ee16b.dir/build.make CMakeFiles/cmTC_ee16b.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL'
-        Building C object CMakeFiles/cmTC_ee16b.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_ee16b.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL/CheckFunctionExists.c
-        Linking C executable cmTC_ee16b
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ee16b.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_ee16b.dir/CheckFunctionExists.c.o -o cmTC_ee16b 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-pbw0gL'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c7c1b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c7c1b.dir/build.make CMakeFiles/cmTC_c7c1b.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx'
+        Building C object CMakeFiles/cmTC_c7c1b.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_c7c1b.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx/CheckFunctionExists.c
+        Linking C executable cmTC_c7c1b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7c1b.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_c7c1b.dir/CheckFunctionExists.c.o -o cmTC_c7c1b 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FOykgx'
         
       exitCode: 0
   -
@@ -859,993 +788,33 @@ events:
       - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/FindX11.cmake:739 (check_library_exists)"
       - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
+      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Geant4Config.cmake:413 (find_dependency)"
       - "CMakeLists.txt:4 (find_package)"
     checks:
       - "Looking for IceConnectionNumber in ICE"
     directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m"
+      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28"
+      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/cmake/Geant4/Modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
     buildResult:
       variable: "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER"
       cached: true
       stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m'
+        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ea8f2/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_ea8f2.dir/build.make CMakeFiles/cmTC_ea8f2.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m'
-        Building C object CMakeFiles/cmTC_ea8f2.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_ea8f2.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m/CheckFunctionExists.c
-        Linking C executable cmTC_ea8f2
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea8f2.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_ea8f2.dir/CheckFunctionExists.c.o -o cmTC_ea8f2  -lICE 
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-TiHs4m'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_51aa0/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_51aa0.dir/build.make CMakeFiles/cmTC_51aa0.dir/build
+        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28'
+        Building C object CMakeFiles/cmTC_51aa0.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_51aa0.dir/CheckFunctionExists.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28/CheckFunctionExists.c
+        Linking C executable cmTC_51aa0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_51aa0.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_51aa0.dir/CheckFunctionExists.c.o -o cmTC_51aa0  -lICE 
+        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-J6Xk28'
         
       exitCode: 0
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-eCtYb3"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-eCtYb3"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-eCtYb3'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e1f07/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_e1f07.dir/build.make CMakeFiles/cmTC_e1f07.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-eCtYb3'
-        Building C object CMakeFiles/cmTC_e1f07.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_e1f07.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_e1f07.dir/build.make:78: CMakeFiles/cmTC_e1f07.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-eCtYb3'
-        gmake: *** [Makefile:127: cmTC_e1f07/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-X7z6bU"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-X7z6bU"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-X7z6bU'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9efa1/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_9efa1.dir/build.make CMakeFiles/cmTC_9efa1.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-X7z6bU'
-        Building C object CMakeFiles/cmTC_9efa1.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_9efa1.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_9efa1.dir/build.make:78: CMakeFiles/cmTC_9efa1.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-X7z6bU'
-        gmake: *** [Makefile:127: cmTC_9efa1/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ddwarU"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ddwarU"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ddwarU'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3350e/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_3350e.dir/build.make CMakeFiles/cmTC_3350e.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ddwarU'
-        Building C object CMakeFiles/cmTC_3350e.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_3350e.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_3350e.dir/build.make:78: CMakeFiles/cmTC_3350e.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-ddwarU'
-        gmake: *** [Makefile:127: cmTC_3350e/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Dkkhld"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Dkkhld"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Dkkhld'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_07a55/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_07a55.dir/build.make CMakeFiles/cmTC_07a55.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Dkkhld'
-        Building C object CMakeFiles/cmTC_07a55.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_07a55.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_07a55.dir/build.make:78: CMakeFiles/cmTC_07a55.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Dkkhld'
-        gmake: *** [Makefile:127: cmTC_07a55/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-RyO7mk"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-RyO7mk"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-RyO7mk'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_792c2/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_792c2.dir/build.make CMakeFiles/cmTC_792c2.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-RyO7mk'
-        Building C object CMakeFiles/cmTC_792c2.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_792c2.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_792c2.dir/build.make:78: CMakeFiles/cmTC_792c2.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-RyO7mk'
-        gmake: *** [Makefile:127: cmTC_792c2/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FXwJPK"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FXwJPK"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FXwJPK'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3a32a/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_3a32a.dir/build.make CMakeFiles/cmTC_3a32a.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FXwJPK'
-        Building C object CMakeFiles/cmTC_3a32a.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_3a32a.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_3a32a.dir/build.make:78: CMakeFiles/cmTC_3a32a.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-FXwJPK'
-        gmake: *** [Makefile:127: cmTC_3a32a/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CKQXYK"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CKQXYK"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CKQXYK'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e906f/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_e906f.dir/build.make CMakeFiles/cmTC_e906f.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CKQXYK'
-        Building C object CMakeFiles/cmTC_e906f.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_e906f.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_e906f.dir/build.make:78: CMakeFiles/cmTC_e906f.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CKQXYK'
-        gmake: *** [Makefile:127: cmTC_e906f/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-VC3njq"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-VC3njq"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-VC3njq'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_17922/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_17922.dir/build.make CMakeFiles/cmTC_17922.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-VC3njq'
-        Building C object CMakeFiles/cmTC_17922.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_17922.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_17922.dir/build.make:78: CMakeFiles/cmTC_17922.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-VC3njq'
-        gmake: *** [Makefile:127: cmTC_17922/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-tW9riD"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-tW9riD"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-tW9riD'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a05dd/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_a05dd.dir/build.make CMakeFiles/cmTC_a05dd.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-tW9riD'
-        Building C object CMakeFiles/cmTC_a05dd.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_a05dd.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_a05dd.dir/build.make:78: CMakeFiles/cmTC_a05dd.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-tW9riD'
-        gmake: *** [Makefile:127: cmTC_a05dd/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CVU3tC"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CVU3tC"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CVU3tC'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1bc83/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1bc83.dir/build.make CMakeFiles/cmTC_1bc83.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CVU3tC'
-        Building C object CMakeFiles/cmTC_1bc83.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_1bc83.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_1bc83.dir/build.make:78: CMakeFiles/cmTC_1bc83.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-CVU3tC'
-        gmake: *** [Makefile:127: cmTC_1bc83/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-liQEp5"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-liQEp5"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-liQEp5'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fdd36/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_fdd36.dir/build.make CMakeFiles/cmTC_fdd36.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-liQEp5'
-        Building C object CMakeFiles/cmTC_fdd36.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_fdd36.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_fdd36.dir/build.make:78: CMakeFiles/cmTC_fdd36.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-liQEp5'
-        gmake: *** [Makefile:127: cmTC_fdd36/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Z0LmW6"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Z0LmW6"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Z0LmW6'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d37ab/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d37ab.dir/build.make CMakeFiles/cmTC_d37ab.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Z0LmW6'
-        Building C object CMakeFiles/cmTC_d37ab.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_d37ab.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_d37ab.dir/build.make:78: CMakeFiles/cmTC_d37ab.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-Z0LmW6'
-        gmake: *** [Makefile:127: cmTC_d37ab/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-lEHth7"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-lEHth7"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-lEHth7'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4fe48/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_4fe48.dir/build.make CMakeFiles/cmTC_4fe48.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-lEHth7'
-        Building C object CMakeFiles/cmTC_4fe48.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_4fe48.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_4fe48.dir/build.make:78: CMakeFiles/cmTC_4fe48.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-lEHth7'
-        gmake: *** [Makefile:127: cmTC_4fe48/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w26dfI"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w26dfI"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w26dfI'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_22a22/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_22a22.dir/build.make CMakeFiles/cmTC_22a22.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w26dfI'
-        Building C object CMakeFiles/cmTC_22a22.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_22a22.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_22a22.dir/build.make:78: CMakeFiles/cmTC_22a22.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w26dfI'
-        gmake: *** [Makefile:127: cmTC_22a22/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w3W2ey"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w3W2ey"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w3W2ey'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df4fa/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_df4fa.dir/build.make CMakeFiles/cmTC_df4fa.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w3W2ey'
-        Building C object CMakeFiles/cmTC_df4fa.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_df4fa.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_df4fa.dir/build.make:78: CMakeFiles/cmTC_df4fa.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-w3W2ey'
-        gmake: *** [Makefile:127: cmTC_df4fa/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-G0YcC1"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-G0YcC1"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-G0YcC1'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2e052/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_2e052.dir/build.make CMakeFiles/cmTC_2e052.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-G0YcC1'
-        Building C object CMakeFiles/cmTC_2e052.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_2e052.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_2e052.dir/build.make:78: CMakeFiles/cmTC_2e052.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-G0YcC1'
-        gmake: *** [Makefile:127: cmTC_2e052/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-5D9nXw"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-5D9nXw"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-5D9nXw'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cdc9b/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_cdc9b.dir/build.make CMakeFiles/cmTC_cdc9b.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-5D9nXw'
-        Building C object CMakeFiles/cmTC_cdc9b.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_cdc9b.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_cdc9b.dir/build.make:78: CMakeFiles/cmTC_cdc9b.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-5D9nXw'
-        gmake: *** [Makefile:127: cmTC_cdc9b/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-9qcjbx"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-9qcjbx"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-9qcjbx'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1d784/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1d784.dir/build.make CMakeFiles/cmTC_1d784.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-9qcjbx'
-        Building C object CMakeFiles/cmTC_1d784.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_1d784.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_1d784.dir/build.make:78: CMakeFiles/cmTC_1d784.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-9qcjbx'
-        gmake: *** [Makefile:127: cmTC_1d784/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QW699h"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QW699h"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QW699h'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1579f/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1579f.dir/build.make CMakeFiles/cmTC_1579f.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QW699h'
-        Building C object CMakeFiles/cmTC_1579f.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_1579f.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_1579f.dir/build.make:78: CMakeFiles/cmTC_1579f.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-QW699h'
-        gmake: *** [Makefile:127: cmTC_1579f/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mvU407"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mvU407"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mvU407'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_accc1/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_accc1.dir/build.make CMakeFiles/cmTC_accc1.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mvU407'
-        Building C object CMakeFiles/cmTC_accc1.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_accc1.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_accc1.dir/build.make:78: CMakeFiles/cmTC_accc1.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-mvU407'
-        gmake: *** [Makefile:127: cmTC_accc1/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-WLY00H"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-WLY00H"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-WLY00H'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2e9d6/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_2e9d6.dir/build.make CMakeFiles/cmTC_2e9d6.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-WLY00H'
-        Building C object CMakeFiles/cmTC_2e9d6.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_2e9d6.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_2e9d6.dir/build.make:78: CMakeFiles/cmTC_2e9d6.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-WLY00H'
-        gmake: *** [Makefile:127: cmTC_2e9d6/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EAKLEf"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EAKLEf"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EAKLEf'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_74a60/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_74a60.dir/build.make CMakeFiles/cmTC_74a60.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EAKLEf'
-        Building C object CMakeFiles/cmTC_74a60.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_74a60.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_74a60.dir/build.make:78: CMakeFiles/cmTC_74a60.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-EAKLEf'
-        gmake: *** [Makefile:127: cmTC_74a60/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-m5ouNf"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-m5ouNf"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-m5ouNf'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fdded/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_fdded.dir/build.make CMakeFiles/cmTC_fdded.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-m5ouNf'
-        Building C object CMakeFiles/cmTC_fdded.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_fdded.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_fdded.dir/build.make:78: CMakeFiles/cmTC_fdded.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-m5ouNf'
-        gmake: *** [Makefile:127: cmTC_fdded/fast] Error 2
-        
-      exitCode: 2
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:238 (try_compile)"
-      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:608 (_HDF5_test_regular_compiler_C)"
-      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
-      - "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Geant4Config.cmake:329 (find_dependency)"
-      - "CMakeLists.txt:4 (find_package)"
-    directories:
-      source: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-8zB9nC"
-      binary: "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-8zB9nC"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/cmake/Geant4/Modules"
-    buildResult:
-      variable: "HDF5_C_COMPILER_NO_INTERROGATE"
-      cached: true
-      stdout: |
-        Change Dir: '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-8zB9nC'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e70df/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_e70df.dir/build.make CMakeFiles/cmTC_e70df.dir/build
-        gmake[1]: Entering directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-8zB9nC'
-        Building C object CMakeFiles/cmTC_e70df.dir/cmake_hdf5_test.c.o
-        /usr/bin/cc    -o CMakeFiles/cmTC_e70df.dir/cmake_hdf5_test.c.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c
-        /home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/hdf5/cmake_hdf5_test.c:1:10: fatal error: hdf5.h: No such file or directory
-            1 | #include <hdf5.h>
-              |          ^~~~~~~~
-        compilation terminated.
-        gmake[1]: *** [CMakeFiles/cmTC_e70df.dir/build.make:78: CMakeFiles/cmTC_e70df.dir/cmake_hdf5_test.c.o] Error 1
-        gmake[1]: Leaving directory '/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles/CMakeScratch/TryCompile-8zB9nC'
-        gmake: *** [Makefile:127: cmTC_e70df/fast] Error 2
-        
-      exitCode: 2
 ...

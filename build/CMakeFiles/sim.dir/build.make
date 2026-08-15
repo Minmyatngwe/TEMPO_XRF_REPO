@@ -167,10 +167,24 @@ CMakeFiles/sim.dir/src/sensitiveDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/sensitiveDetector.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/sensitiveDetector.cpp -o CMakeFiles/sim.dir/src/sensitiveDetector.cpp.s
 
+CMakeFiles/sim.dir/src/simulationConfig.cpp.o: CMakeFiles/sim.dir/flags.make
+CMakeFiles/sim.dir/src/simulationConfig.cpp.o: /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationConfig.cpp
+CMakeFiles/sim.dir/src/simulationConfig.cpp.o: CMakeFiles/sim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sim.dir/src/simulationConfig.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/simulationConfig.cpp.o -MF CMakeFiles/sim.dir/src/simulationConfig.cpp.o.d -o CMakeFiles/sim.dir/src/simulationConfig.cpp.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationConfig.cpp
+
+CMakeFiles/sim.dir/src/simulationConfig.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/simulationConfig.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationConfig.cpp > CMakeFiles/sim.dir/src/simulationConfig.cpp.i
+
+CMakeFiles/sim.dir/src/simulationConfig.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/simulationConfig.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationConfig.cpp -o CMakeFiles/sim.dir/src/simulationConfig.cpp.s
+
 CMakeFiles/sim.dir/src/simulationMessenger.cpp.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/simulationMessenger.cpp.o: /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationMessenger.cpp
 CMakeFiles/sim.dir/src/simulationMessenger.cpp.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sim.dir/src/simulationMessenger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/sim.dir/src/simulationMessenger.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/simulationMessenger.cpp.o -MF CMakeFiles/sim.dir/src/simulationMessenger.cpp.o.d -o CMakeFiles/sim.dir/src/simulationMessenger.cpp.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationMessenger.cpp
 
 CMakeFiles/sim.dir/src/simulationMessenger.cpp.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/sim.dir/src/simulationMessenger.cpp.s: cmake_force
 CMakeFiles/sim.dir/src/steppingAction.cpp.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/steppingAction.cpp.o: /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/steppingAction.cpp
 CMakeFiles/sim.dir/src/steppingAction.cpp.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/sim.dir/src/steppingAction.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/sim.dir/src/steppingAction.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/steppingAction.cpp.o -MF CMakeFiles/sim.dir/src/steppingAction.cpp.o.d -o CMakeFiles/sim.dir/src/steppingAction.cpp.o -c /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/steppingAction.cpp
 
 CMakeFiles/sim.dir/src/steppingAction.cpp.i: cmake_force
@@ -204,6 +218,7 @@ sim_OBJECTS = \
 "CMakeFiles/sim.dir/src/primaryGenerator.cpp.o" \
 "CMakeFiles/sim.dir/src/runAction.cpp.o" \
 "CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o" \
+"CMakeFiles/sim.dir/src/simulationConfig.cpp.o" \
 "CMakeFiles/sim.dir/src/simulationMessenger.cpp.o" \
 "CMakeFiles/sim.dir/src/steppingAction.cpp.o"
 
@@ -217,50 +232,50 @@ sim: CMakeFiles/sim.dir/src/physicsList.cpp.o
 sim: CMakeFiles/sim.dir/src/primaryGenerator.cpp.o
 sim: CMakeFiles/sim.dir/src/runAction.cpp.o
 sim: CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o
+sim: CMakeFiles/sim.dir/src/simulationConfig.cpp.o
 sim: CMakeFiles/sim.dir/src/simulationMessenger.cpp.o
 sim: CMakeFiles/sim.dir/src/steppingAction.cpp.o
 sim: CMakeFiles/sim.dir/build.make
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4Tree.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4FR.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4GMocren.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4RayTracer.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4VRML.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4ToolsSG.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4OpenGL.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4vis_management.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4modeling.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4interfaces.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4mctruth.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4geomtext.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4analysis.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4error_propagation.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4readout.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4physicslists.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4run.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4event.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4tracking.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4parmodels.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4Tree.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4FR.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4GMocren.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4RayTracer.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4VRML.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4ToolsSG.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4OpenGL.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4vis_management.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4modeling.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4interfaces.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4mctruth.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4geomtext.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4analysis.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4error_propagation.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4readout.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4physicslists.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4run.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4event.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4tracking.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4parmodels.so
 sim: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
 sim: /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
 sim: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 sim: /usr/lib/x86_64-linux-gnu/libGL.so
 sim: /usr/lib/x86_64-linux-gnu/libexpat.so
-sim: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4processes_hadronic.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4processes_core.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4digits_hits.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4track.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4particles.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4geometry.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4graphics_reps.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4materials.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4intercoms.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4global.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4clhep.so
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4ptl.so.3.0.0
-sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/lib/libG4zlib.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4processes_hadronic.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4processes_core.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4digits_hits.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4track.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4particles.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4geometry.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4graphics_reps.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4materials.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4intercoms.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4global.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4clhep.so
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4ptl.so.3.0.0
+sim: /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/lib/libG4zlib.so
 sim: CMakeFiles/sim.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/minmyatngwe/geant_4_xrf/XRF_ONLY/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable sim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sim.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

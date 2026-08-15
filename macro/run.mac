@@ -1,15 +1,127 @@
-/xrf/sampleMaterial G4_Fe
-/xrf/sampleMaterialDensity 7.874 g/cm3
-/xrf/sampleSize 5 5 0.005 mm
-/xrf/incidentAngle 45
-/xrf/sourceDistance 10
-/xrf/detectorthickness 1
-/xrf/detectorArea 30
-/xrf/detectorDistance 17
-/xrf/takeoffAngle 50
 
-/run/numberOfThreads 4
-/run/initialize
-/gps/particle gamma
-/gps/energy 15 keV
-/run/beamOn 1000000
+    /xrf/sampleMaterial G4_Fe
+    /xrf/sampleSize 5 5 0.005 mm
+    /xrf/fileName /home/minmyatngwe/geant_4_xrf/XRF_ONLY/python_code/root_output_file/Inconel 718.root
+    /xrf/incidentAngle 70.0
+    /xrf/sourceDistance 15.0
+    /xrf/detectorthickness 5.0
+    /xrf/detectorArea 30.0
+    /xrf/detectorDistance 20.0
+    /xrf/takeoffAngle 45.0
+    /xrf/detectorElevationAngle 90.0
+    /xrf/worldmat G4_AIR
+    /xrf/sampleMaterialDensity 8.99
+    /xrf/sampleMaterialIsCustom true
+    /xrf/focalspotdiameter 0.0001
+/xrf/sampleMaterialDensity 7.38
+/xrf/addSampleElement Sn 0.965
+/xrf/addSampleElement Ag 0.030
+/xrf/addSampleElement Cu 0.005
+/xrf/sampleToCollimatorDistance 10
+/xrf/sourceCollimatoryDiameter 0.5
+/xrf/detectorCollimatorIsEnabled True
+/xrf/detectorCollimatorIsCustom False
+/xrf/detectorCollimatorMaterial G4_Pb
+/xrf/sampleToDetectorCollimatorDistance 15.0
+/xrf/detectorCollimatoryAngleFromSample 45.0
+/xrf/detectorCollimatorDensity 8.0
+/xrf/detectorCollimatorThickness 2.0
+/xrf/detectorCollimatorOuterRadius 3.0
+/xrf/detectorCollimatorInnerRadius 0.5
+/xrf/detectorCollimatorElevationAngle  90.0
+ 
+/run/numberOfThreads 15
+    
+    /run/initialize
+    /gps/particle gamma
+
+    
+
+/gps/ene/type User
+/gps/hist/type energy
+
+        
+/gps/hist/point 0.00125 0.0
+/gps/hist/point 0.00175 0.0
+/gps/hist/point 0.00225 2.0656037715052718e-293
+/gps/hist/point 0.00275 3.058269188300407e-172
+/gps/hist/point 0.00325 4.519402035068359e-109
+/gps/hist/point 0.00375 6.277885727563975e-73
+/gps/hist/point 0.00425 1.1107473293629702e-50
+/gps/hist/point 0.00475 3.2643189074396566e-36
+/gps/hist/point 0.00525 2.1860750471152418e-26
+/gps/hist/point 0.00575 1.7968557928431202e-19
+/gps/hist/point 0.00625 1.8595710624414734e-14
+/gps/hist/point 0.00675 9.830106651258468e-11
+/gps/hist/point 0.00725 1.0058066667470871e-07
+/gps/hist/point 0.00775 1.0183145360634085e-05
+/gps/hist/point 0.00825 0.005970492462879336
+/gps/hist/point 0.00875 0.01456677419008022
+/gps/hist/point 0.00925 4.716113289751296e-46
+/gps/hist/point 0.00975 8.902986690353533e-39
+/gps/hist/point 0.01025 1.903566753784804e-34
+/gps/hist/point 0.01075 5.748972712430815e-30
+/gps/hist/point 0.01125 9.635264153869832e-26
+/gps/hist/point 0.01175 1.1036215680102219e-22
+/gps/hist/point 0.01225 6.247680187736781e-20
+/gps/hist/point 0.01275 1.7796980372294858e-17
+/gps/hist/point 0.01325 2.550329555265678e-15
+/gps/hist/point 0.01375 1.9789196475359948e-13
+/gps/hist/point 0.01425 8.961138197822192e-12
+/gps/hist/point 0.01475 2.5684055638581234e-10
+/gps/hist/point 0.01525 5.0161161040473946e-09
+/gps/hist/point 0.01575 7.040216467664917e-08
+/gps/hist/point 0.01625 7.33423181325073e-07
+/gps/hist/point 0.01675 5.907272107003463e-06
+/gps/hist/point 0.01725 3.806626832698186e-05
+/gps/hist/point 0.01775 0.00020356787808799444
+/gps/hist/point 0.01825 0.0009239492472851259
+/gps/hist/point 0.01875 0.0036067385879318295
+/gps/hist/point 0.01925 0.012383575899983646
+/gps/hist/point 0.01975 0.037772520430427316
+/gps/hist/point 0.02025 0.1040605456349359
+/gps/hist/point 0.02075 0.26179527236484124
+/gps/hist/point 0.02125 0.6057133507925627
+/gps/hist/point 0.02175 1.300446151552027
+/gps/hist/point 0.02225 2.617286626498153
+/gps/hist/point 0.02275 4.969196019030525
+/gps/hist/point 0.02325 8.931599760159635
+/gps/hist/point 0.02375 15.279000912016157
+/gps/hist/point 0.02425 24.994917112239737
+/gps/hist/point 0.02475 39.262226258155444
+/gps/hist/point 0.02525 59.52593450758128
+/gps/hist/point 0.02575 87.36522784847952
+/gps/hist/point 0.02625 124.29550280037668
+/gps/hist/point 0.02675 171.85675035451905
+/gps/hist/point 0.02725 231.43961040791507
+/gps/hist/point 0.02775 304.2190867529475
+/gps/hist/point 0.02825 391.03128057065715
+/gps/hist/point 0.02875 492.2918735429058
+/gps/hist/point 0.02925 607.8747080029294
+/gps/hist/point 0.02975 737.1015197097946
+/gps/hist/point 0.03025 879.0372017396099
+/gps/hist/point 0.03075 1032.0308451941235
+/gps/hist/point 0.03125 1193.286543465263
+/gps/hist/point 0.03175 1359.8660559399252
+/gps/hist/point 0.03225 1528.2194383303354
+/gps/hist/point 0.03275 1694.4965737113803
+/gps/hist/point 0.03325 1853.9561329470364
+/gps/hist/point 0.03375 2001.783188862631
+/gps/hist/point 0.03425 2132.84048084694
+/gps/hist/point 0.03475 2241.4979838523022
+/gps/hist/point 0.03525 2321.120276778528
+/gps/hist/point 0.03575 2365.3532190720216
+/gps/hist/point 0.03625 2367.149093812522
+/gps/hist/point 0.03675 2318.661280102686
+/gps/hist/point 0.03725 2210.804214995256
+/gps/hist/point 0.03775 2034.3782384191782
+/gps/hist/point 0.03825 1780.2199426706109
+/gps/hist/point 0.03875 1439.1293648962521
+/gps/hist/point 0.03925 1002.0712516364758
+/gps/hist/point 0.03975 435.6877953846067
+        
+
+/run/printProgress 10000
+
+/run/beamOn 5000000
+        

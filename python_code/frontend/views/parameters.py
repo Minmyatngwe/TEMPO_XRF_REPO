@@ -7,6 +7,10 @@ import subprocess
 from pathlib import Path
 from helper.macrowriter import write_macro
 from helper.xray_tube import get_flu
+from detector_noise.pipeline import apply_detectornoise
+import numpy as np 
+import plotly.express as px 
+from datetime import datetime
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 BUILD_DIR = PROJECT_ROOT / "build"
 SIM_EXE = BUILD_DIR / "sim"
@@ -49,10 +53,11 @@ edited_df = st.data_editor(
 st.subheader("General paramter")
 world_material=st.text_input("World Material")
 sample_custom_or_not=st.toggle("IS material custom?")
-sample_density=st.number_input("input sample density (gcm**3)")
+sample_density=st.number_input("input sample density (g/cm**3)")
 source_to_sample=st.number_input("source To sample Distancte (mm)")
 incident_angle=st.number_input("Source Incident Angle(deg)")
 takeoff_angle=st.number_input("Detector take off angle(deg)")
+detector_elevation_angle=st.number_input("Detector elevation angle(deg)")
 
 detector_active_area=st.number_input("Detector active area(mm)")
 detector_thickness=st.number_input("Detector thickness(mm)")
@@ -69,12 +74,22 @@ detector_collimatory_composition_is_custom=st.toggle("Is detector collimatory ma
 detector_collimatory_material=st.text_input("Detector collimatory mat")
 
 sample_detector_collimatory_dsitance=st.number_input("Sample to detector collimatory distance (mm)")
-sample_detector_collimatory_angle=st.number_input("Sample to Detector Collimatory deg(deg)")
+sample_detector_collimatory_angle=st.number_input("Sample to Detector Collimatory Azimuth  deg(deg)")
+detector_collimatory_elevation_angle=st.number_input("Detector collimatory angle elevation deg(deg)")
 sample_detector_collimatory_density=st.number_input("Detector collimatory density(g/cm**3)")
 detector_collimatory_thickness=st.number_input("Detector collimatory Thickness(mm)")
 detector_collimatory_outer_radius=st.number_input("Detector collimatory Outer Tube Radius(mm)")
 detector_collimatory_inner_radius=st.number_input("Detector collimatory inner Tube Radius(mm)")
 
+
+#other parameters
+
+st.title("Detector parameter")
+
+fwhm=st.number_input("FWHM(ev)")
+fwhm_energy=st.number_input("FWHM AT ENERGY KEV")
+fano_factor=st.number_input("fano_factor")
+pair_creation_energy_ev=st.number_input("pair_creation_energy_ev")
 
 
 if sample_custom_or_not:
@@ -83,7 +98,7 @@ else:
     sampleMaterialIsCustom="false"
 if current and voltage and anode_degree and anode_target_material:
     if st.button("Generate tube spectrum distribution "):
-        energy_bins, fluence_list = get_flu(current=current,voltage=voltage,anode_degree=anode_degree,exposure_time=exposure_time,anode_target_material=anode_target_material,filter=edited_df,source_to_tube_collimatory=source_to_tube_collimatory)
+        energy_bins, fluence_list ,get_flu= get_flu(current=current,voltage=voltage,anode_degree=anode_degree,exposure_time=exposure_time,anode_target_material=anode_target_material,filter=edited_df,source_to_sample=source_to_sample)
         fig,ax=plt.subplots()
         ax.plot(energy_bins,fluence_list)
         ax.set_xlabel("Tube Energy")
@@ -126,19 +141,22 @@ view_macro=write_macro(
     sample_detector_collimatory_density=sample_detector_collimatory_density,
     detector_collimatory_thickness=detector_collimatory_thickness,
     detector_collimatory_outer_radius=detector_collimatory_outer_radius,
-    detector_collimatory_inner_radius=detector_collimatory_inner_radius
+    detector_collimatory_inner_radius=detector_collimatory_inner_radius,
+    detector_collimatory_elevation_angle=detector_collimatory_elevation_angle,
+    detector_elevation_angle=detector_elevation_angle,tube_collimatory_radius=tube_collimatory_radius,source_to_tube_collimatory=source_to_tube_collimatory
     
     
     
     
 )
+run_pipleline=False
 if st.button("show geo in geant4"):
     with open(MACRO_FILE_VIS,"w") as f:
         f.write(view_macro)
     subprocess.run([str(SIM_EXE),], cwd=str(BUILD_DIR), check=True)
 
 if st.button("start shooting"):
-    energy_bins, fluence_list = get_flu(current=current,voltage=voltage,anode_degree=anode_degree,exposure_time=exposure_time,anode_target_material=anode_target_material,filter=edited_df,source_to_tube_collimatory=source_to_tube_collimatory)
+    energy_bins, fluence_list ,flu_number= get_flu(current=current,voltage=voltage,anode_degree=anode_degree,exposure_time=exposure_time,anode_target_material=anode_target_material,filter=edited_df,source_to_sample=source_to_sample)
     energy_bins/=1000
     run_macro=write_macro(
     incident_angle=incident_angle,
@@ -164,19 +182,60 @@ if st.button("start shooting"):
     detector_collimatory_inner_radius=detector_collimatory_inner_radius,
     energy_bins=energy_bins,
     
-    fluence_list=fluence_list
-    
+    fluence_list=fluence_list,
+    detector_collimatory_elevation_angle=detector_collimatory_elevation_angle,detector_elevation_angle=detector_elevation_angle
+    ,tube_collimatory_radius=tube_collimatory_radius,source_to_tube_collimatory=source_to_tube_collimatory
     
     
 )
     print(run_macro)
     with open(MACRO_FILE_RUN,"w") as f:
         f.write(run_macro)
-    subprocess.run([str(SIM_EXE),"run.mac"], cwd=str(BUILD_DIR), check=True)
+    start_time=datetime.now()
+    # subprocess.run([str(SIM_EXE),"run.mac"], cwd=str(BUILD_DIR), check=True)
+    
+    process = subprocess.Popen(
+        [str(SIM_EXE), "run.mac"],
+        cwd=str(BUILD_DIR),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1
+    )
 
+    output_box = st.empty()
+    lines = []
 
+    for line in process.stdout:
+        lines.append(line.rstrip())
+        output_box.code("\n".join(lines[-30:]))
 
-
-
+    return_code = process.wait()
+    end_time=datetime.now()
+    st.write(f"Time taken",end_time-start_time)
+    run_pipleline=True
+if run_pipleline:
+    d1=source_to_tube_collimatory
+    d2=source_to_sample-source_to_tube_collimatory
+    beamdiameter_cm=((tube_collimatory_radius*2)*(d2+d1)/d1)/10
+    
+    
+    area=np.pi*(beamdiameter_cm/2)**2
+    photon=area*flu_number
+    scaled_count,scaled_energy,original_count,original_energy=apply_detectornoise(
+        ROOT_OUTPUT_DIR,beamon,photon,
+        fwhm=fwhm,
+        fwhm_energy=fwhm_energy,
+        fano_factor=fano_factor,
+        pair_creation_energy_ev=pair_creation_energy_ev
+    )
+    col1,col2=st.columns(2)
+    with col1:
+        fig1=px.line(x=scaled_energy,y=scaled_count)
+        st.plotly_chart(fig1)
         
+    with col2:
+        fig2=px.line(x=original_energy,y=original_count)
+        st.plotly_chart(fig2)
+
 

@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sim.dir/src/runAction.cpp.o.d"
   "CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o"
   "CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o.d"
+  "CMakeFiles/sim.dir/src/simulationConfig.cpp.o"
+  "CMakeFiles/sim.dir/src/simulationConfig.cpp.o.d"
   "CMakeFiles/sim.dir/src/simulationMessenger.cpp.o"
   "CMakeFiles/sim.dir/src/simulationMessenger.cpp.o.d"
   "CMakeFiles/sim.dir/src/steppingAction.cpp.o"

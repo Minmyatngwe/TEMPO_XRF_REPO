@@ -13,9 +13,13 @@ class TrackInformation : public G4VUserTrackInformation {
         virtual void Print() const override {}
         
         G4int GetRootID() const { return fRootId; } 
-
+        
+        void SetRootId(G4int rootID){
+                fRootId=rootID;
+        }
+    
     private:
-        G4int fRootId;
+        G4int fRootId{-1};
 };
 
 #endif

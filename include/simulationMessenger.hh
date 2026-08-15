@@ -29,7 +29,6 @@ class SimulationMessenger:public G4UImessenger{
         G4UIcmdWithAString *addSampleElementCmd;
 
 
-        void SetNewValue(G4UIcommand*, G4String) override;
 };
 
 #endif

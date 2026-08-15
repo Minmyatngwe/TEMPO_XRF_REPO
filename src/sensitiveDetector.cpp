@@ -7,8 +7,12 @@
 #include "G4Gamma.hh"
 #include "G4UnitsTable.hh"
 #include "G4LogicalVolume.hh"
-#include "G4VPhysicalVolume.hh"
-SensitiveDetector::SensitiveDetector():G4VSensitiveDetector("SensitiveDetector"),fTotalEnergyDeposited(0.0){
+#include "G4RunManager.hh"
+#include "G4Event.hh"
+#include "G4Run.hh"
+#include "G4Region.hh"
+#include "G4AnalysisManager.hh"
+SensitiveDetector::SensitiveDetector():G4VSensitiveDetector("SensitiveDetector"){
 
 }
 SensitiveDetector::~SensitiveDetector(){
@@ -16,103 +20,68 @@ SensitiveDetector::~SensitiveDetector(){
 }
 
 
+// Reset all per-event detector scoring containers before
+// processing energy deposits from the new event.
 
 void SensitiveDetector::Initialize(G4HCofThisEvent *hce){
 
-    fTotalEnergyDeposited=0.0;
-    energyWeight=1.0;
     energyDepositTrackEnergy.clear();
     energyDepositTrackWeight.clear();
-
 }
+// Accumulate detector energy deposits by root track ID.
+// Deposits from secondary tracks belonging to the same root
+// particle are combined into one detector-energy value.
 
-G4bool SensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *hist)
+G4bool SensitiveDetector::ProcessHits(
+    G4Step* step,
+    G4TouchableHistory* hist)
 {
-G4double edep = step->GetTotalEnergyDeposit();
+    const G4double edep =
+        step->GetTotalEnergyDeposit();
 
-    G4Track* track = step->GetTrack();
+    G4Track* track =
+        step->GetTrack();
 
     TrackInformation* info =
-        dynamic_cast<TrackInformation*>(track->GetUserInformation());
-    G4StepPoint* pre  = step->GetPreStepPoint();
-    G4StepPoint* post = step->GetPostStepPoint();
+        dynamic_cast<TrackInformation*>(
+            track->GetUserInformation()
+        );
 
- auto* creatorProc = track->GetCreatorProcess();
-
-G4String creatorName =
-    creatorProc ? creatorProc->GetProcessName() : "primary";
-
-// Parent track ID
-G4int parentID = track->GetParentID();
-
-// Where this track was created
-G4ThreeVector vertexPos = track->GetVertexPosition();
-
-// Volume where this track was created
-auto* vertexLV = track->GetLogicalVolumeAtVertex();
-
-G4String vertexVolumeName =
-    vertexLV ? vertexLV->GetName() : "unknown";
-
-// Current volume where this energy deposit happens
-auto* currentPV = pre->GetPhysicalVolume();
-
-G4String currentVolumeName =
-    currentPV ? currentPV->GetName() : "out_of_world";
-
-// G4cout
-//     << "[WEIGHT CHECK] "
-//     << "trackID = " << track->GetTrackID()
-//     << " parentID = " << parentID
-//     << " particle = " << track->GetParticleDefinition()->GetParticleName()
-//     << " creator = " << creatorName
-//     << " createdPos = " << G4BestUnit(vertexPos, "Length")
-//     << " createdVolume = " << vertexVolumeName
-//     << " currentVolume = " << currentVolumeName
-//     << " E = " << pre->GetKineticEnergy()/keV << " keV"
-//     << " edep = " << edep/keV << " keV"
-//     << " trackWeight = " << track->GetWeight()
-//     << " preWeight = " << pre->GetWeight()
-//     << " postWeight = " << post->GetWeight()
-//     << G4endl;
-
-
-    G4int rootId = -1;
-    if (info != nullptr) {
-        rootId = info->GetRootID();
-    }
-
-    if (info ==nullptr){
+    if (info == nullptr) {
         return true;
     }
 
-    if (edep <= 0) {
-        return true; 
+
+    if (edep <= 0.0) {
+        return true;
     }
-        // G4cout << "Energy deposited: " << edep / keV << " keV" << G4endl;
 
+    const G4int rootId =info->GetRootID();
 
+    energyDepositTrackWeight[rootId] =track->GetWeight();
 
-    // energyDepositTrackEnergy[rootId] += edep;
-
-    energyDepositTrackWeight[rootId] = track->GetWeight();
-    energyDepositTrackEnergy[rootId] += edep; 
-
-
-
-
+    energyDepositTrackEnergy[rootId] +=edep;
     return true;
 }
+// Write one detector response entry for each root particle
+// that deposited energy during this event.
 
 void SensitiveDetector::EndOfEvent(G4HCofThisEvent *hce){
+    const G4RunManager* runManager = G4RunManager::GetRunManager();
+    
+    G4int eventId = runManager->GetCurrentEvent()->GetEventID();
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-    for(const auto& [trackId,energy]: energyDepositTrackEnergy) {
-        G4double weight = energyDepositTrackWeight[trackId];
+    for(const auto& [rootId,energy]: energyDepositTrackEnergy) {
+        G4double weight = energyDepositTrackWeight[rootId];
         if(energy>0){
-            // G4cout << "Track ID: " << trackId << ", Energy Deposited: " << energy / keV << " keV, Weight: " << weight << G4endl;
-            G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+            // G4cout << "Track ID: " << rootId << ", Energy Deposited: " << energy / keV << " keV, Weight: " << weight << G4endl;
+            
             analysisManager->FillH1(0, energy / keV,weight);
-
+            analysisManager->FillNtupleIColumn(0, eventId);
+            analysisManager->FillNtupleIColumn(1, rootId);
+            analysisManager->FillNtupleDColumn(2, energy/keV); 
+            analysisManager->FillNtupleDColumn(3, weight);
+            analysisManager->AddNtupleRow();
             
         }
     }

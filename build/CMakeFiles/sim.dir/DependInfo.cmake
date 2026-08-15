@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/primaryGenerator.cpp" "CMakeFiles/sim.dir/src/primaryGenerator.cpp.o" "gcc" "CMakeFiles/sim.dir/src/primaryGenerator.cpp.o.d"
   "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/runAction.cpp" "CMakeFiles/sim.dir/src/runAction.cpp.o" "gcc" "CMakeFiles/sim.dir/src/runAction.cpp.o.d"
   "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/sensitiveDetector.cpp" "CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o" "gcc" "CMakeFiles/sim.dir/src/sensitiveDetector.cpp.o.d"
+  "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationConfig.cpp" "CMakeFiles/sim.dir/src/simulationConfig.cpp.o" "gcc" "CMakeFiles/sim.dir/src/simulationConfig.cpp.o.d"
   "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/simulationMessenger.cpp" "CMakeFiles/sim.dir/src/simulationMessenger.cpp.o" "gcc" "CMakeFiles/sim.dir/src/simulationMessenger.cpp.o.d"
   "/home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/steppingAction.cpp" "CMakeFiles/sim.dir/src/steppingAction.cpp.o" "gcc" "CMakeFiles/sim.dir/src/steppingAction.cpp.o.d"
   )

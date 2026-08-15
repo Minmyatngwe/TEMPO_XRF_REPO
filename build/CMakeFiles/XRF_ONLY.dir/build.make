@@ -66,8 +66,7 @@ include CMakeFiles/XRF_ONLY.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/XRF_ONLY.dir/progress.make
 
-CMakeFiles/XRF_ONLY:
-	Depends sim
+CMakeFiles/XRF_ONLY: sim
 
 XRF_ONLY: CMakeFiles/XRF_ONLY
 XRF_ONLY: CMakeFiles/XRF_ONLY.dir/build.make

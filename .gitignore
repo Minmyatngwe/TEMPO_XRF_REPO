@@ -1,0 +1,23 @@
+# Python cache / compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python virtual environments
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Geant4 / CMake build
+build/
+
+# Generated simulation files
+python_code/root_output_file/
+python_code/frontend/runs/
+
+# Personal test files
+python_code/frontend/test.py
+python_code/frontend/helper/test.txt

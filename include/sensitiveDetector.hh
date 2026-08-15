@@ -19,8 +19,6 @@ class SensitiveDetector:public G4VSensitiveDetector{
         SensitiveDetector();
         ~SensitiveDetector();
     private:
-        G4double fTotalEnergyDeposited;
-        G4double energyWeight=1.0;
         virtual void Initialize (G4HCofThisEvent *)override;
         virtual void EndOfEvent(G4HCofThisEvent*)override;
         virtual G4bool ProcessHits(G4Step*,G4TouchableHistory*);    

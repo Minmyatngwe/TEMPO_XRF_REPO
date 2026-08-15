@@ -4,33 +4,124 @@
 #include "G4ios.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4UnitsTable.hh"  
+#include "G4EmStandardPhysics_option4.hh"
+#include "G4GenericBiasingPhysics.hh"
+#include "G4RegionStore.hh"
+#include "G4Region.hh"
+#include "G4ProductionCuts.hh"
+#include "G4Exception.hh"
+PhysicsList::PhysicsList(SimulationConfig & config):fConfig(&config){
 
-
-PhysicsList::PhysicsList(){
-
-    RegisterPhysics(new G4EmLivermorePhysics());
+    RegisterPhysics(new G4EmStandardPhysics_option4());
     auto *parameters = G4EmParameters::Instance();
-    parameters->SetFluo(true);
-    parameters->SetAuger(true);
-    parameters->SetPixe(true);
-    parameters->SetDeexcitationIgnoreCut(true);
-    parameters->SetBeardenFluoDir(true);
+    if(fConfig->isInteractionBiasingUse){
+        G4cout<<"Interaction bais is used"<<G4endl;
+        auto * genericBiasing=new G4GenericBiasingPhysics();
+        genericBiasing->Bias("gamma");
+        RegisterPhysics(genericBiasing);
 
-    parameters->SetVerbose(0);
-
-    parameters->ActivateSecondaryBiasing("phot","SampleRegion",1000,100*MeV);
-    parameters->ActivateSecondaryBiasing("compt","SampleRegion",1000,100*MeV);
-    parameters->ActivateSecondaryBiasing("Rayl", "SampleRegion", 1000, 100*MeV);
-    parameters->ActivateSecondaryBiasing("eBrem", "SampleRegion", 1000, 100*MeV); 
-
-    parameters->ActivateForcedInteraction("phot",  "SampleRegion", 0.0025*mm, true);
-    parameters->ActivateForcedInteraction("compt", "SampleRegion", 0.0025*mm, true);
-    parameters->ActivateForcedInteraction("Rayl",  "SampleRegion", 0.0025*mm, true);
-
-    //     parameters->SetProcessBiasingFactor("phot", 100, true);
-    // parameters->SetProcessBiasingFactor("compt", 100, true);
-    // parameters->SetProcessBiasingFactor("Rayl",100, true);
+    }
 
 
 }
+
+void PhysicsList::ConstructProcess()
+{
+    auto* parameters = G4EmParameters::Instance();
+
+    parameters->SetFluo(fConfig->isFluorescenceUse);
+    parameters->SetAuger(fConfig->isAugerUse);
+    parameters->SetPixe(fConfig->isPixeUse);
+    parameters->SetDeexcitationIgnoreCut(fConfig->isIgnoreCutUse);
+    parameters->SetANSTOFluoDir(true);
+    // parameters->SetBeardenFluoDir(true);
+    parameters->SetVerbose(0);
+
+
+    if (fConfig->isSecondarySplittingUse) {
+            G4cout
+                << "Splitting bias use during initialization = "
+                << G4endl;
+
+        G4double maxEnergy=fConfig->maximumEnergy;
+
+        parameters->ActivateSecondaryBiasing(
+            "phot",
+            "SampleRegion",
+            fConfig->photoelectricFactor,
+            maxEnergy
+        );
+
+        parameters->ActivateSecondaryBiasing(
+            "compt",
+            "SampleRegion",
+            fConfig->comptFactor,
+            maxEnergy
+        );
+
+        parameters->ActivateSecondaryBiasing(
+            "Rayl",
+            "SampleRegion",
+            fConfig->rayleighFactor,
+            maxEnergy
+        );
+
+    }
+
+    G4VModularPhysicsList::ConstructProcess();
+}
+
+
 PhysicsList::~PhysicsList(){}
+void PhysicsList::SetCuts()
+{
+    SetCutsWithDefault();
+
+    G4Region* sampleRegion =
+        G4RegionStore::GetInstance()->GetRegion(
+            "SampleRegion",
+            false
+        );
+
+    if (sampleRegion == nullptr)
+    {
+        G4Exception(
+            "PhysicsList::SetCuts",
+            "SampleRegionNotFound",
+            FatalException,
+            "SampleRegion could not be found."
+        );
+
+        return;
+    }
+
+    
+    auto* sampleCuts = new G4ProductionCuts();
+
+    sampleCuts->SetProductionCut(
+         fConfig->gammaCut,
+        G4ProductionCuts::GetIndex("gamma")
+    );
+
+    sampleCuts->SetProductionCut(
+        fConfig->electronCut,
+        G4ProductionCuts::GetIndex("e-")
+    );
+
+    sampleCuts->SetProductionCut(
+       fConfig->positronCut,
+        G4ProductionCuts::GetIndex("e+")
+    );
+
+    sampleCuts->SetProductionCut(
+       fConfig->protonCut,
+        G4ProductionCuts::GetIndex("proton")
+    );
+
+    sampleRegion->SetProductionCuts(sampleCuts);
+
+    G4cout
+        << "[SAMPLE CUTS CREATED] pointer = "
+        << static_cast<const void*>(sampleCuts)
+        << G4endl;
+}

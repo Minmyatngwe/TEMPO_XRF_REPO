@@ -2,15 +2,15 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /home/minmyatngwe/geant_4_xrf/XRF_ONLY/src/physicsList.cpp \
  /usr/include/stdc-predef.h \
  /home/minmyatngwe/geant_4_xrf/XRF_ONLY/include/physicsList.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VModularPhysicsList.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VPhysicsConstructor.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleDefinition.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PDefManager.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4AutoLock.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Threading.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Types.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4GlobalConfig.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VModularPhysicsList.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VPhysicsConstructor.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleDefinition.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PDefManager.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4AutoLock.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Threading.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Types.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4GlobalConfig.hh \
  /usr/include/c++/13/complex \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -184,9 +184,9 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc \
  /usr/include/c++/13/bits/istream.tcc \
  /usr/include/c++/13/bits/sstream.tcc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/tls.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/globals.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ios.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/tls.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/globals.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ios.hh \
  /usr/include/c++/13/iostream /usr/include/c++/13/algorithm \
  /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
@@ -195,10 +195,10 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4String.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4String.hh \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4String.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/templates.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4String.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/templates.hh \
  /usr/include/c++/13/climits \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
@@ -208,9 +208,9 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Exception.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ExceptionSeverity.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4EnvironmentUtils.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Exception.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ExceptionSeverity.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EnvironmentUtils.hh \
  /usr/include/c++/13/iomanip /usr/include/c++/13/locale \
  /usr/include/c++/13/bits/locale_facets_nonio.h /usr/include/c++/13/ctime \
  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
@@ -249,18 +249,18 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/pwdefs.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/pwdefs.hh \
  /usr/include/c++/13/stdlib.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleDefinition.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleTableIterator.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleTable.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsListHelper.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsListOrderingParameter.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ThreadLocalSingleton.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Cache.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4CacheDetails.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleDefinition.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleTableIterator.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleTable.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsListHelper.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsListOrderingParameter.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ThreadLocalSingleton.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Cache.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4CacheDetails.hh \
  /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
  /usr/include/c++/13/bits/list.tcc /usr/include/c++/13/functional \
  /usr/include/c++/13/unordered_map \
@@ -269,125 +269,201 @@ CMakeFiles/sim.dir/src/physicsList.cpp.o: \
  /usr/include/c++/13/bits/hashtable_policy.h \
  /usr/include/c++/13/bits/enable_special_members.h \
  /usr/include/c++/13/array /usr/include/c++/13/compare \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VUPLSplitter.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/rundefs.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VUserPhysicsList.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsModelCatalog.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ProductionCutsTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MaterialCutsCouple.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ProductionCuts.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MCCIndexConversionTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Region.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4GeomSplitter.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/geomwdefs.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Region.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4EmLivermorePhysics.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4EmParameters.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MscStepLimitType.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NuclearFormfactorType.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DNAModelSubType.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4EmFluoDirectory.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4EmSaturation.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Step.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ThreeVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Utility/defs.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VPhysicalVolume.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/geomdefs.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4RotationMatrix.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/Rotation.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationInterfaces.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/LorentzVector.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/LorentzVector.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/AxisAngle.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/AxisAngle.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationInterfaces.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationX.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationX.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationY.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationY.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationZ.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/RotationZ.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Vector/Rotation.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VPhysicalVolume.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4StepPoint.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Allocator.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4AllocatorPool.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4SteppingControl.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4StepStatus.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4TouchableHandle.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VTouchable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4TouchableHistory.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationHistory.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VUPLSplitter.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/rundefs.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VUserPhysicsList.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsModelCatalog.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ProductionCutsTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MaterialCutsCouple.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ProductionCuts.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MCCIndexConversionTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Region.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4GeomSplitter.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/geomwdefs.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Region.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EmLivermorePhysics.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EmParameters.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MscStepLimitType.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NuclearFormfactorType.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DNAModelSubType.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EmFluoDirectory.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EmSaturation.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Step.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ThreeVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Utility/defs.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VPhysicalVolume.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/geomdefs.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4RotationMatrix.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/Rotation.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationInterfaces.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/LorentzVector.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/LorentzVector.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/AxisAngle.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/AxisAngle.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationInterfaces.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationX.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationX.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationY.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationY.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationZ.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/RotationZ.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Vector/Rotation.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VPhysicalVolume.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4StepPoint.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Allocator.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4AllocatorPool.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4SteppingControl.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4StepStatus.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4TouchableHandle.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VTouchable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4TouchableHistory.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationHistory.hh \
  /usr/include/assert.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4AffineTransform.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Transform3D.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/Transform3D.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/Transform3D.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/Point3D.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/Vector3D.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/CLHEP/Geometry/Normal3D.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4AffineTransform.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationLevel.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationLevelRep.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationLevelRep.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationLevel.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationHistoryPool.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4NavigationHistory.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4LogicalVolume.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4AffineTransform.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Transform3D.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/Transform3D.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/Transform3D.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/Point3D.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/Vector3D.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/CLHEP/Geometry/Normal3D.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4AffineTransform.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationLevel.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationLevelRep.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationLevelRep.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationLevel.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationHistoryPool.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4NavigationHistory.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4LogicalVolume.hh \
  /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h \
  /usr/include/c++/13/bits/shared_ptr_atomic.h \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4LogicalVolume.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4TouchableHistory.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ReferenceCountedHandle.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Material.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Element.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ElementTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ElementVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4IonisParamElm.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Isotope.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4IsotopeVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4IonisParamMat.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DensityEffectCalculator.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MaterialPropertiesTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MaterialPropertiesIndex.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MaterialPropertyVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsFreeVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4LogicalVolume.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4TouchableHistory.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ReferenceCountedHandle.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Material.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Element.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ElementTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ElementVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4IonisParamElm.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Isotope.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4IsotopeVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4IonisParamMat.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DensityEffectCalculator.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MaterialPropertiesTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MaterialPropertiesIndex.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MaterialPropertyVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsFreeVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsVector.hh \
  /usr/include/c++/13/fstream \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Log.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4IEEE754.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsVectorType.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4PhysicsVector.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4MaterialTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4SandiaTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4OrderedTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DataVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DataVector.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4StepPoint.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4TrackVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Step.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Track.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/trkdefs.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DynamicParticle.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ElectronOccupancy.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4LorentzVector.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ParticleMomentum.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4DynamicParticle.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4TrackStatus.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4VUserTrackInformation.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4Track.icc \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ChemTimeStepModel.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4ios.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4SystemOfUnits.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4UnitsTable.hh \
- /home/minmyatngwe/geant4_learning/geant4-v11.4.0-install/include/Geant4/G4UnitsTable.icc
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Log.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4IEEE754.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsVectorType.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4PhysicsVector.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4MaterialTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4SandiaTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4OrderedTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DataVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DataVector.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4StepPoint.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4TrackVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Step.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Track.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/trkdefs.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DynamicParticle.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ElectronOccupancy.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4LorentzVector.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ParticleMomentum.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4DynamicParticle.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4TrackStatus.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VUserTrackInformation.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Track.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ChemTimeStepModel.hh \
+ /home/minmyatngwe/geant_4_xrf/XRF_ONLY/include/simulationConfig.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/globals.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4SystemOfUnits.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ThreeVector.hh \
+ /usr/include/c++/13/utility /usr/include/c++/13/bits/stl_relops.h \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Material.hh \
+ /usr/include/nlohmann/json.hpp /usr/include/c++/13/iterator \
+ /usr/include/c++/13/bits/stream_iterator.h \
+ /usr/include/nlohmann/adl_serializer.hpp \
+ /usr/include/nlohmann/detail/abi_macros.hpp \
+ /usr/include/nlohmann/detail/conversions/from_json.hpp \
+ /usr/include/c++/13/forward_list /usr/include/c++/13/bits/forward_list.h \
+ /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/valarray \
+ /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h \
+ /usr/include/nlohmann/detail/exceptions.hpp \
+ /usr/include/nlohmann/detail/value_t.hpp \
+ /usr/include/nlohmann/detail/macro_scope.hpp \
+ /usr/include/nlohmann/detail/meta/detected.hpp \
+ /usr/include/nlohmann/detail/meta/void_t.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ /usr/include/c++/13/version /usr/include/c++/13/cassert \
+ /usr/include/nlohmann/detail/string_escape.hpp \
+ /usr/include/nlohmann/detail/input/position_t.hpp \
+ /usr/include/nlohmann/detail/meta/cpp_future.hpp \
+ /usr/include/nlohmann/detail/meta/type_traits.hpp \
+ /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/end.hpp \
+ /usr/include/nlohmann/json_fwd.hpp \
+ /usr/include/nlohmann/detail/string_concat.hpp \
+ /usr/include/nlohmann/detail/meta/identity_tag.hpp \
+ /usr/include/nlohmann/detail/meta/std_fs.hpp \
+ /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
+ /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/codecvt \
+ /usr/include/c++/13/bits/fs_dir.h /usr/include/c++/13/bits/fs_ops.h \
+ /usr/include/nlohmann/detail/conversions/to_json.hpp \
+ /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /usr/include/nlohmann/byte_container_with_subtype.hpp \
+ /usr/include/nlohmann/detail/hash.hpp \
+ /usr/include/nlohmann/detail/input/binary_reader.hpp \
+ /usr/include/nlohmann/detail/input/input_adapters.hpp \
+ /usr/include/c++/13/numeric /usr/include/c++/13/bits/stl_numeric.h \
+ /usr/include/c++/13/pstl/glue_numeric_defs.h \
+ /usr/include/nlohmann/detail/input/json_sax.hpp \
+ /usr/include/nlohmann/detail/input/lexer.hpp \
+ /usr/include/nlohmann/detail/meta/is_sax.hpp \
+ /usr/include/nlohmann/detail/input/parser.hpp \
+ /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
+ /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /usr/include/nlohmann/detail/json_custom_base_class.hpp \
+ /usr/include/nlohmann/detail/json_pointer.hpp \
+ /usr/include/nlohmann/detail/json_ref.hpp \
+ /usr/include/nlohmann/detail/output/binary_writer.hpp \
+ /usr/include/nlohmann/detail/output/output_adapters.hpp \
+ /usr/include/nlohmann/detail/output/serializer.hpp \
+ /usr/include/nlohmann/detail/conversions/to_chars.hpp \
+ /usr/include/nlohmann/ordered_map.hpp /usr/include/c++/13/any \
+ /usr/include/nlohmann/detail/macro_unscope.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ios.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4UnitsTable.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4UnitsTable.icc \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4EmStandardPhysics_option4.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4GenericBiasingPhysics.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4RegionStore.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VStoreNotifier.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4VNotifier.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Region.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4ProductionCuts.hh \
+ /home/minmyatngwe/geant4_learning/geant4-v11.4.2-install/include/Geant4/G4Exception.hh

@@ -11,6 +11,8 @@
 #include "simulationConfig.hh"
 
 
+#include "G4Accumulable.hh"
+#include "globals.hh"
 
 class RunAction:public G4UserRunAction{
     public:
@@ -18,8 +20,21 @@ class RunAction:public G4UserRunAction{
         ~RunAction() override;
         void BeginOfRunAction(const G4Run* run) override;
         void EndOfRunAction(const G4Run* run) override;
+            void AddPrimaryEnteringSample(G4double weight)
+    {
+        fPrimaryEnteringSample += weight;
+    }
+
+    void AddGammaEnteringSilicon(G4double weight)
+    {
+        fGammaEnteringSilicon += weight;
+    }
+
     private:
         SimulationConfig &fConfig;
+            G4Accumulable<G4double> fPrimaryEnteringSample = 0.0;
+    G4Accumulable<G4double> fGammaEnteringSilicon = 0.0;
+
 };  
 
 

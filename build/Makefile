@@ -310,6 +310,30 @@ src/sensitiveDetector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/sensitiveDetector.cpp.s
 .PHONY : src/sensitiveDetector.cpp.s
 
+src/simulationConfig.o: src/simulationConfig.cpp.o
+.PHONY : src/simulationConfig.o
+
+# target to build an object file
+src/simulationConfig.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/simulationConfig.cpp.o
+.PHONY : src/simulationConfig.cpp.o
+
+src/simulationConfig.i: src/simulationConfig.cpp.i
+.PHONY : src/simulationConfig.i
+
+# target to preprocess a source file
+src/simulationConfig.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/simulationConfig.cpp.i
+.PHONY : src/simulationConfig.cpp.i
+
+src/simulationConfig.s: src/simulationConfig.cpp.s
+.PHONY : src/simulationConfig.s
+
+# target to generate assembly for a file
+src/simulationConfig.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/simulationConfig.cpp.s
+.PHONY : src/simulationConfig.cpp.s
+
 src/simulationMessenger.o: src/simulationMessenger.cpp.o
 .PHONY : src/simulationMessenger.o
 
@@ -389,6 +413,9 @@ help:
 	@echo "... src/sensitiveDetector.o"
 	@echo "... src/sensitiveDetector.i"
 	@echo "... src/sensitiveDetector.s"
+	@echo "... src/simulationConfig.o"
+	@echo "... src/simulationConfig.i"
+	@echo "... src/simulationConfig.s"
 	@echo "... src/simulationMessenger.o"
 	@echo "... src/simulationMessenger.i"
 	@echo "... src/simulationMessenger.s"

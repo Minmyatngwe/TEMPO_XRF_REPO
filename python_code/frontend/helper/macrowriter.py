@@ -12,12 +12,22 @@ def write_macro(incident_angle,source_to_sample,
     detector_collimatory_thickness,
     detector_collimatory_outer_radius,
     detector_collimatory_inner_radius,
+    detector_collimatory_elevation_angle,detector_elevation_angle,source_to_tube_collimatory,tube_collimatory_radius,
     energy_bins=None,fluence_list=None,):
+    
+    if detector_collimatory_composition_is_custom:
+        detector_collimatory_composition_is_custom="true"
+    else:
+        detector_collimatory_composition_is_custom="false"
+    if detector_collimatory_is_enable:
+        detector_collimatory_is_enable='true'
+    else:
+        detector_collimatory_is_enable='false'
+    
     
     
     macro_file=f"""
-    /xrf/sampleMaterial G4_Fe
-    /xrf/sampleMaterialDensity 7.874 g/cm3
+    /xrf/sampleMaterial G4_Zn
     /xrf/sampleSize 5 5 0.005 mm
     /xrf/fileName {filepath}
     /xrf/incidentAngle {incident_angle}
@@ -26,21 +36,21 @@ def write_macro(incident_angle,source_to_sample,
     /xrf/detectorArea {detector_active_area}
     /xrf/detectorDistance {detector_to_sample_distance}
     /xrf/takeoffAngle {takeoff_angle}
+    /xrf/detectorElevationAngle {detector_elevation_angle}
     /xrf/worldmat {world_material}
     /xrf/sampleMaterialDensity {sample_density}
     /xrf/sampleMaterialIsCustom {sampleMaterialIsCustom}
     /xrf/focalspotdiameter {focal_spot_diameter}
-/xrf/addSampleElement Ni 0.61
-
-/xrf/addSampleElement Cr 0.215
-
-/xrf/addSampleElement Mo 0.09
-
-/xrf/addSampleElement Fe 0.05
-
-/xrf/addSampleElement Nb 0.035
-/xrf/sampleToCollimatorDistance 10
-/xrf/sourceCollimatoryDiameter 0.5
+/xrf/sampleMaterialDensity 8.49
+/xrf/addSampleElement Cu 0.615
+/xrf/addSampleElement Zn 0.353
+/xrf/addSampleElement Pb 0.0271
+/xrf/addSampleElement Fe 0.0017
+/xrf/addSampleElement Sn 0.0015
+/xrf/addSampleElement Ni 0.00059
+/xrf/addSampleElement Mn 0.00001
+/xrf/tubeToCollimatoryDistance {source_to_tube_collimatory}
+/xrf/sourceCollimatoryDiameter {tube_collimatory_radius*2}
 /xrf/detectorCollimatorIsEnabled {detector_collimatory_is_enable}
 /xrf/detectorCollimatorIsCustom {detector_collimatory_composition_is_custom}
 /xrf/detectorCollimatorMaterial {detector_collimatory_material}
@@ -50,6 +60,7 @@ def write_macro(incident_angle,source_to_sample,
 /xrf/detectorCollimatorThickness {detector_collimatory_thickness}
 /xrf/detectorCollimatorOuterRadius {detector_collimatory_outer_radius}
 /xrf/detectorCollimatorInnerRadius {detector_collimatory_inner_radius}
+/xrf/detectorCollimatorElevationAngle  {detector_collimatory_elevation_angle}
 
 /run/numberOfThreads {numberofthread}
     
@@ -82,6 +93,8 @@ def write_macro(incident_angle,source_to_sample,
             macro_file+=f"\n/gps/hist/point {e} {f}"
         final_macro=macro_file+f"""
         \n
+/run/printProgress 10000
+
 /run/beamOn {beamon}
         """
     
@@ -89,3 +102,4 @@ def write_macro(incident_angle,source_to_sample,
         
 
         
+    
