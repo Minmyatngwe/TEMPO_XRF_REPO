@@ -1,6 +1,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git curl 
+git clone https://github.com/Minmyatngwe/TEMPO_XRF_REPO.git
 wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.4.2/geant4-v11.4.2.tar.gz
 tar -xzf geant4-v11.4.2.tar.gz
 python3 ./TEMPO_XRF_REPO/python_code/script.py geant4-v11.4.2
