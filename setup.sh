@@ -56,6 +56,7 @@ cd TEMPO_XRF_REPO
 mkdir build
 cd build
 cmake ..
+make
 cd .. 
 
 python3 -m venv .venv
