@@ -25,14 +25,7 @@ using json = nlohmann::json;
 int main(int argc,char **argv){
 
     G4UIExecutive *ui{nullptr};
-    if (argc == 2) {
-        G4cout << "Creating Qt UI..." << G4endl;
 
-        ui = new G4UIExecutive(argc, argv,"OGLSQt");
-
-        G4cout << "Qt UI object created." << G4endl;
-        G4cout << "ui->IsGUI() = " << ui->IsGUI() << G4endl;
-    }
 
     std::string configJsonPath=argv[1];
     std::filesystem::path filePath=argv[1];
@@ -78,13 +71,10 @@ int main(int argc,char **argv){
     vismanger->Initialize();
     G4UImanager *uimanager=G4UImanager::GetUIpointer();
 
-    if (ui){
+    if (argc == 2){
         config.debug=true;
         G4cout << "UI session starts..." << G4endl;
-        G4cout << "UI session starts..." << G4endl;
         G4int result=uimanager->ApplyCommand("/control/execute vis.mac");
-        // G4cout << "Result = " << result << G4endl;
-        // ui->SessionStart();
     }
 
     else {
