@@ -1,8 +1,12 @@
-# SYSTEM UPDATE + BASIC TOOLS
+#!/usr/bin/env bash
 
+set -e
+
+# Update system
 sudo apt update -y
 sudo apt upgrade -y
 
+# Install system dependencies
 sudo apt install -y \
     git \
     curl \
@@ -13,8 +17,6 @@ sudo apt install -y \
     python3-venv \
     pkg-config \
     ffmpeg \
-    nodejs \
-    npm \
     nlohmann-json3-dev \
     libx11-dev \
     libxmu-dev \
@@ -28,32 +30,34 @@ sudo apt install -y \
     libcairo2-dev \
     libpango1.0-dev
 
+# Remove old Node/npm if installed
+sudo apt remove -y nodejs npm || true
+sudo apt autoremove -y
 
-# CLONE XRF PROJECT
+# Install Node.js 22
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
 
+node --version
+npm --version
+npx --version
+
+# Clone XRF project
 git clone https://github.com/Minmyatngwe/TEMPO_XRF_REPO.git
 
 cd TEMPO_XRF_REPO
-
 git switch new_geant4
-
 cd ..
 
-
-# DOWNLOAD GEANT4
-
+# Download Geant4
 wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.4.2/geant4-v11.4.2.tar.gz
 
 tar -xzf geant4-v11.4.2.tar.gz
 
-
-# PATCH GEANT4 SOURCE
-
+# Patch Geant4 source
 python3 ./TEMPO_XRF_REPO/python_code/script.py geant4-v11.4.2
 
-
-# BUILD GEANT4
-
+# Build Geant4
 mkdir -p geant4-v11.4.2-build
 cd geant4-v11.4.2-build
 
@@ -72,17 +76,17 @@ cmake --install .
 
 cd ..
 
-
-# LOAD GEANT4 ENVIRONMENT
-
+# Load Geant4 environment
 source geant4-install/bin/geant4.sh
 
-printf 'source "%s"\n' \
-    "$(realpath geant4-install/bin/geant4.sh)" >> ~/.bashrc
+GEANT4_SETUP="$(realpath geant4-install/bin/geant4.sh)"
 
+grep -qxF "source \"$GEANT4_SETUP\"" ~/.bashrc || \
+    echo "source \"$GEANT4_SETUP\"" >> ~/.bashrc
 
-# BUILD XRF SIMULATION
+geant4-config --version
 
+# Build XRF simulation
 cd TEMPO_XRF_REPO
 
 mkdir -p build
@@ -92,11 +96,11 @@ cmake ..
 
 cmake --build . -j$(nproc)
 
+ls -l sim
+
 cd ..
 
-
-# PYTHON VIRTUAL ENVIRONMENT
-
+# Create Python virtual environment
 python3 -m venv .venv
 
 source .venv/bin/activate
@@ -105,16 +109,16 @@ python -m pip install --upgrade pip
 
 python -m pip install -r requirement.txt
 
-
-# THREE.JS / VITE
-
+# Install Three.js and Vite
 cd python_code/vis
 
+npm install three
 npm install --save-dev vite@5
 
+npm ls three
+npm ls vite
 
-# START STREAMLIT
-
+# Start Streamlit
 cd ../frontend
 
 streamlit run main.py
