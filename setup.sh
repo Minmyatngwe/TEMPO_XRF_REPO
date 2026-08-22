@@ -25,6 +25,16 @@ sudo apt install -y \
     libqt5opengl5-dev \
     libvtk9-dev \
     libvtk9-qt-dev
+sudo apt install -y \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev
+sudo apt install -y \
+    ffmpeg \
+    build-essential \
+    python3-dev
+sudo apt install -y nlohmann-json3-dev
+
 cmake ../geant4-v11.4.2 \
     -DCMAKE_INSTALL_PREFIX=../geant4-install \
     -DGEANT4_INSTALL_DATA=ON \
@@ -33,6 +43,7 @@ cmake ../geant4-v11.4.2 \
     -DGEANT4_USE_QT_QT5=ON \
     -DGEANT4_USE_OPENGL_X11=ON \
     -DGEANT4_USE_VTK=OFF
+    
 
 cmake --build . -j$(nproc)
 cmake --install .
@@ -44,23 +55,13 @@ cd ..
 cd TEMPO_XRF_REPO
 mkdir build
 cd build
-sudo apt install -y nlohmann-json3-dev
 cmake ..
 cd .. 
 
 python3 -m venv .venv
 pip install --upgrade pip
 source .venv/bin/activate
-sudo apt update
 
-sudo apt install -y \
-    pkg-config \
-    libcairo2-dev \
-    libpango1.0-dev
-sudo apt install -y \
-    ffmpeg \
-    build-essential \
-    python3-dev
 pip install -r requirement.txt
 
 git switch new_geant4
