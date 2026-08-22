@@ -88,7 +88,7 @@ int main(int argc,char **argv){
     }
 
     else {
-        config.debug=false
+        config.debug=false;
         G4String command = "/control/execute ";
         G4String fileName = argv[2];
         uimanager->ApplyCommand(command + fileName);
