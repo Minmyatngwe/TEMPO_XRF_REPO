@@ -1,32 +1,6 @@
-/xrf/sampleMaterial G4_Fe
-/xrf/sampleMaterialDensity 7.874 g/cm3
-/xrf/sampleSize 5 5 0.005 mm
-/xrf/incidentAngle 45
-/xrf/sourceDistance 10
-/xrf/detectorthickness 1
-/xrf/detectorArea 30
-/xrf/detectorDistance 17
-/xrf/takeoffAngle 50
-
+/run/numberOfThreads 5
 
 /run/initialize
-/gps/particle gamma
-/gps/energy 15 keV
 
-/vis/open OGLSQt
-/vis/drawVolume
-
-/vis/viewer/set/style wireframe
-/vis/scene/add/axes 0 0 0 30 mm
-/vis/viewer/set/autoRefresh true
-/vis/viewer/set/viewpointThetaPhi 70 30
-/vis/viewer/zoom 20
-
-/tracking/storeTrajectory 1
-/vis/scene/add/trajectories smooth
-/vis/scene/endOfEventAction accumulate 10
-
-/vis/viewer/flush
-/tracking/verbose 1
-/run/beamOn 100
+/run/beamOn 10
 

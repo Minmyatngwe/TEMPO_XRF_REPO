@@ -1,6 +1,9 @@
 #include "steppingAction.hh"
 #include "trackInformation.hh"
+#include "browserTrackExporter.hh"
 
+#include "G4Event.hh"
+#include "G4RunManager.hh"
 #include "G4Step.hh"
 #include "G4Track.hh"
 #include "G4SystemOfUnits.hh"
@@ -13,7 +16,6 @@
 #include "G4Box.hh"
 #include "G4VProcess.hh"
 #include <iomanip>
-#include "G4RunManager.hh"
 #include "G4AnalysisManager.hh"
 #include "G4RegionStore.hh"
 #include "G4Region.hh"
@@ -107,6 +109,32 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         }
     }
     }
+const auto*
+event =
+    G4RunManager::
+        GetRunManager()
+        ->GetCurrentEvent();
 
+
+if (
+    event != nullptr &&event->GetEventID() < 10
+)
+
+    {
+   
+
+        BrowserTrackExporter::
+            Instance()
+            .RecordStep(
+
+                event->GetEventID(),
+
+                track,
+
+                preStepPoint->GetPosition(),
+
+                postStepPoint->GetPosition()
+            );
+    }
 
 }

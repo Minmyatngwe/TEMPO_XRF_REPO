@@ -19,6 +19,7 @@ PHYSICS_DEFAULTS = {
     "physics_sample_electron_cut_mm": 0.01,
     "physics_sample_positron_cut_mm": 0.01,
     "physics_sample_proton_cut_mm": 0.01,
+    "physics_flu_dataset":"ANSTO"
 }
 
 
@@ -80,6 +81,9 @@ def build_physics_config() -> dict:
                 "physics_sample_proton_cut_mm"
             ],
         },
+        "flu_dataset":{
+            "flu_dataset":st.session_state["physics_flu_dataset"]
+        }
     }
 
 

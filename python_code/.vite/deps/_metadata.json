@@ -1,0 +1,32 @@
+{
+  "hash": "8e12ab79",
+  "configHash": "fa5a87e7",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "267e35ea",
+  "optimized": {
+    "three": {
+      "src": "../../vis/node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "d486bb4d",
+      "needsInterop": false
+    },
+    "three/addons/controls/OrbitControls.js": {
+      "src": "../../vis/node_modules/three/examples/jsm/controls/OrbitControls.js",
+      "file": "three_addons_controls_OrbitControls__js.js",
+      "fileHash": "42824115",
+      "needsInterop": false
+    },
+    "three/addons/renderers/CSS2DRenderer.js": {
+      "src": "../../vis/node_modules/three/examples/jsm/renderers/CSS2DRenderer.js",
+      "file": "three_addons_renderers_CSS2DRenderer__js.js",
+      "fileHash": "a8bb52a8",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "three.module-DAWp3S3_": {
+      "file": "three.module-DAWp3S3_.js",
+      "isDynamicEntry": false
+    }
+  }
+}

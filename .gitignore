@@ -21,3 +21,6 @@ python_code/frontend/runs/
 # Personal test files
 python_code/frontend/test.py
 python_code/frontend/helper/test.txt
+
+python_code/vis/.vite
+python_code/vis/node_modules

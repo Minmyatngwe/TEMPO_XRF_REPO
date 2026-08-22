@@ -70,7 +70,15 @@ class DetectorConstruction:public G4VUserDetectorConstruction{
         void checkGeometryOrDie(G4VPhysicalVolume* volume,const G4String &name);
         G4VSolid* BuildFilterSolid(const ComponentConfig& filter);
         G4VSolid* BuildCollimatorOrInternalMaskSolid(const ComponentConfig& component);
-
+        void PrintComponentDebug(
+            const ComponentConfig& component,
+            const G4String& type,
+            const G4String& physicalName,
+            const G4ThreeVector& componentPosition,
+            const G4RotationMatrix* componentRotation,
+            const G4Material* material,
+            G4int copyNumber
+        );
 };
 
 

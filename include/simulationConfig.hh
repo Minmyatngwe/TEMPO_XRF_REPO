@@ -9,6 +9,7 @@
 #include <utility>
 #include "G4Material.hh"
 #include <nlohmann/json.hpp>
+#include <filesystem>
 
 
 using json = nlohmann::json;
@@ -247,7 +248,10 @@ class SimulationConfig{
         G4double electronCut=0.01*mm;
         G4double positronCut=0.01*mm;
         G4double protonCut=0.01*mm;
+        G4String fluDatasetName="ANSTO";
+        std::filesystem::path parentFilePath;
 
+        G4bool debug=false;
 
     
     

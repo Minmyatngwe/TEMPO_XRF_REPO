@@ -60,6 +60,7 @@ int main(int argc,char **argv){
     
     SimulationConfig config;
     config.LoadFromJson(jsonConfig);
+    config.parentFilePath=filePath.parent_path();
     config.Print();
 
 
@@ -78,15 +79,16 @@ int main(int argc,char **argv){
     G4UImanager *uimanager=G4UImanager::GetUIpointer();
 
     if (ui){
+        config.debug=true;
         G4cout << "UI session starts..." << G4endl;
-        uimanager->ApplyCommand("/det/useFilter true");
         G4cout << "UI session starts..." << G4endl;
         G4int result=uimanager->ApplyCommand("/control/execute vis.mac");
-        G4cout << "Result = " << result << G4endl;
-        ui->SessionStart();
+        // G4cout << "Result = " << result << G4endl;
+        // ui->SessionStart();
     }
 
     else {
+        config.debug=false
         G4String command = "/control/execute ";
         G4String fileName = argv[2];
         uimanager->ApplyCommand(command + fileName);

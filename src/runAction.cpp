@@ -4,7 +4,9 @@
 #include "G4AccumulableManager.hh"
 #include "G4Run.hh"
 #include "G4ios.hh"
+#include "browserTrackExporter.hh"
 
+#include "G4Threading.hh"
 
 RunAction::RunAction(SimulationConfig &config): fConfig(config){
 
@@ -35,7 +37,21 @@ void RunAction::BeginOfRunAction(const G4Run* run){
 
     G4AccumulableManager::Instance()->Reset();
 
+if (
+    !G4Threading::IsWorkerThread()
+)
+{
+    BrowserTrackExporter::
+        Instance()
+        .Clear();
 
+
+    BrowserTrackExporter::
+        Instance()
+        .SetMaxEvents(
+            10
+        );
+}
 }
 void RunAction::EndOfRunAction(const G4Run* run){
     auto *analysismanager = G4AnalysisManager::Instance();
@@ -86,5 +102,14 @@ void RunAction::EndOfRunAction(const G4Run* run){
         << G4endl
         << "========================================"
         << G4endl;
-
+    if (
+        !G4Threading::IsWorkerThread()
+    )
+        {
+            BrowserTrackExporter::
+                Instance()
+                .Write(
+                    fConfig.parentFilePath/"xrf_tracks.json"
+                );
+        }
 }

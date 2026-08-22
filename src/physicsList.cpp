@@ -33,9 +33,37 @@ void PhysicsList::ConstructProcess()
     parameters->SetAuger(fConfig->isAugerUse);
     parameters->SetPixe(fConfig->isPixeUse);
     parameters->SetDeexcitationIgnoreCut(fConfig->isIgnoreCutUse);
-    parameters->SetANSTOFluoDir(true);
-    // parameters->SetBeardenFluoDir(true);
-    parameters->SetVerbose(0);
+
+    if(fConfig->fluDatasetName=="ANSTO"){
+        parameters->SetANSTOFluoDir(true);
+
+    }
+    else if(fConfig->fluDatasetName=="Bearden"){
+        parameters->SetBeardenFluoDir(true);
+
+    }
+    else if(fConfig->fluDatasetName=="RoboAI"){
+        
+    }
+
+    else{
+        G4Exception(
+            "PhysicsList::ConstructProcess",
+            "FluDataset",
+            FatalException,
+            "FluDataset name is not defined (ANSTO,Bearden,RoboAI)."
+        );
+
+
+    }
+    if(fConfig->debug){
+        parameters->SetVerbose(1);  
+
+    }
+    else{
+        parameters->SetVerbose(0);  
+
+    }
 
 
     if (fConfig->isSecondarySplittingUse) {

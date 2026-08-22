@@ -119,7 +119,12 @@ with st.expander("Advanced settings", expanded=False):
         format="%.6f",
         key="physics_sample_proton_cut_mm",
     )
-
+    flu_dataset=st.selectbox(
+        "Flu Dataset",
+        ["Bearden", "ANSTO", "RoboAI"],
+        index=2,
+        key="physics_flu_dataset"
+    )   
     st.caption("Production-cut unit: mm")
 
 
@@ -127,9 +132,6 @@ st.button(
     "Reset physics settings to defaults",
     on_click=reset_physics_defaults,
 )
-
-
-
 
 
 physics_config = build_physics_config()

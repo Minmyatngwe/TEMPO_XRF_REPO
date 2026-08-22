@@ -611,6 +611,8 @@ try{
         sampleRegionCutsJson
             .at("proton")
             .get<G4double>() * mm;
+    
+    fluDatasetName=physicsJson.at("flu_dataset").at("flu_dataset").get<G4String>();
 
 
 

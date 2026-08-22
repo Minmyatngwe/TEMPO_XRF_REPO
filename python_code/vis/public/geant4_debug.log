@@ -1,0 +1,700 @@
+Creating Qt UI...
+Available UI session types: [ Qt, tcsh, csh ]
+Qt UI object created.
+ui->IsGUI() = 1
+
+**************************************************************
+ Geant4 version Name: geant4-11-04-patch-02 [MT]   (12-June-2026)
+  << in Multi-threaded mode >> 
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+
+============================================================
+                 SIMULATION CONFIGURATION
+============================================================
+
+WORLD / GENERAL
+------------------------------------------------------------
+World material: G4_AIR
+World length: (300, 300, 300) mm
+Output file name: output.root
+
+X-RAY TUBE
+------------------------------------------------------------
+Focal spot diameter: 0.05 mm
+Sample to focal spot distance: 140 mm
+X-ray tube internal medium: G4_Galactic
+Source position: (0, 0, 0) mm
+X-ray tube window material: G4_Be
+X-ray tube window thickness: 0.0001 mm
+
+Tube filter enabled: true
+Tube filter engine: spekpy
+
+X-RAY TUBE FILTER COMPONENTS
+------------------------------------------------------------
+Enabled: true
+Number of components: 0
+
+SAMPLE
+------------------------------------------------------------
+Shape: Rectangular block
+Geometry:
+  Width: 5 mm
+  Height: 5 mm
+  Thickness: 0.1 mm
+  Inner radius: 0 mm
+  Outer radius: 0 mm
+  Radius: 0 mm
+Material:
+Material type: geant4
+Material name: G4_W
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+G4Material pointer set: false
+Sample rotation:
+  X: 0 deg
+  Y: 0 deg
+  Z: 0 deg
+
+SOURCE / TUBE COLLIMATOR
+------------------------------------------------------------
+Sample to tube exit distance: 130 mm
+Source incident azimuth: 90 deg
+Source elevation: 90 deg
+Sample to tube collimator distance: 30 mm
+Source collimator radius: 0.15 mm
+Calculated sample beam diameter: 0 mm
+
+DETECTOR ACTIVE VOLUME
+------------------------------------------------------------
+Shape: Circular detector
+Geometry:
+  Width: 0 mm
+  Height: 0 mm
+  Thickness: 1 mm
+  Inner radius: 0 mm
+  Outer radius: 5 mm
+  Radius: 0 mm
+Material:
+Material type: geant4
+Material name: G4_Si
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Placement:
+  Distance from sample: 17 mm
+  Elevation angle: 90 deg
+  Azimuth angle: 50 deg
+Orientation:
+  Orientation type: face_sample
+  X rotation: 0 deg
+  Y rotation: 0 deg
+  Z rotation: 0 deg
+
+DETECTOR APERTURE
+------------------------------------------------------------
+Detector aperture enabled: true
+
+DETECTOR COLLIMATORS
+------------------------------------------------------------
+Enabled: false
+Number of components: 0
+
+DETECTOR INTERNAL MASKS
+------------------------------------------------------------
+Enabled: true
+Number of components: 4
+
+Component [0]
+..............................
+Name: detector_internal_mask_1
+Shape: Circular aperture
+Geometry:
+  Width: 0 mm
+  Height: 0 mm
+  Thickness: 0 mm
+  Radius: 0 mm
+  Inner radius: 0 mm
+  Outer radius: 5 mm
+  Aperture radius: 3.09 mm
+  Length: 0.1 mm
+Material:
+Material type: geant4
+Material name: G4_W
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Placement:
+  Distance from sample: 0.525 mm
+  Elevation angle: 0 deg
+  Azimuth angle: 0 deg
+Orientation:
+  Orientation type: 
+  X rotation: 0 deg
+  Y rotation: 0 deg
+  Z rotation: 0 deg
+
+Component [1]
+..............................
+Name: detector_internal_mask_2
+Shape: Circular aperture
+Geometry:
+  Width: 0 mm
+  Height: 0 mm
+  Thickness: 0 mm
+  Radius: 0 mm
+  Inner radius: 0 mm
+  Outer radius: 5 mm
+  Aperture radius: 3.09 mm
+  Length: 0.035 mm
+Material:
+Material type: geant4
+Material name: G4_Cr
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Placement:
+  Distance from sample: 0.4575 mm
+  Elevation angle: 0 deg
+  Azimuth angle: 0 deg
+Orientation:
+  Orientation type: 
+  X rotation: 0 deg
+  Y rotation: 0 deg
+  Z rotation: 0 deg
+
+Component [2]
+..............................
+Name: detector_internal_mask_3
+Shape: Circular aperture
+Geometry:
+  Width: 0 mm
+  Height: 0 mm
+  Thickness: 0 mm
+  Radius: 0 mm
+  Inner radius: 0 mm
+  Outer radius: 5 mm
+  Aperture radius: 3.09 mm
+  Length: 0.015 mm
+Material:
+Material type: geant4
+Material name: G4_Ti
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Placement:
+  Distance from sample: 0.4325 mm
+  Elevation angle: 0 deg
+  Azimuth angle: 0 deg
+Orientation:
+  Orientation type: 
+  X rotation: 0 deg
+  Y rotation: 0 deg
+  Z rotation: 0 deg
+
+Component [3]
+..............................
+Name: detector_internal_mask_4
+Shape: Circular aperture
+Geometry:
+  Width: 0 mm
+  Height: 0 mm
+  Thickness: 0 mm
+  Radius: 0 mm
+  Inner radius: 0 mm
+  Outer radius: 5 mm
+  Aperture radius: 3.09 mm
+  Length: 0.075 mm
+Material:
+Material type: geant4
+Material name: G4_Al
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Placement:
+  Distance from sample: 0.3875 mm
+  Elevation angle: 0 deg
+  Azimuth angle: 0 deg
+Orientation:
+  Orientation type: 
+  X rotation: 0 deg
+  Y rotation: 0 deg
+  Z rotation: 0 deg
+
+DETECTOR FILTERS
+------------------------------------------------------------
+Enabled: false
+Number of components: 0
+
+DETECTOR HOUSING
+------------------------------------------------------------
+Enabled: true
+Housing shape: Rectangular housing
+Housing geometry:
+  Side gap: 2 mm
+  Front gap: 2 mm
+  Back gap: 2 mm
+  Housing wall thickness: 1 mm
+Housing aperture:
+  Shape: circular
+  Radius: 3.5 mm
+  Width: 0 mm
+  Height: 0 mm
+
+Housing material:
+Material type: geant4
+Material name: G4_Al
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+
+Housing cavity:
+Cavity material type: geant4
+Cavity material name: G4_W
+Cavity density: 0 g/cm3
+Cavity wall thickness: 1 mm
+Cavity internal medium material: G4_Galactic
+Number of material components: 0
+Composition: none
+
+Housing entrance window:
+Material type: geant4
+Material name: G4_Be
+Density: 0 g/cm3
+Number of material components: 0
+Composition: none
+Window thickness: 0.01 mm
+
+VARIANCE REDUCTION / BIASING
+------------------------------------------------------------
+Number of secondary splitting: 0
+
+PHYSICS
+------------------------------------------------------------
+Atomic de-excitation:
+  Fluorescence: true
+  Auger: false
+  PIXE: false
+  Ignore de-excitation cut: true
+
+Secondary splitting:
+  Enabled: true
+  Photoelectric factor: 100
+  Compton factor: 100
+  Rayleigh factor: 100
+  Maximum energy: 1000 keV
+
+Interaction biasing:
+  Enabled: true
+
+Production cuts:
+  Gamma cut: 0.001 mm
+  Electron cut: 0.01 mm
+  Positron cut: 0.01 mm
+  Proton cut: 0.01 mm
+
+============================================================
+              END SIMULATION CONFIGURATION
+============================================================
+
+Interaction bais is used
+Accumulable registered as "accumulable_0"
+Accumulable registered as "accumulable_1"
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+  VTK: OpenGL-based drivers suppressed because of compatibility issues.
+
+You have successfully registered the following graphics systems.
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  RayTracer (RT)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
+  RayTracerQt (RTQt)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG_QT_GLES_FALLBACK)
+  TOOLSSG_X11_ZB (TSG_X11_ZB, TSGX11ZB)
+  TOOLSSG_QT_GLES (TSG_QT_GLES, TSGQt, TSG, OGL)
+  TOOLSSG_QT_ZB (TSG_QT_ZB, TSGQtZB, TSGZB)
+  VtkNative (VTKN, VTKQt_FALLBACK)
+  VtkOffscreen (VTK_OFFSCREEN)
+  VtkQt (VTKQt, VTKQt, Vtk, VTK)
+You may choose a graphics system (driver) with a parameter of
+the command "/vis/open" or "/vis/sceneHandler/create",
+or you may omit the driver parameter and choose at run time:
+- by argument in the construction of G4VisExecutive;
+- by environment variable "G4VIS_DEFAULT_DRIVER";
+- by entry in "~/.g4session";
+- by build flags.
+- Note: This feature is not allowed in batch mode.
+For further information see "examples/basic/B1/exampleB1.cc"
+and "vis.mac".
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered models:
+  None
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+Registered filters:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+UI session starts...
+UI session starts...
+world Debug
+World mat Material:   G4_AIR    density:  1.205 mg/cm3  RadL: 303.921 m    Nucl.Int.Length: 710.095 m  
+                       Imean:  85.700 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:  1.070 %
+          ElmMassFraction:   0.01 %  ElmAbundance   0.02 % 
+
+   --->  Element: N (N)   Z =  7.0   N =    14   A = 14.007 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance: 99.632 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:  0.368 %
+          ElmMassFraction:  75.53 %  ElmAbundance  78.44 % 
+
+   --->  Element: O (O)   Z =  8.0   N =    16   A = 15.999 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance: 99.757 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:  0.038 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:  0.205 %
+          ElmMassFraction:  23.18 %  ElmAbundance  21.07 % 
+
+   --->  Element: Ar (Ar)   Z = 18.0   N =    40   A = 39.948 g/mole
+         --->  Isotope:  Ar36   Z = 18   N =  36   A =  35.97 g/mole   abundance:  0.337 %
+         --->  Isotope:  Ar38   Z = 18   N =  38   A =  37.96 g/mole   abundance:  0.063 %
+         --->  Isotope:  Ar40   Z = 18   N =  40   A =  39.96 g/mole   abundance: 99.600 %
+          ElmMassFraction:   1.28 %  ElmAbundance   0.47 % 
+
+Checking overlaps for volume tubephys:1 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: tubephys
+
+[DEBUG][X-RAY BEAM]
+Focal spot -> collimator (d1): 110 mm
+Collimator -> sample (d2): 30 mm
+Collimator radius: 0.15 mm
+Calculated beam diameter at sample: 0.381818 mm
+Beam area = 0.114499 mm2
+Checking overlaps for volume tubewindowphys:2 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: tubewindowphys
+
+[DEBUG][SOURCE PLACEMENT]
+Input distance: 140 mm
+Input azimuth: 1.5708 deg
+Input elevation: 1.5708 deg
+Calculated world position: (8.57253e-15, 8.57253e-15, 140) mm
+
+--- Sample Material Info ---
+ Material:     G4_W    density: 19.300 g/cm3   RadL:   3.504 mm   Nucl.Int.Length:  10.312 cm 
+                       Imean: 727.000 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: W (W)   Z = 74.0   N =   184   A = 183.842 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance: 26.500 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance: 14.310 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance: 30.640 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
+----------------------------
+
+Checking overlaps for volume samplePhys:3 (G4Box) ... OK! 
+No geometry overlaps detected in volume: samplePhys
+Checking overlaps for volume detectorCavityPhys:4 (G4Box) ... OK! 
+No geometry overlaps detected in volume: detectorCavityPhys
+Checking overlaps for volume detectorCavityShellPhys:5 (G4SubtractionSolid) ... OK! 
+No geometry overlaps detected in volume: detectorCavityShellPhys
+Checking overlaps for volume detectorHousingPhys:6 (G4SubtractionSolid) ... OK! 
+No geometry overlaps detected in volume: detectorHousingPhys
+Checking overlaps for volume detectorPhys:7 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detectorPhys
+Checking overlaps for volume detectorHousingWindowPhys:8 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detectorHousingWindowPhys
+
+[DEBUG][COMPONENT] internal mask
+Name          : detector_internal_mask_1
+Physical name : detector_internal_mask_1_0Phys
+Shape         : Circular aperture
+Copy number   : 9
+
+[Geometry]
+Width         : 0 mm
+Height        : 0 mm
+Thickness     : 0 mm
+Length        : 0.1 mm
+Radius        : 0 mm
+Inner radius  : 0 mm
+Outer radius  : 5 mm
+Aperture rad. : 3.09 mm
+
+[Placement]
+Requested distance : 0.525 mm
+Calculated position: (0, 0, 1.025) mm
+Detector Z in cavity : 0 mm
+Detector half thick. : 0.5 mm
+
+[Rotation]
+Identity / no rotation
+
+[Material]
+Name     : G4_W
+Density  : 19.3 g/cm3
+Elements : 1
+  W : 100 %
+==================================================
+Checking overlaps for volume detector_internal_mask_1_0Phys:9 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detector_internal_mask_1_0Phys
+
+[DEBUG][COMPONENT] internal mask
+Name          : detector_internal_mask_2
+Physical name : detector_internal_mask_2_1Phys
+Shape         : Circular aperture
+Copy number   : 10
+
+[Geometry]
+Width         : 0 mm
+Height        : 0 mm
+Thickness     : 0 mm
+Length        : 0.035 mm
+Radius        : 0 mm
+Inner radius  : 0 mm
+Outer radius  : 5 mm
+Aperture rad. : 3.09 mm
+
+[Placement]
+Requested distance : 0.4575 mm
+Calculated position: (0, 0, 0.9575) mm
+Detector Z in cavity : 0 mm
+Detector half thick. : 0.5 mm
+
+[Rotation]
+Identity / no rotation
+
+[Material]
+Name     : G4_Cr
+Density  : 7.18 g/cm3
+Elements : 1
+  Cr : 100 %
+==================================================
+Checking overlaps for volume detector_internal_mask_2_1Phys:10 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detector_internal_mask_2_1Phys
+
+[DEBUG][COMPONENT] internal mask
+Name          : detector_internal_mask_3
+Physical name : detector_internal_mask_3_2Phys
+Shape         : Circular aperture
+Copy number   : 11
+
+[Geometry]
+Width         : 0 mm
+Height        : 0 mm
+Thickness     : 0 mm
+Length        : 0.015 mm
+Radius        : 0 mm
+Inner radius  : 0 mm
+Outer radius  : 5 mm
+Aperture rad. : 3.09 mm
+
+[Placement]
+Requested distance : 0.4325 mm
+Calculated position: (0, 0, 0.9325) mm
+Detector Z in cavity : 0 mm
+Detector half thick. : 0.5 mm
+
+[Rotation]
+Identity / no rotation
+
+[Material]
+Name     : G4_Ti
+Density  : 4.54 g/cm3
+Elements : 1
+  Ti : 100 %
+==================================================
+Checking overlaps for volume detector_internal_mask_3_2Phys:11 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detector_internal_mask_3_2Phys
+
+[DEBUG][COMPONENT] internal mask
+Name          : detector_internal_mask_4
+Physical name : detector_internal_mask_4_3Phys
+Shape         : Circular aperture
+Copy number   : 12
+
+[Geometry]
+Width         : 0 mm
+Height        : 0 mm
+Thickness     : 0 mm
+Length        : 0.075 mm
+Radius        : 0 mm
+Inner radius  : 0 mm
+Outer radius  : 5 mm
+Aperture rad. : 3.09 mm
+
+[Placement]
+Requested distance : 0.3875 mm
+Calculated position: (0, 0, 0.8875) mm
+Detector Z in cavity : 0 mm
+Detector half thick. : 0.5 mm
+
+[Rotation]
+Identity / no rotation
+
+[Material]
+Name     : G4_Al
+Density  : 2.699 g/cm3
+Elements : 1
+  Al : 100 %
+==================================================
+Checking overlaps for volume detector_internal_mask_4_3Phys:12 (G4Tubs) ... OK! 
+No geometry overlaps detected in volume: detector_internal_mask_4_3Phys
+Directional bias is sued
+Geant4 detector position(10.9274,1.04095e-15,13.0228)
+Browser geometry exported to: /home/minmyatngwe/geant_4_xrf/XRF_ONLY/python_code/frontend/runs/roboai_xrf_test/xrf_geometry_vis.json
+Splitting bias use during initialization = 
+[SAMPLE CUTS CREATED] pointer = 0x61d03641be00
+ Secondary biasing is activated for gamma and phot inside G4Regions: 
+           SampleRegion  BiasingWeight= 0.01
+     Directional splitting activated, with target position: (1.09274,1.04095e-16,1.30228) cm; radius: 1.35cm.
+ Secondary biasing is activated for gamma and compt inside G4Regions: 
+           SampleRegion  BiasingWeight= 0.01
+     Directional splitting activated, with target position: (1.09274,1.04095e-16,1.30228) cm; radius: 1.35cm.
+ Secondary biasing is activated for gamma and Rayl inside G4Regions: 
+           SampleRegion  BiasingWeight= 0.01
+     Directional splitting activated, with target position: (1.09274,1.04095e-16,1.30228) cm; radius: 1.35cm.
+G4WT1 > Accumulable registered as "accumulable_0"
+G4WT1 > Accumulable registered as "accumulable_1"
+G4WT0 > Accumulable registered as "accumulable_0"
+G4WT0 > Accumulable registered as "accumulable_1"
+Output file: output.root
+G4WT1 > Output file: output.root
+G4WT0 > Output file: output.root
+G4WT1 > 
+G4WT0 > 
+G4WT1 > ========================================
+G4WT1 > [DEBUG][PRIMARY SOURCE]
+G4WT1 > ========================================
+G4WT0 > ========================================
+G4WT1 > Random point on sample : (-0.0741084, -0.00997064, 0) mm
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT1 > Source position        : (0.00522628, 0.0194066, 140) mm
+G4WT0 > Random point on sample : (0.0503282, 0.139904, 0) mm
+G4WT0 > Source position        : (0.0161732, 0.00905261, 140) mm
+G4WT0 > Source direction raw   : (0.034155, 0.130851, -140) mm
+G4WT0 > Momentum direction     : (0.000243964, 0.00093465, -1)
+G4WT1 > Source direction raw   : (-0.0793347, -0.0293772, -140) mm
+G4WT0 > ========================================
+G4WT1 > Momentum direction     : (-0.000566677, -0.000209837, -1)
+G4WT1 > ========================================
+G4WT0 > 
+G4WT1 > 
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT1 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > Random point on sample : (-0.0812242, 0.151703, 0) mm
+G4WT1 > Random point on sample : (-0.00126396, -0.128934, 0) mm
+G4WT0 > Source position        : (-0.00489667, 0.00215936, 140) mm
+G4WT1 > Source position        : (-0.00817057, -0.0189749, 140) mm
+G4WT0 > Source direction raw   : (-0.0763275, 0.149544, -140) mm
+G4WT1 > Source direction raw   : (0.00690661, -0.109959, -140) mm
+G4WT0 > Momentum direction     : (-0.000545196, 0.00106817, -0.999999)
+G4WT1 > Momentum direction     : (4.93329e-05, -0.000785425, -1)
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > 
+G4WT1 > 
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT1 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > Random point on sample : (-0.0538254, -0.147036, 0) mm
+G4WT1 > Random point on sample : (-0.176851, -0.0119297, 0) mm
+G4WT0 > Source position        : (0.00447701, -0.0188828, 140) mm
+G4WT1 > Source position        : (0.0177936, -0.00895832, 140) mm
+G4WT0 > Source direction raw   : (-0.0583024, -0.128153, -140) mm
+G4WT1 > Source direction raw   : (-0.194645, -0.00297135, -140) mm
+G4WT0 > Momentum direction     : (-0.000416445, -0.000915378, -0.999999)
+G4WT1 > Momentum direction     : (-0.00139032, -2.12239e-05, -0.999999)
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > 
+G4WT1 > 
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT1 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > Random point on sample : (0.0094154, -0.0682719, 0) mm
+G4WT1 > Random point on sample : (0.15387, -0.0329965, 0) mm
+G4WT0 > Source position        : (-0.0201155, 0.00137987, 140) mm
+G4WT1 > Source position        : (-0.00851666, -0.0143228, 140) mm
+G4WT1 > Source direction raw   : (0.162387, -0.0186737, -140) mm
+G4WT0 > Source direction raw   : (0.0295309, -0.0696518, -140) mm
+G4WT1 > Momentum direction     : (0.0011599, -0.000133384, -0.999999)
+G4WT0 > Momentum direction     : (0.000210935, -0.000497513, -1)
+G4WT0 > ========================================
+G4WT1 > ========================================
+G4WT0 > 
+G4WT0 > ========================================
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT0 > Random point on sample : (0.0556191, -0.104539, 0) mm
+G4WT0 > Source position        : (-0.0125718, -0.0107915, 140) mm
+G4WT0 > Source direction raw   : (0.0681909, -0.0937471, -140) mm
+G4WT0 > Momentum direction     : (0.000487078, -0.000669622, -1)
+G4WT0 > ========================================
+G4WT0 > 
+G4WT0 > ========================================
+G4WT0 > [DEBUG][PRIMARY SOURCE]
+G4WT0 > ========================================
+G4WT0 > Random point on sample : (-0.0130797, -0.0808922, 0) mm
+G4WT0 > Source position        : (-0.0119451, 0.00371627, 140) mm
+G4WT0 > Source direction raw   : (-0.00113464, -0.0846084, -140) mm
+G4WT0 > Momentum direction     : (-8.10456e-06, -0.000604346, -1)
+G4WT0 > ========================================
+
+ TRANSPORT COUNTERS
+Beam-on events: 10
+Weighted primary photons entering sample: 0
+Primary sample-entry fraction: 0
+Weighted gamma photons entering silicon: 0
+Gamma-to-silicon yield per primary: 0
+========================================
+Browser trajectories exported to: /home/minmyatngwe/geant_4_xrf/XRF_ONLY/python_code/frontend/runs/roboai_xrf_test/xrf_tracks.json

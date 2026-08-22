@@ -45,24 +45,6 @@ PrimaryGenerator::~PrimaryGenerator(){
     delete fgun;
 }
 
-// void PrimaryGenerator::CalulateSourcePositionAndDirection(){
-
-
-//     G4double elevationAngle = fConfig->sourceElevationDeg;
-//     G4double distance=fConfig->sampleToTubeExitDistance;
-//     G4double azimuthAngle=fConfig->sourceIncidentAzimuthDeg;
-//     // Position the focal spot anywhere around the sample
-//     // using the configured spherical coordinates.
-
-//     SourcePosition=G4ThreeVector(
-//                     distance*std::sin(elevationAngle)*std::cos(azimuthAngle),
-//                     distance*std::cos(elevationAngle),
-//                     distance*std::sin(elevationAngle)*std::sin(azimuthAngle)) ;
-
-    
-
-// }
-
 void PrimaryGenerator::GeneratePrimaries(G4Event *event)
 {
     // Randomly choose a target point inside the calculated beam footprint
@@ -86,6 +68,50 @@ void PrimaryGenerator::GeneratePrimaries(G4Event *event)
     SourcePosition = vertex->GetPosition();
     SourceDirection=randomBeamPointOnSample-SourcePosition;
 
+    if (fConfig->debug)
+    {
+        G4cout << G4endl;
+        G4cout << "========================================" << G4endl;
+        G4cout << "[DEBUG][PRIMARY SOURCE]" << G4endl;
+        G4cout << "========================================" << G4endl;
+
+        G4cout
+            << "Random point on sample : ("
+            << randomBeamPointOnSample.x() / mm << ", "
+            << randomBeamPointOnSample.y() / mm << ", "
+            << randomBeamPointOnSample.z() / mm
+            << ") mm"
+            << G4endl;
+
+        G4cout
+            << "Source position        : ("
+            << SourcePosition.x() / mm << ", "
+            << SourcePosition.y() / mm << ", "
+            << SourcePosition.z() / mm
+            << ") mm"
+            << G4endl;
+
+        G4cout
+            << "Source direction raw   : ("
+            << SourceDirection.x() / mm << ", "
+            << SourceDirection.y() / mm << ", "
+            << SourceDirection.z() / mm
+            << ") mm"
+            << G4endl;
+
+        const G4ThreeVector unitDirection =
+            SourceDirection.unit();
+
+        G4cout
+            << "Momentum direction     : ("
+            << unitDirection.x() << ", "
+            << unitDirection.y() << ", "
+            << unitDirection.z()
+            << ")"
+            << G4endl;
+
+        G4cout << "========================================" << G4endl;
+    }
     particle->SetMomentumDirection(SourceDirection.unit());
 
 

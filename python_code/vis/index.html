@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>ROBOAI XRF</title>
+        
+    </head>
+    <body>
+        <div id="control-box">
+            <details open>
+                <summary>Controls</summary>
+                <div>
+                    <input type="checkbox" id="showXYZAxis" checked>
+                    <label for="showXYZAxis">Show XYZ Axis</label>
+
+                </div>
+                <div>
+                    <label for="volume">volumne</label>
+                    <select name="Volume" id="volume">
+                        <option value="wireframe" selected>wireframe</option>
+
+                        <option value="surface">surface</option>
+                    </select>
+
+
+                </div>
+                <div>
+                    <input type="checkbox" id="showBeam" checked>
+                    <label for="showBeam">Show Beam Directions</label>
+
+                </div>
+
+            </details>
+            
+        </div>
+
+    </div>
+    <div id="debug">
+            <details >
+
+                <summary>
+                    Debug Log
+                </summary>
+
+                <div id="debug-scroll">
+                    <pre id="debug-output">
+Waiting for debug output...
+                    </pre>
+                </div>
+
+            </details>
+        </div>
+
+
+
+        <script type="module" src="main.js">
+            
+        </script>
+        
+    </body>
+</html>

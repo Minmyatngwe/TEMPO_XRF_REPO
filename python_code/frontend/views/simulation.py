@@ -2,6 +2,7 @@ import json
 import os
 import signal
 import subprocess
+import shutil
 
 from collections import deque
 from copy import deepcopy
@@ -1312,7 +1313,8 @@ folder_path = (
     / f"roboai_xrf_{file_name}"
 )
 
-
+public_folder_path=Path("../vis/public")
+public_folder_path.mkdir(parents=True,exist_ok=True)
 folder_path.mkdir(
     parents=True,
     exist_ok=True,
@@ -1354,30 +1356,52 @@ if st.button(
 ):
 
     try:
+        debug_file = folder_path / "geant4_debug.log"
 
-        subprocess.run(
-            [
-                "./sim",
-                str(json_file_path),
-            ],
-            cwd=BUILDIR,
-            check=True,
-            text=True,
-        )
-
+        with open(debug_file, "w") as log:
+            subprocess.run(
+                ["./sim", str(json_file_path)],
+                cwd=BUILDIR,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=True,
+            )
     except subprocess.CalledProcessError as exc:
 
         st.error(
             "Geant4 geometry preview stopped "
             f"with code {exc.returncode}."
         )
+    
+ 
 
     except Exception as exc:
 
         st.error(
             f"Could not start Geant4 geometry preview: {exc}"
         )
-
+    shutil.copy2(
+            folder_path/"xrf_geometry_vis.json",
+            public_folder_path/"xrf_geometry_vis.json"
+        )
+    
+    shutil.copy2(
+            folder_path/"xrf_tracks.json",
+            public_folder_path/"xrf_tracks.json"
+        )
+    
+    process=subprocess.Popen(
+        [
+            "npx","vite","--host","0.0.0.0","--port","5173","--open"
+        ],
+        cwd=public_folder_path.parent
+    )
+    
+    shutil.copy(
+        folder_path/"geant4_debug.log",
+        public_folder_path/"geant4_debug.log"
+    )
 
 # =========================================================================
 # GENERATE SPEKPY SPECTRUM

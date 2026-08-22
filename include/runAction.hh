@@ -32,8 +32,8 @@ class RunAction:public G4UserRunAction{
 
     private:
         SimulationConfig &fConfig;
-            G4Accumulable<G4double> fPrimaryEnteringSample = 0.0;
-    G4Accumulable<G4double> fGammaEnteringSilicon = 0.0;
+        G4Accumulable<G4double> fPrimaryEnteringSample = 0.0;
+        G4Accumulable<G4double> fGammaEnteringSilicon = 0.0;
 
 };  
 

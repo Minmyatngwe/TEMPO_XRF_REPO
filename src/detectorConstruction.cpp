@@ -9,8 +9,9 @@
 #include "G4EmParameters.hh"
 #include "G4Sphere.hh"
 #include "G4SubtractionSolid.hh"
-
+#include "geometryExporter.hh"
 #include "G4VisAttributes.hh"
+#include <numbers>
 
 DetectorConstruction::DetectorConstruction(SimulationConfig& config,nlohmann::json & jsonConfig,std::string updateJsonPath):fConfig(&config),fjsonConfig{&jsonConfig},fupdateJsonPath{updateJsonPath}{}
 
@@ -33,6 +34,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
     auto *worldLogic=new G4LogicalVolume(worldSolid,worldMat,"worldLogic");
     worldLogic->SetVisAttributes(G4VisAttributes::GetInvisible());
     auto *worldPhys=new G4PVPlacement(nullptr,G4ThreeVector(),worldLogic,"worldPhys",nullptr,false,physplacementIndex++,true);
+    
+    //world DEBUG
+    if(fConfig->debug){
+        G4cout<<"world Debug"<<G4endl;
+        G4cout<<"World mat"<<worldMat<<G4endl;
+    }
     
     // X-ray tube geometry
 
@@ -95,6 +102,47 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
     );
     checkGeometryOrDie(sourcePlacement,"tubephys");
 
+    //xray tube debug
+    if (fConfig->debug)
+    {
+        G4cout << G4endl;
+        G4cout << "[DEBUG][X-RAY BEAM]" << G4endl;
+
+        G4cout
+            << "Focal spot -> collimator (d1): "
+            << d1 / mm
+            << " mm"
+            << G4endl;
+
+        G4cout
+            << "Collimator -> sample (d2): "
+            << d2 / mm
+            << " mm"
+            << G4endl;
+
+        G4cout
+            << "Collimator radius: "
+            << fConfig->sourceCollimatorRadius / mm
+            << " mm"
+            << G4endl;
+
+        G4cout
+            << "Calculated beam diameter at sample: "
+            << fConfig->sampleBeamDiameter / mm
+            << " mm"
+            << G4endl;
+
+        
+        G4cout
+            << "Beam area = "
+            << (
+                CLHEP::pi
+                * (fConfig->sampleBeamDiameter / 2.0)
+                * (fConfig->sampleBeamDiameter / 2.0)
+            ) / (mm * mm)
+            << " mm2"
+            << G4endl;
+    }
      //tube  window 
 
      auto *tubeWindowSolid=new G4Tubs("tubewindowsolid",
@@ -122,6 +170,39 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
         false
      );
      checkGeometryOrDie(sourceWindowPlacement,"tubewindowphys");
+
+     //tube window debug 
+     if (fConfig->debug)
+    {
+        G4cout << G4endl;
+        G4cout << "[DEBUG][SOURCE PLACEMENT]" << G4endl;
+
+        G4cout
+            << "Input distance: "
+            << distance / mm
+            << " mm"
+            << G4endl;
+
+        G4cout
+            << "Input azimuth: "
+            << azimuthAngle
+            << " deg"
+            << G4endl;
+
+        G4cout
+            << "Input elevation: "
+            << elevationAngle
+            << " deg"
+            << G4endl;
+
+        G4cout
+            << "Calculated world position: ("
+            << fConfig->sourcePosition.x() / mm << ", "
+            << fConfig->sourcePosition.y() / mm << ", "
+            << fConfig->sourcePosition.z() / mm
+            << ") mm"
+            << G4endl;
+    }
 
     //tube filter 
     if(fConfig->isTubeFilterUse && fConfig-> tubeFilterEngine=="geant4"){
@@ -727,6 +808,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
             physplacementIndex++,
             false
         );
+
         checkGeometryOrDie(detectorPhys,"detectorPhys");
 
         //  Place window inside  cavity
@@ -927,6 +1009,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
     }
 
     saveJsonFile(fupdateJsonPath,*fjsonConfig);
+
+    ExportGeometryForBrowser(
+        worldPhys,
+        (fConfig->parentFilePath/"xrf_geometry_vis.json").string(),
+        48);
+
     return worldPhys;
 
 }
@@ -1297,13 +1385,16 @@ void DetectorConstruction::BuildComponent(
                 ("Invalid type: " + type + ". Must be 'filter' or 'internal mask' or 'collimator'.").c_str()
             );
         }
-        G4cout
-            << "\nINTERNAL MASK DEBUG\n"
-            << "name             = " << component.name << G4endl
-            << "distance         = " << component.distanceFromSample / mm << " mm" << G4endl
-            << "length           = " << component.length / mm << " mm" << G4endl
-            << "position Z       = " << componentPosition.z() / mm << " mm" << G4endl;
-
+        
+        PrintComponentDebug(
+            component,
+            type,
+            physicalName,
+            componentPosition,
+            componentRotation,
+            material,
+            physplacementIndex
+        );
         auto* componentPhys=new G4PVPlacement(
             componentRotation,
             componentPosition,
@@ -1331,6 +1422,7 @@ void DetectorConstruction::BuildComponent(
         }
         counter++;
         physplacementIndex++;
+    
     }
     
 }
@@ -1367,4 +1459,141 @@ void DetectorConstruction::checkGeometryOrDie(G4VPhysicalVolume* volume,const G4
         else{
             G4cout<<"No geometry overlaps detected in volume: "<<name<<G4endl;
         }
+}
+
+void DetectorConstruction::PrintComponentDebug(
+    const ComponentConfig& component,
+    const G4String& type,
+    const G4String& physicalName,
+    const G4ThreeVector& componentPosition,
+    const G4RotationMatrix* componentRotation,
+    const G4Material* material,
+    G4int copyNumber
+)
+{
+    if (!fConfig->debug) {
+        return;
+    }
+
+    G4cout << G4endl;
+    G4cout << "[DEBUG][COMPONENT] " << type << G4endl;
+
+    G4cout
+        << "Name          : " << component.name << G4endl
+        << "Physical name : " << physicalName << "Phys" << G4endl
+        << "Shape         : " << component.shape << G4endl
+        << "Copy number   : " << copyNumber << G4endl;
+
+    G4cout << G4endl;
+    G4cout << "[Geometry]" << G4endl;
+
+    G4cout
+        << "Width         : " << component.width / mm << " mm" << G4endl
+        << "Height        : " << component.height / mm << " mm" << G4endl
+        << "Thickness     : " << component.thickness / mm << " mm" << G4endl
+        << "Length        : " << component.length / mm << " mm" << G4endl
+        << "Radius        : " << component.radius / mm << " mm" << G4endl
+        << "Inner radius  : " << component.innerRadius / mm << " mm" << G4endl
+        << "Outer radius  : " << component.outerRadius / mm << " mm" << G4endl
+        << "Aperture rad. : " << component.apertureRadius / mm << " mm" << G4endl;
+
+    G4cout << G4endl;
+    G4cout << "[Placement]" << G4endl;
+
+    G4cout
+        << "Requested distance : "
+        << component.distanceFromSample / mm
+        << " mm"
+        << G4endl;
+
+    G4cout
+        << "Calculated position: ("
+        << componentPosition.x() / mm << ", "
+        << componentPosition.y() / mm << ", "
+        << componentPosition.z() / mm
+        << ") mm"
+        << G4endl;
+
+    if (type == "internal mask")
+    {
+        const G4double detectorZInsideCavity =
+            (
+                fConfig->detectorHousingBackGap
+                - fConfig->detectorHousingFrontGap
+            ) / 2.0;
+
+        G4cout
+            << "Detector Z in cavity : "
+            << detectorZInsideCavity / mm
+            << " mm"
+            << G4endl;
+
+        G4cout
+            << "Detector half thick. : "
+            << fConfig->detectorThickness / 2.0 / mm
+            << " mm"
+            << G4endl;
+    }
+
+    G4cout << G4endl;
+    G4cout << "[Rotation]" << G4endl;
+
+    if (componentRotation != nullptr) {
+        G4cout << *componentRotation << G4endl;
+    }
+    else {
+        G4cout << "Identity / no rotation" << G4endl;
+    }
+
+    G4cout << G4endl;
+    G4cout << "[Material]" << G4endl;
+
+    if (material != nullptr)
+    {
+        G4cout
+            << "Name     : "
+            << material->GetName()
+            << G4endl;
+
+        G4cout
+            << "Density  : "
+            << material->GetDensity() / (g / cm3)
+            << " g/cm3"
+            << G4endl;
+
+        G4cout
+            << "Elements : "
+            << material->GetNumberOfElements()
+            << G4endl;
+
+        const auto* elements =
+            material->GetElementVector();
+
+        const auto* fractions =
+            material->GetFractionVector();
+
+        if (elements != nullptr && fractions != nullptr)
+        {
+            for (
+                std::size_t i = 0;
+                i < material->GetNumberOfElements();
+                ++i
+            )
+            {
+                const auto* element = (*elements)[i];
+
+                G4cout
+                    << "  "
+                    << element->GetSymbol()
+                    << " : "
+                    << fractions[i] * 100.0
+                    << " %"
+                    << G4endl;
+            }
+        }
+    }
+
+    G4cout
+        << "=================================================="
+        << G4endl;
 }
