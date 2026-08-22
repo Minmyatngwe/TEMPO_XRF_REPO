@@ -1,34 +1,70 @@
-TEMPO_XRF_REPO
+# TEMPO XRF Prototype
 
-This repository is not complete. It is currently intended only for testing how Geant4 works with our custom XRF simulation algorithms.
+This repository is currently an internal development prototype for testing our custom XRF simulation workflow with Geant4.
 
-Because this is currently an internal prototype for team testing, full installation instructions are not provided yet.
+It is **not yet a complete or production-ready package**. The main purpose of the repository is to test:
 
-Important: Geant4 Source Modification
+- Geant4 geometry construction
+- XRF physics
+- custom directional biasing / directional splitting
+- X-ray source and beam generation
+- detector geometry
+- detector-response post-processing
+- browser-based geometry/trajectory debugging
+- communication between the Streamlit frontend and Geant4 backend
 
-Before running the simulation with directional biasing / directional splitting, a small modification to the Geant4 source code is currently required.
+Full installation automation is not provided yet.
 
-Find your installed Geant4 source code and locate:
+---
 
+# Before Running Streamlit
+
+Before starting the Streamlit frontend, make sure the following parts are prepared.
+
+## 1. Geant4
+
+Geant4 must already be installed and usable from the terminal.
+
+Source the Geant4 environment before building or running the simulation.
+
+Example:
+
+```bash
+source /path/to/geant4-install/bin/geant4.sh
+```
+
+Check that Geant4 is available:
+
+```bash
+geant4-config --version
+```
+
+---
+
+## 2. Required Geant4 Source Modification
+
+Directional splitting currently requires a small modification to the Geant4 source code.
+
+Locate:
+
+```cpp
 G4EmBiasingManager::ApplyDirectionalSplitting
+```
 
-Inside this function, you should find code similar to:
+Inside this function there is a loop similar to:
 
+```cpp
 for (std::size_t kk = 0; kk < tmpSecondaries.size(); ++kk) {
 
     if (tmpSecondaries[kk]->GetParticleDefinition() == theGamma) {
         ...
     }
 }
+```
 
-Before accessing tmpSecondaries[kk], add a null-pointer check:
+Add a null-pointer check before accessing `tmpSecondaries[kk]`:
 
-if (tmpSecondaries[kk] == nullptr) {
-    continue;
-}
-
-For example:
-
+```cpp
 for (std::size_t kk = 0; kk < tmpSecondaries.size(); ++kk) {
 
     if (tmpSecondaries[kk] == nullptr) {
@@ -39,91 +75,365 @@ for (std::size_t kk = 0; kk < tmpSecondaries.size(); ++kk) {
         ...
     }
 }
+```
 
-Without this check, directional biasing can encounter a null secondary pointer and cause the simulation to crash.
+Without this check, directional splitting may encounter a null secondary pointer and crash the simulation.
 
-After modifying the Geant4 source, Geant4 must be rebuilt before using the modified implementation.
+After modifying the Geant4 source, **rebuild and reinstall Geant4** before building this project.
 
-Frontend
+---
 
-The frontend is currently a prototype and was largely generated with AI assistance. It has not yet been thoroughly reviewed or optimized.
+## 3. Build the Geant4 Backend
 
-It is currently good enough for testing the Geant4 backend and the overall simulation workflow.
+From the repository root:
 
-The frontend will be cleaned up and optimized later.
+```bash
+mkdir -p build
+cd build
+cmake ..
+make -j
+```
 
-Current Features
+The simulation executable should then exist as:
 
-The user can currently configure several parts of the XRF geometry, including:
+```text
+build/sim
+```
 
-detector housing
+Verify it exists:
 
-detector internal masks
+```bash
+ls build/sim
+```
 
-detector collimators
+If C++ source files are changed later, rebuild with:
 
-X-ray tube filters
+```bash
+cd build
+make -j
+```
 
-X-ray tube
+---
 
-sample
+## 4. Python Environment
 
-The tube, sample, detector, collimators, and other supported components can be positioned within the 3D simulation world.
+Create and activate a Python virtual environment if one has not already been created.
 
-Component Orientation
+Example:
 
-For supported components, the user can either provide a custom rotation or request that the backend automatically orient the component toward the sample.
+```bash
+python3 -m venv python_code/.venv
+source python_code/.venv/bin/activate
+```
 
-When face_sample orientation is used, the backend calculates the required rotation so that the component's local +Z axis points toward the sample reference point, currently (0, 0, 0).
+Install the Python dependencies required by the project.
 
-X-ray Focal Spot and Beam
+If a requirements file is provided:
 
-The focal-spot plane is perpendicular to the vector between the sample reference point and the focal-spot center.
+```bash
+pip install -r python_code/requirements.txt
+```
+
+Make sure the virtual environment is active before starting Streamlit.
+
+---
+
+## 5. Browser 3D Viewer
+
+The geometry/debug viewer uses:
+
+- Vite
+- Three.js
+- CSS2DRenderer
+- OrbitControls
+
+Node.js and npm therefore need to be installed.
+
+Check:
+
+```bash
+node --version
+npm --version
+```
+
+Install the viewer dependencies:
+
+```bash
+cd python_code/vis
+npm install
+```
+
+`node_modules/` is not stored in Git and must be generated locally with `npm install`.
+
+The following files should remain in Git:
+
+```text
+package.json
+package-lock.json
+```
+
+They define the JavaScript dependencies required by the viewer.
+
+---
+
+## 6. Expected Project Structure
+
+Before running the frontend, the important parts should approximately look like:
+
+```text
+XRF_ONLY/
+├── build/
+│   └── sim
+│
+├── include/
+├── src/
+│
+├── python_code/
+│   ├── .venv/
+│   │
+│   ├── frontend/
+│   │   └── main.py
+│   │
+│   ├── vis/
+│   │   ├── index.html
+│   │   ├── main.js
+│   │   ├── style.css
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   └── public/
+│   │
+│   └── root_output_file/
+│
+├── CMakeLists.txt
+└── README.md
+```
+
+Generated folders such as:
+
+```text
+build/
+python_code/.venv/
+python_code/vis/node_modules/
+python_code/vis/.vite/
+```
+
+are intentionally ignored by Git and must be created locally.
+
+---
+
+# Running Streamlit
+
+After:
+
+1. Geant4 has been installed and patched
+2. Geant4 has been rebuilt
+3. the XRF backend has been compiled
+4. the Python virtual environment has been activated
+5. Python dependencies have been installed
+6. Node.js/npm are installed
+7. the browser-viewer dependencies have been installed
+
+start the frontend from the repository root:
+
+```bash
+source python_code/.venv/bin/activate
+streamlit run python_code/frontend/main.py
+```
+
+The Streamlit frontend communicates with the compiled Geant4 executable in:
+
+```text
+build/sim
+```
+
+Do not start Streamlit before the Geant4 executable has been successfully built.
+
+---
+
+# Frontend Status
+
+The frontend is currently a prototype and has not yet been thoroughly cleaned up or optimized.
+
+A significant part of the frontend was initially generated with AI assistance and should therefore still be treated as development code.
+
+It is currently sufficient for testing:
+
+- the Geant4 backend
+- simulation configuration
+- geometry creation
+- detector configuration
+- simulation execution
+- detector-response processing
+- browser visualization/debugging
+
+The frontend will be refactored and optimized later.
+
+---
+
+# Current Geometry Features
+
+The user can currently configure several parts of the XRF system, including:
+
+- X-ray tube
+- X-ray tube filters
+- sample
+- detector
+- detector housing
+- detector collimators
+- detector internal masks
+
+Supported components can be positioned within the 3D Geant4 simulation world.
+
+---
+
+# Component Orientation
+
+For supported components, the user can either:
+
+- provide a custom rotation, or
+- use automatic `face_sample` orientation.
+
+When `face_sample` is selected, the backend calculates the rotation required for the component's local `+Z` axis to point toward the sample reference point.
+
+The current sample reference point is:
+
+```text
+(0, 0, 0)
+```
+
+---
+
+# X-ray Focal Spot and Beam
+
+The focal-spot plane is constructed perpendicular to the vector between the sample reference point and the focal-spot center.
 
 Primary photon positions are randomly sampled across the configured focal spot.
 
-Photon directions are then sampled toward random positions inside the calculated beam area on the sample.
+For each primary photon, a random target point is generated inside the calculated circular beam area on the sample.
 
-The beam area is calculated using a virtual tube collimator, allowing the simulation to model the expected beam footprint on the sample without explicitly transporting large numbers of photons through a physical tube collimator.
+The primary photon direction is then calculated from:
 
-Detector Response / Noise
+```text
+source position
+      ↓
+random point inside sample beam area
+```
 
-Detector noise is applied separately from the Geant4 transport simulation.
+The sample beam size is calculated from the source-to-collimator and collimator-to-sample geometry.
 
-This means the user can change detector-response parameters and reprocess the simulation output without rerunning the full Geant4 simulation.
+A virtual tube collimator is used for this calculation. This allows the source generator to directly produce photons with the expected beam divergence without requiring every primary photon to physically travel through a small tube collimator aperture.
 
-Simulation Output
+---
 
-After a simulation, the user can download the generated run data.
+# Browser Geometry / Debug Viewer
 
-The output includes files such as:
+The project contains a Three.js browser viewer for debugging the Geant4 geometry.
 
+The viewer can currently display:
+
+- exported Geant4 geometry
+- wireframe geometry
+- surface geometry
+- XYZ axes
+- primary/particle trajectories
+- beam directions
+- Geant4 debug output
+
+Runtime geometry calculations can be printed using `G4cout`, including values such as:
+
+- calculated beam diameter
+- calculated beam area
+- source position
+- source direction
+- detector position
+- component positions
+- internal-mask positions
+- material information
+- geometry-placement calculations
+
+These messages can be shown in the scrollable **Debug Log** panel while viewing the 3D geometry.
+
+The browser viewer is intended primarily as a development/debugging tool at this stage.
+
+---
+
+# Detector Response / Noise
+
+Detector response is processed separately from Geant4 particle transport.
+
+This allows detector-response parameters to be modified without rerunning the full Geant4 transport simulation.
+
+Examples include:
+
+- energy resolution / FWHM
+- detector gain
+- zero offset
+- Fano factor
+- electron-hole pair creation energy
+- MCA channel count
+- live time
+- pile-up parameters
+
+This separation is useful because Geant4 transport can be computationally expensive, while detector-response processing can be repeated using the existing simulation result.
+
+---
+
+# Simulation Output
+
+After a simulation, the frontend creates/downloads run data containing files such as:
+
+```text
 config.json
 updated.json
 *.h5
+```
 
-config.json contains the original simulation configuration.
+## `config.json`
 
-updated.json contains geometry/configuration information updated by the backend during simulation setup.
+Contains the original simulation configuration provided to the backend.
 
-The HDF5 (.h5) file contains the simulation data used for later analysis and detector-response processing.
+## `updated.json`
 
-Current Status
+Contains configuration and geometry information updated or calculated by the backend during geometry construction.
 
-This repository should currently be treated as a development/testing prototype, not a production-ready simulation package.
+## HDF5 (`*.h5`)
 
-The main purpose at this stage is to validate:
+Contains simulation data used for later analysis and detector-response processing.
 
-Geant4 geometry
+Additional development/debug files may also be generated for browser geometry and trajectory visualization.
 
-XRF physics
+---
 
-custom directional biasing
+# Current Status
 
-source/beam generation
+This repository should currently be treated as:
 
-detector geometry
+```text
+DEVELOPMENT / TESTING PROTOTYPE
+```
 
-detector-response post-processing
+and not as a production-ready XRF simulation package.
 
-the interaction between the frontend and Geant4 backend
+The current goal is to validate the complete workflow:
+
+```text
+Streamlit configuration
+        ↓
+JSON simulation configuration
+        ↓
+Geant4 geometry construction
+        ↓
+X-ray source generation
+        ↓
+XRF physics + biasing
+        ↓
+detector scoring
+        ↓
+simulation output
+        ↓
+detector-response processing
+        ↓
+analysis / visualization
+```
+
+Installation, frontend structure, error handling, performance optimization, and documentation will be improved as the project matures.
