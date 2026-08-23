@@ -13,13 +13,28 @@ It is **not yet a complete or production-ready package**. The main purpose of th
 - browser-based geometry/trajectory debugging
 - communication between the Streamlit frontend and Geant4 backend
 
-Full installation automation is not provided yet.
+# AI Server / Ubuntu 24.04 Quick Start
 
----
+If you are using the AI server with an Ubuntu 24.04 container for testing or development, you do not need to manually install all dependencies one by one.
+
+From the directory containing `setup.sh`, run:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+`setup.sh` is intended to prepare the current development environment automatically. It installs the required system packages, Node.js/npm, Python dependencies, builds and installs the patched Geant4 11.4.2 source, builds the TEMPO XRF backend, installs the Three.js/Vite viewer dependencies, and starts the Streamlit frontend.
+
+For normal testing and development on the AI server, **running `setup.sh` is the recommended setup method**.
+
+The manual installation sections below are mainly for understanding the setup, rebuilding individual components, or troubleshooting.
 
 # Before Running Streamlit
 
 Before starting the Streamlit frontend, make sure the following parts are prepared.
+
+If `setup.sh` completed successfully on the Ubuntu 24.04 AI-server/container environment, these steps should already be handled.
 
 ## 1. Geant4
 
@@ -39,13 +54,17 @@ Check that Geant4 is available:
 geant4-config --version
 ```
 
----
-
 ## 2. Required Geant4 Source Modification
 
 Directional splitting currently requires a small modification to the Geant4 source code.
 
-Locate:
+The provided `setup.sh` applies this modification automatically using:
+
+```bash
+python3 ./TEMPO_XRF_REPO/python_code/script.py geant4-v11.4.2
+```
+
+For manual installation, locate:
 
 ```cpp
 G4EmBiasingManager::ApplyDirectionalSplitting
@@ -79,9 +98,7 @@ for (std::size_t kk = 0; kk < tmpSecondaries.size(); ++kk) {
 
 Without this check, directional splitting may encounter a null secondary pointer and crash the simulation.
 
-After modifying the Geant4 source, **rebuild and reinstall Geant4** before building this project.
-
----
+After modifying the Geant4 source, rebuild and reinstall Geant4 before building this project.
 
 ## 3. Build the Geant4 Backend
 
@@ -91,7 +108,7 @@ From the repository root:
 mkdir -p build
 cd build
 cmake ..
-make -j
+cmake --build . -j$(nproc)
 ```
 
 The simulation executable should then exist as:
@@ -110,33 +127,32 @@ If C++ source files are changed later, rebuild with:
 
 ```bash
 cd build
-make -j
+cmake --build . -j$(nproc)
 ```
-
----
 
 ## 4. Python Environment
 
-Create and activate a Python virtual environment if one has not already been created.
+The current setup script creates the virtual environment in the repository root:
 
-Example:
-
-```bash
-python3 -m venv python_code/.venv
-source python_code/.venv/bin/activate
+```text
+.venv/
 ```
 
-Install the Python dependencies required by the project.
-
-If a requirements file is provided:
+For manual setup:
 
 ```bash
-pip install -r python_code/requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the Python dependencies:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirement.txt
 ```
 
 Make sure the virtual environment is active before starting Streamlit.
-
----
 
 ## 5. Browser 3D Viewer
 
@@ -154,16 +170,17 @@ Check:
 ```bash
 node --version
 npm --version
+npx --version
 ```
 
 Install the viewer dependencies:
 
 ```bash
 cd python_code/vis
-npm install
+npm ci
 ```
 
-`node_modules/` is not stored in Git and must be generated locally with `npm install`.
+`node_modules/` is not stored in Git and must be generated locally.
 
 The following files should remain in Git:
 
@@ -174,23 +191,34 @@ package-lock.json
 
 They define the JavaScript dependencies required by the viewer.
 
----
+If the dependency files are being prepared for the first time:
+
+```bash
+npm install three
+npm install --save-dev vite@5
+```
+
+After `package.json` and `package-lock.json` are committed, fresh installations should normally use only:
+
+```bash
+npm ci
+```
 
 ## 6. Expected Project Structure
 
 Before running the frontend, the important parts should approximately look like:
 
 ```text
-XRF_ONLY/
+TEMPO_XRF_REPO/
 ├── build/
 │   └── sim
 │
 ├── include/
 ├── src/
 │
+├── .venv/
+│
 ├── python_code/
-│   ├── .venv/
-│   │
 │   ├── frontend/
 │   │   └── main.py
 │   │
@@ -205,6 +233,8 @@ XRF_ONLY/
 │   └── root_output_file/
 │
 ├── CMakeLists.txt
+├── requirement.txt
+├── setup.sh
 └── README.md
 ```
 
@@ -212,32 +242,27 @@ Generated folders such as:
 
 ```text
 build/
-python_code/.venv/
+.venv/
 python_code/vis/node_modules/
 python_code/vis/.vite/
 ```
 
 are intentionally ignored by Git and must be created locally.
 
----
-
 # Running Streamlit
 
-After:
-
-1. Geant4 has been installed and patched
-2. Geant4 has been rebuilt
-3. the XRF backend has been compiled
-4. the Python virtual environment has been activated
-5. Python dependencies have been installed
-6. Node.js/npm are installed
-7. the browser-viewer dependencies have been installed
-
-start the frontend from the repository root:
+On the Ubuntu 24.04 AI server, the recommended method is:
 
 ```bash
-source python_code/.venv/bin/activate
-streamlit run python_code/frontend/main.py
+./setup.sh
+```
+
+For manual startup after installation:
+
+```bash
+source .venv/bin/activate
+cd python_code/frontend
+streamlit run main.py
 ```
 
 The Streamlit frontend communicates with the compiled Geant4 executable in:
@@ -247,8 +272,6 @@ build/sim
 ```
 
 Do not start Streamlit before the Geant4 executable has been successfully built.
-
----
 
 # Frontend Status
 
@@ -268,8 +291,6 @@ It is currently sufficient for testing:
 
 The frontend will be refactored and optimized later.
 
----
-
 # Current Geometry Features
 
 The user can currently configure several parts of the XRF system, including:
@@ -283,8 +304,6 @@ The user can currently configure several parts of the XRF system, including:
 - detector internal masks
 
 Supported components can be positioned within the 3D Geant4 simulation world.
-
----
 
 # Component Orientation
 
@@ -300,8 +319,6 @@ The current sample reference point is:
 ```text
 (0, 0, 0)
 ```
-
----
 
 # X-ray Focal Spot and Beam
 
@@ -322,8 +339,6 @@ random point inside sample beam area
 The sample beam size is calculated from the source-to-collimator and collimator-to-sample geometry.
 
 A virtual tube collimator is used for this calculation. This allows the source generator to directly produce photons with the expected beam divergence without requiring every primary photon to physically travel through a small tube collimator aperture.
-
----
 
 # Browser Geometry / Debug Viewer
 
@@ -351,11 +366,9 @@ Runtime geometry calculations can be printed using `G4cout`, including values su
 - material information
 - geometry-placement calculations
 
-These messages can be shown in the scrollable **Debug Log** panel while viewing the 3D geometry.
+These messages can be shown in the scrollable Debug Log panel while viewing the 3D geometry.
 
 The browser viewer is intended primarily as a development/debugging tool at this stage.
-
----
 
 # Detector Response / Noise
 
@@ -376,33 +389,44 @@ Examples include:
 
 This separation is useful because Geant4 transport can be computationally expensive, while detector-response processing can be repeated using the existing simulation result.
 
----
-
 # Simulation Output
 
-After a simulation, the frontend creates/downloads run data containing files such as:
+Simulation runs create run-specific output under the frontend run directory.
+
+Typical development outputs include files such as:
 
 ```text
 config.json
-updated.json
-*.h5
+updated_config.json
+*.root
+xrf_geometry_vis.json
+xrf_tracks.json
+geant4_debug.log
 ```
 
-## `config.json`
+## config.json
 
 Contains the original simulation configuration provided to the backend.
 
-## `updated.json`
+## updated_config.json
 
 Contains configuration and geometry information updated or calculated by the backend during geometry construction.
 
-## HDF5 (`*.h5`)
+## ROOT (*.root)
 
-Contains simulation data used for later analysis and detector-response processing.
+Contains Geant4 simulation/scoring data used for later analysis and detector-response processing.
 
-Additional development/debug files may also be generated for browser geometry and trajectory visualization.
+## Browser debug files
 
----
+Files such as:
+
+```text
+xrf_geometry_vis.json
+xrf_tracks.json
+geant4_debug.log
+```
+
+are development/debug outputs used by the Three.js geometry and trajectory viewer.
 
 # Current Status
 
