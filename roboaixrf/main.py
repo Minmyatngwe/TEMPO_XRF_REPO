@@ -7,9 +7,12 @@ from typing import ClassVar
 import numpy as np
 import plotly.graph_objects as go
 import subprocess
-
+import socket
+import time 
 from pydantic import BaseModel, PrivateAttr
-
+import os 
+import signal
+import threading
 from .config.xrfconfig import XRFConfigure
 from .config.write_json import write_json
 from .detector_noise.xray_tube import get_flu
@@ -300,8 +303,22 @@ class RoboAiXrfSimulation(BaseModel):
         self._last_mas = None
         self._last_incident_photons = None
         self._is_compiled = True
+    def port_is_open(self,port_number: int) -> bool:
+        with socket.socket(
+            socket.AF_INET,
+            socket.SOCK_STREAM,
+        ) as sock:
 
-    def show_vis(self,beam_on: int = 100,number_of_thread: int = 1,) -> None:
+            sock.settimeout(0.2)
+
+            return (
+                sock.connect_ex(
+                    ("127.0.0.1", port_number)
+                )
+                == 0
+            )
+
+    def show_vis(self,beam_on: int = 100,number_of_thread: int = 1,port:int=5173) -> None:
         """
         Run a small visualization simulation and launch the Vite viewer.
 
@@ -328,7 +345,7 @@ class RoboAiXrfSimulation(BaseModel):
         # the quantitative response state. The user must call run() next.
         self._beam_on = 0
 
-        subprocess.run(
+        process=subprocess.run(
             [
                 "./sim",
                 str(self.config_path / "config.json"),
@@ -340,17 +357,42 @@ class RoboAiXrfSimulation(BaseModel):
                 / "build"
             ),
             check=True,
-        )
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
 
-        subprocess.Popen(
-            [
-                "npx",
-                "vite",
-            ],
-            cwd=self.ROOTPATH / "vis",
         )
+        with open(self.ROOTPATH/"vis"/"public"/"geant4_debug.log","w") as f:
+            
+            for line in process.stdout:
+                f.write(line)
+        viewer_url = f"http://localhost:{port}"
 
-    def run(self,beam_on: int,number_of_thread: int,print_display: int = 1_000_000,) -> Path:
+        if not self.port_is_open(port):
+            subprocess.Popen(
+                [
+                    "npx",
+                    "vite",
+                    "--host",
+                    "0.0.0.0",
+                    "--port",
+                    str(port),
+                    "--strictPort"
+                ],
+                cwd=self.ROOTPATH / "vis",
+                start_new_session=True
+            )
+            start_time=time.time()
+            while not self.port_is_open(port):
+                if time.time()-start_time>10:
+                    raise RuntimeError(
+                                        "Vite viewer failed to start on port 5173."
+                                    )
+                time.sleep(0.1)
+        print(f"Visualization ready at : {viewer_url}")
+            
+
+    def start_run(self,beam_on: int,number_of_thread: int,print_display: int = 1_000_000,) -> Path:
         """
         Run the quantitative Geant4 response simulation.
 
@@ -383,7 +425,10 @@ class RoboAiXrfSimulation(BaseModel):
 
         self._beam_on = 0
 
-        subprocess.run(
+        if root_file.exists():
+            root_file.unlink()
+        
+        process=subprocess.run(
             [
                 "./sim",
                 str(config_file),
@@ -395,6 +440,7 @@ class RoboAiXrfSimulation(BaseModel):
                 / "build"
             ),
             check=True,
+            start_new_session=True
         )
 
         if not root_file.is_file():
@@ -402,10 +448,65 @@ class RoboAiXrfSimulation(BaseModel):
                 "Geant4 finished successfully but simulation.root "
                 f"was not created at: {root_file}"
             )
+            
+        def _watch_background_run()->None:
+            return_code=process.wait()
+            if return_code==0 and root_file.is_file():
+                self._beam_on=int(beam_on)
+            else:
+                self._beam_on=0
 
-        self._beam_on = beam_on
+        threading.Thread(target=_watch_background_run,daemon=True).start()
+        
+        return process
+    
+    def stop_run(self,process:subprocess.Popen|None)->None:
+        
+        """
+        Stop a background Geant4 simulation.
 
-        return root_file
+        SIGTERM is sent to the entire process group first. If the
+        process does not exit within five seconds, SIGKILL is used.
+
+        Any partial simulation.root is deleted because it is not a
+        valid quantitative response.
+        """
+        
+        self._beam_on=0
+        if process is not None and process.poll() is None:
+            try:
+                os.killpg(
+                    os.getpgid(process.pid),
+                    signal.SIGTERM
+                )
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    os.killpg(
+                        os.getpgid(process.pid),
+                        signal.SIGKILL
+                    )
+                    process.wait()
+            except ProcessLookupError:
+                pass 
+            
+            except Exception:
+                try:
+                    process.terminate()
+                    process.wait(timeout=5)
+                except Exception:
+                    try:
+                        process.kill()
+                    except Exception:
+                        pass 
+        root_file=self.config_path/"simulation.root"
+        if root_file.exists():
+            try:
+                root_file.unlink()
+            except OSError:
+                pass 
+
+        
 
     def detector_noise(self,*,fwhm: float,fwhm_energy_kev: float,detector_zero_offset: float,detector_gain_kev: float,
                         live_time: float, pile_up_window_us: float,current: float | None = None,fano_factor: float = 0.115,
