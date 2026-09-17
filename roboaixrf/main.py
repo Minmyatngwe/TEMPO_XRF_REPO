@@ -18,7 +18,8 @@ from .config.write_json import write_json
 from .detector_noise.xray_tube import get_flu
 from .detector_noise.pipeline import apply_detectornoise
 from plotly.subplots import make_subplots
-
+from tqdm import tqdm
+import re 
 
 class RoboAiXrfSimulation(BaseModel):
     """
@@ -57,7 +58,9 @@ class RoboAiXrfSimulation(BaseModel):
 
     _last_mas: float | None = PrivateAttr(default=None)
     _last_incident_photons: float | None = PrivateAttr(default=None)
-
+    _run_done:threading.Event=PrivateAttr(    default_factory=threading.Event)
+    
+    
     @property
     def is_compiled(self) -> bool:
         return self._is_compiled
@@ -364,8 +367,7 @@ class RoboAiXrfSimulation(BaseModel):
         )
         with open(self.ROOTPATH/"vis"/"public"/"geant4_debug.log","w") as f:
             
-            for line in process.stdout:
-                f.write(line)
+            f.write(process.stdout)
         viewer_url = f"http://localhost:{port}"
 
         if not self.port_is_open(port):
@@ -389,22 +391,27 @@ class RoboAiXrfSimulation(BaseModel):
                                         "Vite viewer failed to start on port 5173."
                                     )
                 time.sleep(0.1)
+
         print(f"Visualization ready at : {viewer_url}")
             
 
-    def start_run(self,beam_on: int,number_of_thread: int,print_display: int = 1_000_000,) -> Path:
+    def start_run(self,beam_on: int,number_of_thread: int) -> subprocess.Popen:
         """
         Run the quantitative Geant4 response simulation.
 
         Returns
         -------
-        Path
-            Path to simulation.root.
+        subprocess.Popen
         """
+        self._run_done.clear()
         if not self.is_compiled:
             raise RuntimeError(
                 "Call simulation.compile() first."
             )
+            
+        print_display=int(beam_on/1000)
+        
+        
 
         _, macro_file_path = self.write_macro(
             beam_on=beam_on,
@@ -420,15 +427,18 @@ class RoboAiXrfSimulation(BaseModel):
             self.config_path / "simulation.root"
         )
 
-        if root_file.exists():
-            root_file.unlink()
 
         self._beam_on = 0
 
         if root_file.exists():
             root_file.unlink()
-        
-        process=subprocess.run(
+        bar=tqdm(
+            total=beam_on,
+            desc="RoboAI XRF Simulation",
+            unit="Event",
+            colour="green",
+        )
+        process=subprocess.Popen(
             [
                 "./sim",
                 str(config_file),
@@ -439,26 +449,45 @@ class RoboAiXrfSimulation(BaseModel):
                 / "geant4_code"
                 / "build"
             ),
-            check=True,
-            start_new_session=True
-        )
-
-        if not root_file.is_file():
-            raise RuntimeError(
-                "Geant4 finished successfully but simulation.root "
-                f"was not created at: {root_file}"
-            )
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            text=True
             
+        )
         def _watch_background_run()->None:
+            last_number=0
+
+            if process.stdout is not None:
+                for line in process.stdout:
+                    match=re.search(r"Event\s+(\d+)",line)
+                    if match:
+                        event_number=int(match.group(1))
+                        if event_number>last_number:
+                            bar.update(
+                                event_number-last_number
+                            )
+                            last_number=event_number
+                            
             return_code=process.wait()
+            
             if return_code==0 and root_file.is_file():
                 self._beam_on=int(beam_on)
             else:
                 self._beam_on=0
+            self._run_done.set()
 
         threading.Thread(target=_watch_background_run,daemon=True).start()
-        
+        # _watch_background_run()
         return process
+    
+    def run(self,beam_on:int,number_of_thread:int):
+        
+        try:
+            process=self.start_run(beam_on=beam_on,number_of_thread=number_of_thread)
+            self._run_done.wait()
+        except KeyboardInterrupt:
+            self.stop_run(process=process)
+        
     
     def stop_run(self,process:subprocess.Popen|None)->None:
         
@@ -497,6 +526,8 @@ class RoboAiXrfSimulation(BaseModel):
                 except Exception:
                     try:
                         process.kill()
+                        process.wait()
+
                     except Exception:
                         pass 
         root_file=self.config_path/"simulation.root"

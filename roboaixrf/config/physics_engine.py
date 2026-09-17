@@ -6,7 +6,7 @@ class Physics(BaseModel):
     secondary_splitting_use:bool=True
     
     flu_use:bool=True
-    auger_use:bool=False
+    auger_use:bool=True
     pixe_use:bool=False
     ignore_cut_use:bool=True
     flu_dataset_name:str="ANSTO"
