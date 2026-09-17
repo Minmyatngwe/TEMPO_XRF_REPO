@@ -1,0 +1,204 @@
+{
+  "world": {
+    "world_material": {
+      "material_type": "geant4",
+      "material_name": "G4_Galactic"
+    },
+    "world_size_x_mm": 300.0,
+    "world_size_y_mm": 300.0,
+    "world_size_z_mm": 300.0
+  },
+  "xray_tube": {
+    "tube_window": {
+      "name": "tube_window",
+      "material": {
+        "material_type": "geant4",
+        "material_name": "G4_Be"
+      },
+      "thickness_mm": 0.001
+    },
+    "name": "xrftube",
+    "tube_filters_geant4": [],
+    "tube_filter_spekpy": [
+      {
+        "element": "Al",
+        "thickness_mm": 0.5
+      }
+    ],
+    "tube_type": "reflection",
+    "target_thickness_um": 0.0,
+    "placement": {
+      "position": {
+        "reference": "sample",
+        "distance_mm": 140.0,
+        "elevation_deg": 90.0,
+        "azimuth_deg": 90.0
+      },
+      "orientation": {
+        "mode": "face_sample"
+      }
+    },
+    "current_ma": 1.0,
+    "voltage_kv": 50.0,
+    "anode_angle_deg": 15.0,
+    "anode_symbol": "W",
+    "focal_spot_diameter_mm": 0.05,
+    "tube_window_to_virtual_collimator_distance_mm": 100.0,
+    "tube_collimator_radius_mm": 0.15,
+    "tube_window_to_sample_distance_mm": 130.0
+  },
+  "sample": {
+    "name": "sample",
+    "material": {
+      "material_type": "geant4",
+      "material_name": "G4_Fe"
+    },
+    "geometry": {
+      "shape": "Rectangular",
+      "thickness_mm": 0.1,
+      "width_mm": 10.0,
+      "height_mm": 10.0
+    }
+  },
+  "detector": {
+    "name": "detector",
+    "geometry": {
+      "shape": "Circular",
+      "thickness_mm": 1.0,
+      "radius_mm": 4.0
+    },
+    "placement": {
+      "position": {
+        "reference": "sample",
+        "distance_mm": 17.0,
+        "elevation_deg": 90.0,
+        "azimuth_deg": 50.0
+      },
+      "orientation": {
+        "mode": "face_sample"
+      }
+    },
+    "material": {
+      "material_type": "geant4",
+      "material_name": "G4_Si"
+    },
+    "detector_filters": [],
+    "housing": {
+      "name": "detector_housing",
+      "geometry": {
+        "shape": "Detector housing",
+        "aperture_shape": "Circular",
+        "aperture_radius_mm": 5.0,
+        "detector_clearance_mm": 2.0,
+        "housing_wall_thickness_mm": 1.0,
+        "cavity_wall_thickness_mm": 1.0
+      },
+      "cavity_wall_material": {
+        "material_type": "geant4",
+        "material_name": "G4_W"
+      },
+      "housing_material": {
+        "material_type": "geant4",
+        "material_name": "G4_Al"
+      },
+      "inner_cavity_medium_material": {
+        "material_type": "geant4",
+        "material_name": "G4_Galactic"
+      },
+      "window_material": {
+        "material_type": "geant4",
+        "material_name": "G4_Be"
+      },
+      "window_thickness_mm": 0.01
+    },
+    "internal_masks": [
+      {
+        "name": "Ti_mask",
+        "geometry": {
+          "shape": "Circular aperture",
+          "outer_radius_mm": 4.0,
+          "aperture_shape": "Circular",
+          "aperture_radius_mm": 3.09,
+          "length_mm": 0.025
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Ti"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 0.1
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
+      },
+      {
+        "name": "Al_mask",
+        "geometry": {
+          "shape": "Circular aperture",
+          "outer_radius_mm": 4.0,
+          "aperture_shape": "Circular",
+          "aperture_radius_mm": 3.09,
+          "length_mm": 0.075
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Al"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 0.3
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
+      },
+      {
+        "name": "W_mask",
+        "geometry": {
+          "shape": "Circular aperture",
+          "outer_radius_mm": 4.0,
+          "aperture_shape": "Circular",
+          "aperture_radius_mm": 3.09,
+          "length_mm": 0.1
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_W"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 0.5
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
+      }
+    ],
+    "detector_collimators": []
+  },
+  "physics": {
+    "interaction_bias_use": true,
+    "secondary_splitting_use": true,
+    "flu_use": true,
+    "auger_use": false,
+    "pixe_use": false,
+    "ignore_cut_use": true,
+    "flu_dataset_name": "ANSTO",
+    "maximum_energy": 1000.0,
+    "phot_factor": 100,
+    "compt_factor": 100,
+    "rayl_factor": 100,
+    "electron_cut": 0.01,
+    "gamma_cut": 0.01,
+    "positron_cut": 0.01,
+    "proton_cut": 0.01
+  }
+}

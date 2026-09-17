@@ -393,7 +393,7 @@ class RoboAiXrfSimulation(BaseModel):
                 time.sleep(0.1)
 
         print(f"Visualization ready at : {viewer_url}")
-            
+        return viewer_url
 
     def start_run(self,beam_on: int,number_of_thread: int) -> subprocess.Popen:
         """
