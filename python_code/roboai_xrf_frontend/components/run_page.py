@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import time
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -29,102 +30,6 @@ def _simulation_is_current() -> bool:
 
 
 def _finalize_finished_process() -> None:
-    """
-    Check whether a background Geant4 process has finished.
-
-    If it completed successfully:
-        - validate simulation.root
-        - register beam_on in RoboAiXrfSimulation
-        - mark the frontend run as complete
-
-    If it failed:
-        - clear running state
-        - report the exit code
-    """
-
-    process = st.session_state.get("geant4_process")
-
-    if process is None:
-        return
-
-    return_code = process.poll()
-
-    # Still running.
-    if return_code is None:
-        st.session_state.geant4_running = True
-        return
-
-    # Process has finished.
-    st.session_state.geant4_running = False
-    st.session_state.geant4_process = None
-
-    if return_code != 0:
-        st.session_state.run_complete = False
-        st.session_state.last_root_file = None
-
-        st.error(
-            f"Geant4 exited with code {return_code}."
-        )
-        return
-
-    sim = st.session_state.get("simulation")
-
-    if sim is None:
-        st.session_state.run_complete = False
-
-        st.error(
-            "Geant4 finished, but the simulation object "
-            "is no longer available."
-        )
-        return
-
-    beam_on = st.session_state.get(
-        "geant4_beam_on"
-    )
-
-    if beam_on is None:
-        st.session_state.run_complete = False
-
-        st.error(
-            "Geant4 finished, but the beam-on count "
-            "was not stored."
-        )
-        return
-
-    try:
-        # This sets sim._beam_on after confirming
-        # simulation.root exists.
-        root_file = sim.finalize_run(
-            beam_on=int(beam_on)
-        )
-
-        st.session_state.run_complete = True
-        st.session_state.last_root_file = str(
-            root_file
-        )
-
-        st.success(
-            f"Simulation complete: {root_file}"
-        )
-
-    except Exception as exc:
-        st.session_state.run_complete = False
-        st.session_state.last_root_file = None
-
-        st.exception(exc)
-
-
-# ==========================================================
-# LIVE GEANT4 PROCESS MONITOR
-# ==========================================================
-
-@st.fragment(run_every="1s")
-def _running_simulation_panel():
-    """
-    Check the background Geant4 process every second.
-
-    Only this small fragment refreshes while Geant4 is running.
-    """
 
     process = st.session_state.get(
         "geant4_process"
@@ -135,18 +40,175 @@ def _running_simulation_panel():
 
     return_code = process.poll()
 
-    # ------------------------------------------------------
-    # STILL RUNNING
-    # ------------------------------------------------------
-
+    # Still running
     if return_code is None:
-
         st.session_state.geant4_running = True
+        return
 
-        st.info(
-            f"Geant4 simulation is running — "
-            f"PID {process.pid}"
+    # Process finished
+    st.session_state.geant4_running = False
+    st.session_state.geant4_process = None
+
+    # ------------------------------------------------------
+    # FAILED
+    # ------------------------------------------------------
+
+    if return_code != 0:
+
+        st.session_state.run_complete = False
+        st.session_state.last_root_file = None
+
+        st.error(
+            f"Geant4 exited with code {return_code}."
         )
+
+        return
+
+    # ------------------------------------------------------
+    # SUCCESS
+    # ------------------------------------------------------
+
+    sim = st.session_state.get(
+        "simulation"
+    )
+
+    if sim is None:
+
+        st.session_state.run_complete = False
+        st.session_state.last_root_file = None
+
+        st.error(
+            "Geant4 finished, but the simulation object "
+            "is no longer available."
+        )
+
+        return
+
+    root_file = (
+        Path(sim.config_path)
+        / "simulation.root"
+    )
+
+    if not root_file.is_file():
+
+        st.session_state.run_complete = False
+        st.session_state.last_root_file = None
+
+        st.error(
+            f"Geant4 finished, but simulation.root "
+            f"was not found: {root_file}"
+        )
+
+        return
+
+    # ------------------------------------------------------
+    # COMPLETE
+    # ------------------------------------------------------
+
+    st.session_state.run_complete = True
+    st.session_state.last_root_file = str(
+        root_file
+    )
+
+from pathlib import Path
+
+
+from pathlib import Path
+import time
+
+
+
+
+TQDM_FILE = Path(
+    "/home/user/persistent/xrftest/TEMPO_XRF_REPO/"
+    "python_code/roboai_xrf_frontend/tqdm_output.txt"
+)
+
+
+import re
+from pathlib import Path
+
+TQDM_FILE = Path(
+    "/home/user/persistent/xrftest/TEMPO_XRF_REPO/"
+    "python_code/roboai_xrf_frontend/tqdm_output.txt"
+)
+
+last_percent=0  
+def read_last_line(path):
+    if not path.exists():
+        return ""
+
+    with open(
+        path,
+        "r",
+        encoding="utf-8",
+        errors="replace",
+    ) as f:
+
+        lines = f.read().splitlines()
+
+    if not lines:
+        return ""
+
+    return lines[-1]
+@st.fragment(run_every="0.7s")
+def _running_simulation_panel():
+
+    process = st.session_state.get(
+        "geant4_process"
+    )
+
+    if process is None:
+        return
+
+    # ======================================================
+    # READ ONLY LAST TQDM LINE
+    # ======================================================
+
+    output = read_last_line(
+        TQDM_FILE
+    )
+
+    # ======================================================
+    # GET PERCENTAGE
+    # ======================================================
+
+    match = re.search(
+        r"(\d+)%\|",
+        output,
+    )
+
+    if match:
+
+        percent = int(
+            match.group(1)
+        )
+
+        st.session_state[
+            "last_geant4_percent"
+        ] = percent
+
+    else:
+
+        percent = st.session_state.get(
+            "last_geant4_percent",
+            0,
+        )
+
+    # ======================================================
+    # PROGRESS BAR
+    # ======================================================
+
+    st.progress(
+        percent / 100,
+        text=f"Geant4: {percent}%",
+    )
+
+    # ======================================================
+    # STILL RUNNING
+    # ======================================================
+
+    if process.poll() is None:
 
         if st.button(
             "■ Stop simulation",
@@ -154,34 +216,19 @@ def _running_simulation_panel():
             width="stretch",
             key="stop_geant4_live",
         ):
-            try:
 
-                stopped = stop_geant4_process()
-
-                if stopped:
-                    st.warning(
-                        "Simulation stopped."
-                    )
-
-                st.rerun()
-
-            except Exception as exc:
-                st.exception(exc)
+            stop_geant4_process()
+            st.rerun()
 
         return
 
-    # ------------------------------------------------------
-    # SIMULATION FINISHED
-    # ------------------------------------------------------
+    # ======================================================
+    # FINISHED
+    # ======================================================
 
     _finalize_finished_process()
 
-    # Refresh the entire page so the UI changes
-    # immediately from Running -> Complete.
     st.rerun()
-
-
-
 def render_run_page():
     cfg = st.session_state.ui_config
     run = cfg["run"]
@@ -291,267 +338,282 @@ def render_run_page():
     # ACTION BUTTONS
     # ==========================================================
 
+    build_disabled = st.session_state.get(
+        "geant4_running",
+        False,
+    )
+
+    vis_disabled = (
+        not _simulation_is_current()
+        or st.session_state.get(
+            "geant4_running",
+            False,
+        )
+    )
+
+    run_disabled = (
+        not _simulation_is_current()
+        or st.session_state.get(
+            "geant4_running",
+            False,
+        )
+    )
+
+    # ----------------------------------------------------------
+    # BUTTON ROW
+    # ----------------------------------------------------------
+
     c1, c2, c3 = st.columns(3)
 
+    build_clicked = c1.button(
+        "1. Build & compile",
+        type="primary",
+        disabled=build_disabled,
+        width="stretch",
+    )
+
+    vis_clicked = c2.button(
+        "2. Open visualization",
+        disabled=vis_disabled,
+        width="stretch",
+    )
+
+    run_clicked = c3.button(
+        "3. Run Geant4",
+        disabled=run_disabled,
+        width="stretch",
+    )
+    if st.session_state.pop(
+        "build_success",
+        False,
+    ):
+        st.success(
+            "Configuration compiled.",
+            width="stretch",
+        )
+
     # ==========================================================
+    # FULL-WIDTH ACTION / STATUS AREA
+    # ==========================================================
+
+    # ----------------------------------------------------------
     # 1. BUILD & COMPILE
-    # ==========================================================
+    # ----------------------------------------------------------
 
-    with c1:
+    if build_clicked:
 
-        build_disabled = (
-            st.session_state.get(
-                "geant4_running",
-                False,
+        try:
+
+            with st.spinner(
+                "Building package objects and compiling configuration..."
+            ):
+
+                simulation = build_simulation(cfg)
+
+                simulation.compile()
+
+            st.session_state.simulation = simulation
+
+            st.session_state.compiled_fingerprint = (
+                configuration_fingerprint(cfg)
             )
-        )
 
-        if st.button(
-            "1. Build & compile",
-            type="primary",
-            disabled=build_disabled,
-            width="stretch",
-        ):
-            try:
+            st.session_state.run_complete = False
+            st.session_state.noise_result = None
+            st.session_state.last_root_file = None
 
-                with st.spinner(
-                    "Building package objects and "
-                    "compiling configuration..."
-                ):
-                    simulation = build_simulation(
-                        cfg
-                    )
+            st.session_state.geant4_process = None
+            st.session_state.geant4_running = False
+            st.session_state.geant4_stopped = False
+            st.session_state.geant4_beam_on = None
 
-                    simulation.compile()
+            # Clear old visualization
+            st.session_state.viewer_url = None
 
-                st.session_state.simulation = (
-                    simulation
-                )
+            # st.success(
+            #     "Configuration compiled.",
+            #     width="stretch",
+            # )
+            st.session_state.build_success = True
 
-                st.session_state.compiled_fingerprint = (
-                    configuration_fingerprint(
-                        cfg
-                    )
-                )
+            st.rerun()
+        except Exception as exc:
+            st.exception(exc)
 
-                st.session_state.run_complete = False
-                st.session_state.noise_result = None
-                st.session_state.last_root_file = None
-
-                st.session_state.geant4_process = None
-                st.session_state.geant4_running = False
-                st.session_state.geant4_stopped = False
-                st.session_state.geant4_beam_on = None
-
-                st.success(
-                    "Configuration compiled."
-                )
-
-            except Exception as exc:
-                st.exception(exc)
-
-    # ==========================================================
+    # ----------------------------------------------------------
     # 2. OPEN VISUALIZATION
-    # ==========================================================
+    # ----------------------------------------------------------
 
-    with c2:
+    if vis_clicked:
 
-        vis_disabled = (
-            not _simulation_is_current()
-            or st.session_state.get(
-                "geant4_running",
-                False,
-            )
-        )
+        try:
 
-        if st.button(
-            "2. Open visualization",
-            disabled=vis_disabled,
-            width="stretch",
-        ):
-            try:
+            sim = st.session_state.simulation
 
-                sim = (
-                    st.session_state.simulation
-                )
+            with st.spinner(
+                "Running visualization histories..."
+            ):
 
-                with st.spinner(
-                    "Running visualization "
-                    "histories..."
-                ):
-
-                    viewer_url = sim.show_vis(
-                        beam_on=int(
-                            run["vis_beam_on"]
-                        ),
-                        number_of_thread=int(
-                            run["vis_threads"]
-                        ),
-                    )
-
-                # Visualization is NOT a valid
-                # quantitative simulation.
-                st.session_state.run_complete = False
-                st.session_state.noise_result = None
-                st.session_state.last_root_file = None
-
-                if viewer_url:
-
-                    components.html(
-                        f"""
-                        <script>
-                            window.parent.open(
-                                "{viewer_url}",
-                                "_blank"
-                            );
-                        </script>
-                        """,
-                        height=0,
-                    )
-
-                    st.success(
-                        "Visualization generated."
-                    )
-
-                    st.link_button(
-                        "Open 3D viewer",
-                        viewer_url,
-                        width="stretch",
-                    )
-
-                else:
-                    st.warning(
-                        "Visualization completed, "
-                        "but no viewer URL was returned."
-                    )
-
-            except Exception as exc:
-                st.exception(exc)
-
-    # ==========================================================
-    # 3. RUN GEANT4
-    # ==========================================================
-
-    with c3:
-
-        run_disabled = (
-            not _simulation_is_current()
-            or st.session_state.get(
-                "geant4_running",
-                False,
-            )
-        )
-
-        if st.button(
-            "3. Run Geant4",
-            disabled=run_disabled,
-            width="stretch",
-        ):
-            try:
-
-                sim = (
-                    st.session_state.simulation
-                )
-
-                selected_beam_on = int(
-                    run["beam_on"]
-                )
-
-                process = sim.start_run(
-                    beam_on=selected_beam_on,
+                viewer_url = sim.show_vis(
+                    beam_on=int(
+                        run["vis_beam_on"]
+                    ),
                     number_of_thread=int(
-                        run["number_of_thread"]
+                        run["vis_threads"]
                     ),
                 )
 
-                st.session_state.geant4_process = (
-                    process
+            # Visualization is NOT a valid quantitative run.
+            st.session_state.run_complete = False
+            st.session_state.noise_result = None
+            st.session_state.last_root_file = None
+
+            if viewer_url:
+
+                st.session_state.viewer_url = viewer_url
+
+                components.html(
+                    f"""
+                    <script>
+                        window.parent.open(
+                            "{viewer_url}",
+                            "_blank"
+                        );
+                    </script>
+                    """,
+                    height=0,
                 )
-
-                # Store the exact beam count associated
-                # with THIS process.
-                st.session_state.geant4_beam_on = (
-                    selected_beam_on
-                )
-
-                st.session_state.geant4_running = (
-                    True
-                )
-
-                st.session_state.geant4_stopped = (
-                    False
-                )
-
-                st.session_state.run_complete = (
-                    False
-                )
-
-                st.session_state.noise_result = (
-                    None
-                )
-
-                st.session_state.last_root_file = (
-                    None
-                )
-
-                st.rerun()
-
-            except Exception as exc:
-
-                st.session_state.geant4_running = (
-                    False
-                )
-
-                st.exception(exc)
-
-        # ==========================================================
-        # LIVE SIMULATION STATUS
-        # ==========================================================
-
-        if st.session_state.get(
-            "geant4_process"
-        ) is not None:
-
-            _running_simulation_panel()
-
-        # ==========================================================
-        # COMPLETED SIMULATION
-        # ==========================================================
-
-        elif st.session_state.get(
-            "run_complete",
-            False,
-        ):
-
-            root_file = st.session_state.get(
-                "last_root_file"
-            )
-
-            if root_file:
 
                 st.success(
-                    f"Simulation complete: {root_file}"
+                    "Visualization generated.",
+                    width="stretch",
                 )
 
             else:
 
-                st.success(
-                    "Simulation complete."
+                st.session_state.viewer_url = None
+
+                st.warning(
+                    "Visualization completed, "
+                    "but no viewer URL was returned.",
+                    width="stretch",
                 )
 
-        # ==========================================================
-        # STOPPED SIMULATION
-        # ==========================================================
+        except Exception as exc:
+            st.exception(exc)
 
-        elif st.session_state.get(
-            "geant4_stopped",
+    # ----------------------------------------------------------
+    # PERSISTENT VISUALIZATION LINK
+    # ----------------------------------------------------------
+
+    viewer_url = st.session_state.get(
+        "viewer_url"
+    )
+
+    if (
+        viewer_url
+        and not st.session_state.get(
+            "geant4_running",
             False,
-        ):
+        )
+    ):
 
-            st.warning(
-                "The previous Geant4 simulation "
-                "was stopped."
+        st.link_button(
+            "Open 3D viewer",
+            viewer_url,
+            width="stretch",
+        )
+
+    # ----------------------------------------------------------
+    # 3. RUN GEANT4
+    # ----------------------------------------------------------
+
+    if run_clicked:
+
+        try:
+
+            sim = st.session_state.simulation
+
+            selected_beam_on = int(
+                run["beam_on"]
             )
+
+            process = sim.start_run(
+                beam_on=selected_beam_on,
+                number_of_thread=int(
+                    run["number_of_thread"]
+                ),
+            )
+            st.session_state.geant4_started_at = time.time()
+
+            st.session_state.geant4_process = (
+                process
+            )
+
+            # Store the exact beam count belonging
+            # to this process.
+            st.session_state.geant4_beam_on = (
+                selected_beam_on
+            )
+
+            st.session_state.geant4_running = True
+            st.session_state.geant4_stopped = False
+
+            st.session_state.run_complete = False
+            st.session_state.noise_result = None
+            st.session_state.last_root_file = None
+
+            st.rerun()
+
+        except Exception as exc:
+
+            st.session_state.geant4_running = False
+
+            st.exception(exc)
+
+    # ==========================================================
+    # LIVE / FINISHED SIMULATION STATUS
+    # FULL WIDTH because this is NOT inside c3
+    # ==========================================================
+
+    if st.session_state.get(
+        "geant4_process"
+    ) is not None:
+
+        _running_simulation_panel()
+
+    elif st.session_state.get(
+        "run_complete",
+        False,
+    ):
+
+        root_file = st.session_state.get(
+            "last_root_file"
+        )
+
+        if root_file:
+
+            st.success(
+                f"Simulation complete: {root_file}",
+                width="stretch",
+            )
+
+        else:
+
+            st.success(
+                "Simulation complete.",
+                width="stretch",
+            )
+
+    elif st.session_state.get(
+        "geant4_stopped",
+        False,
+    ):
+
+        st.warning(
+            "The previous Geant4 simulation was stopped.",
+            width="stretch",
+        )
 
     st.divider()
 

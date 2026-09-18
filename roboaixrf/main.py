@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import ClassVar
-
+import sys
 import numpy as np
 import plotly.graph_objects as go
 import subprocess
@@ -47,24 +47,47 @@ class RoboAiXrfSimulation(BaseModel):
     config: XRFConfigure
     config_path: Path
 
-    # Internal package path; this is not part of the user's simulation config.
     ROOTPATH: ClassVar[Path] = Path(__file__).resolve().parent
 
     _beam_on: int = PrivateAttr(default=0)
     _is_compiled: bool = PrivateAttr(default=False)
+    _run_output: str = PrivateAttr(default="")
 
     _energy_bin: np.ndarray | None = PrivateAttr(default=None)
     _fluence_list: np.ndarray | None = PrivateAttr(default=None)
 
     _last_mas: float | None = PrivateAttr(default=None)
     _last_incident_photons: float | None = PrivateAttr(default=None)
-    _run_done:threading.Event=PrivateAttr(    default_factory=threading.Event)
-    
+
+    _run_done: threading.Event = PrivateAttr(
+        default_factory=threading.Event
+    )
+    _tqdm_output: str = PrivateAttr(default="")
+
+    # ======================================================
+    # GEANT4 LIVE PROGRESS
+    # ======================================================
+
+    _run_progress: int = PrivateAttr(default=0)
+    _run_total: int = PrivateAttr(default=0) 
     
     @property
     def is_compiled(self) -> bool:
         return self._is_compiled
+    @property
+    def run_output(self) -> str:
+        return self._run_output
+    @property
+    def run_progress(self) -> int:
+        return self._run_progress
 
+    @property
+    def run_output(self) -> str:
+        return "\n".join(self._run_output)
+    @property
+    def run_total(self) -> int:
+        return self._run_total
+    
     @property
     def beam_on(self) -> int:
         return self._beam_on
@@ -395,23 +418,126 @@ class RoboAiXrfSimulation(BaseModel):
         print(f"Visualization ready at : {viewer_url}")
         return viewer_url
 
-    def start_run(self,beam_on: int,number_of_thread: int) -> subprocess.Popen:
-        """
-        Run the quantitative Geant4 response simulation.
+    # def start_run(self,beam_on: int,number_of_thread: int) -> subprocess.Popen:
+    #     """
+    #     Run the quantitative Geant4 response simulation.
 
-        Returns
-        -------
-        subprocess.Popen
-        """
+    #     Returns
+    #     -------
+    #     subprocess.Popen
+    #     """
+    #     self._run_done.clear()
+    #     self._run_output.clear()
+    #     if not self.is_compiled:
+    #         raise RuntimeError(
+    #             "Call simulation.compile() first."
+    #         )
+            
+    #     print_display=int(beam_on/1000)
+        
+        
+
+    #     _, macro_file_path = self.write_macro(
+    #         beam_on=beam_on,
+    #         number_of_thread=number_of_thread,
+    #         print_display=print_display,
+    #     )
+
+    #     config_file = (
+    #         self.config_path / "config.json"
+    #     )
+
+    #     root_file = (
+    #         self.config_path / "simulation.root"
+    #     )
+
+
+    #     self._beam_on = 0
+
+    #     if root_file.exists():
+    #         root_file.unlink()
+    #     bar=tqdm(
+    #         total=beam_on,
+    #         desc="RoboAI XRF Simulation",
+    #         unit="Event",
+    #         colour="green",
+    #     )
+    #     process=subprocess.Popen(
+    #         [
+    #             "./sim",
+    #             str(config_file),
+    #             str(macro_file_path),
+    #         ],
+    #         cwd=(
+    #             self.ROOTPATH.parent
+    #             / "geant4_code"
+    #             / "build"
+    #         ),
+    #         start_new_session=True,
+    #         stdout=subprocess.PIPE,
+    #         text=True
+            
+    #     )
+    #     def _watch_background_run()->None:
+    #         last_number=0
+
+    #         if process.stdout is not None:
+    #             for line in process.stdout:
+
+    #                 # Save exactly what Geant4 printed
+    #                 self._run_output.append(
+    #                     line.rstrip()
+    #                 )
+
+    #                 match=re.search(
+    #                     r"Event\s+(\d+)",
+    #                     line
+    #                 )
+
+    #                 if match:
+    #                     event_number=int(match.group(1))
+
+    #                     if event_number>last_number:
+    #                         bar.update(
+    #                             event_number-last_number
+    #                         )
+    #                         last_number=event_number
+                            
+    #         return_code=process.wait()
+            
+    #         if return_code==0 and root_file.is_file():
+    #             self._beam_on=int(beam_on)
+    #         else:
+    #             self._beam_on=0
+    #         self._run_done.set()
+
+    #     threading.Thread(target=_watch_background_run,daemon=True).start()
+    #     # _watch_background_run()
+    #     return process
+
+    def start_run(
+        self,
+        beam_on: int,
+        number_of_thread: int,
+        show_progress_terminal: bool = False,
+    ) -> subprocess.Popen:
+        with open(
+            "tqdm_output.txt",
+            "w",
+            encoding="utf-8",
+        ) as f:
+            pass
         self._run_done.clear()
+
         if not self.is_compiled:
             raise RuntimeError(
                 "Call simulation.compile() first."
             )
-            
-        print_display=int(beam_on/1000)
-        
-        
+
+        print_display = max(
+            1,
+            int(beam_on / 1000),
+        )
 
         _, macro_file_path = self.write_macro(
             beam_on=beam_on,
@@ -427,18 +553,18 @@ class RoboAiXrfSimulation(BaseModel):
             self.config_path / "simulation.root"
         )
 
-
         self._beam_on = 0
 
         if root_file.exists():
             root_file.unlink()
-        bar=tqdm(
+        bar = tqdm(
             total=beam_on,
             desc="RoboAI XRF Simulation",
             unit="Event",
             colour="green",
         )
-        process=subprocess.Popen(
+
+        process = subprocess.Popen(
             [
                 "./sim",
                 str(config_file),
@@ -450,34 +576,66 @@ class RoboAiXrfSimulation(BaseModel):
                 / "build"
             ),
             start_new_session=True,
+
+            # Capture Geant4 output so it does NOT spam terminal
             stdout=subprocess.PIPE,
-            text=True
-            
+            stderr=subprocess.STDOUT,
+
+            text=True,
+            bufsize=1,
         )
-        def _watch_background_run()->None:
-            last_number=0
+
+        def _watch_background_run() -> None:
+    
+            last_number = 0
 
             if process.stdout is not None:
+
                 for line in process.stdout:
-                    match=re.search(r"Event\s+(\d+)",line)
+
+                    match = re.search(
+                        r"Event\s+(\d+)",
+                        line,
+                    )
+
                     if match:
-                        event_number=int(match.group(1))
-                        if event_number>last_number:
+
+                        event_number = int(
+                            match.group(1)
+                        )
+
+                        if event_number > last_number:
+
                             bar.update(
-                                event_number-last_number
+                                event_number - last_number
                             )
-                            last_number=event_number
-                            
-            return_code=process.wait()
-            
-            if return_code==0 and root_file.is_file():
-                self._beam_on=int(beam_on)
+
+                            last_number = event_number
+                            self._tqdm_output = str(bar)
+                            with open("tqdm_output.txt", "a") as f:
+                                f.write(self._tqdm_output + "\n")                                
+            return_code = process.wait()
+
+            if return_code == 0 and root_file.is_file():
+
+                if last_number < beam_on:
+                    bar.update(
+                        beam_on - last_number
+                    )
+
+                self._beam_on = int(beam_on)
+
             else:
-                self._beam_on=0
+                self._beam_on = 0
+
+            bar.close()
             self._run_done.set()
 
-        threading.Thread(target=_watch_background_run,daemon=True).start()
-        # _watch_background_run()
+        threading.Thread(
+            target=_watch_background_run,
+            daemon=True,
+        ).start()
+
         return process
     
     def run(self,beam_on:int,number_of_thread:int):
@@ -797,6 +955,9 @@ class RoboAiXrfSimulation(BaseModel):
             spectrum_yield_avg,
             spectrum_se,
         )
+    @property
+    def tqdm_output(self) -> str:
+        return self._tqdm_output
 
 if __name__=="__main__":
     pass
