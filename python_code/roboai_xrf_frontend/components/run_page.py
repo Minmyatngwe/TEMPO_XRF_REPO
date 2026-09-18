@@ -151,9 +151,12 @@ def read_last_line(path):
         return ""
 
     return lines[-1]
-@st.fragment(run_every="0.7s")
+@st.fragment(run_every="1s")
 def _running_simulation_panel():
 
+    st.write("FRAGMENT IS RUNNING")
+
+    sim = st.session_state.get("simulation")
     process = st.session_state.get(
         "geant4_process"
     )
@@ -161,53 +164,28 @@ def _running_simulation_panel():
     if process is None:
         return
 
-    # ======================================================
-    # READ ONLY LAST TQDM LINE
-    # ======================================================
 
-    output = read_last_line(
-        TQDM_FILE
-    )
-
-    # ======================================================
-    # GET PERCENTAGE
-    # ======================================================
+    if sim is None:
+        st.warning("No simulation object")
+        return
 
     match = re.search(
         r"(\d+)%\|",
-        output,
+        sim._tqdm_output,
     )
 
     if match:
-
+        
         percent = int(
             match.group(1)
         )
 
-        st.session_state[
-            "last_geant4_percent"
-        ] = percent
 
-    else:
 
-        percent = st.session_state.get(
-            "last_geant4_percent",
-            0,
-        )
-
-    # ======================================================
-    # PROGRESS BAR
-    # ======================================================
-
-    st.progress(
-        percent / 100,
-        text=f"Geant4: {percent}%",
-    )
-
-    # ======================================================
-    # STILL RUNNING
-    # ======================================================
-
+        st.progress(
+                percent / 100,
+                text=f"Geant4: {percent}%",
+            )
     if process.poll() is None:
 
         if st.button(
@@ -219,16 +197,99 @@ def _running_simulation_panel():
 
             stop_geant4_process()
             st.rerun()
-
-        return
-
-    # ======================================================
-    # FINISHED
-    # ======================================================
+        return 
 
     _finalize_finished_process()
 
     st.rerun()
+
+# @st.fragment(run_every="2s")
+# def _running_simulation_panel():
+
+    # process = st.session_state.get(
+    #     "geant4_process"
+    # )
+
+    # if process is None:
+    #     return
+
+    # # ======================================================
+    # # READ ONLY LAST TQDM LINE
+    # # ======================================================
+
+    # output = read_last_line(
+    #     TQDM_FILE
+    # )
+
+    # # ======================================================
+    # # GET PERCENTAGE
+    # # ======================================================
+
+    # match = re.search(
+    #     r"(\d+)%\|",
+    #     output,
+    # )
+
+    # if match:
+
+    #     percent = int(
+    #         match.group(1)
+    #     )
+
+    #     st.session_state[
+    #         "last_geant4_percent"
+    #     ] = percent
+
+    # else:
+
+    #     percent = st.session_state.get(
+    #         "last_geant4_percent",
+    #         0,
+    #     )
+
+    # # ======================================================
+    # # PROGRESS BAR
+    # # ======================================================
+
+    # st.progress(
+    #     percent / 100,
+    #     text=f"Geant4: {percent}%",
+    # )
+
+    # # ======================================================
+    # # STILL RUNNING
+    # # ======================================================
+
+    # if process.poll() is None:
+
+    #     if st.button(
+    #         "■ Stop simulation",
+    #         type="primary",
+    #         width="stretch",
+    #         key="stop_geant4_live",
+    #     ):
+
+    #         stop_geant4_process()
+    #         st.rerun()
+
+    #     return
+
+    # sim = st.session_state.get("simulation")
+
+    # empty=st.empty()
+    # sim = st.session_state.get("simulation")
+
+    # st.write("sim:", sim)
+    # st.write("tqdm repr:", repr(sim._tqdm_output))
+    # empty.write(sim._tqdm_output,)
+
+    # # ======================================================
+    # # FINISHED
+    # # ======================================================
+
+    # _finalize_finished_process()
+
+    # st.rerun()
 def render_run_page():
     cfg = st.session_state.ui_config
     run = cfg["run"]
