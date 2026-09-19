@@ -289,7 +289,7 @@ class RoboAiXrfSimulation(BaseModel):
                         )
         else:
             tube,spectrum_file_path=other 
-            energy_bin_kev,fluence_list,_=tube._read(spectrum_file_path)
+            energy_bin_kev,fluence_list=tube._read(spectrum_file_path)
             
             
             
@@ -589,6 +589,7 @@ class RoboAiXrfSimulation(BaseModel):
         the physical number of incident photons.
 
         The current defaults to config.xray_tube.current_ma when current=None.
+        If the spectrum is from the reading custom file current will be neglected
         """
         if not self.is_compiled:
             raise RuntimeError(
@@ -624,71 +625,82 @@ class RoboAiXrfSimulation(BaseModel):
                 "mca_channels must be greater than 0."
             )
 
-        _, other= (
+        is_spekpy_tube, other= (
             self._get_tube_inputs()
         )
-        tube,filters, source_to_collimator_mm=other
+        if is_spekpy_tube:
+            tube,filters, source_to_collimator_mm=other
+            if current is None:
+                current = float(tube.current_ma)
 
-        if current is None:
-            current = float(tube.current_ma)
+            if current <= 0:
+                raise ValueError(
+                    "current must be greater than 0 mA."
+                )
 
-        if current <= 0:
-            raise ValueError(
-                "current must be greater than 0 mA."
+            # mA * s = mAs
+            mas = current * live_time
+
+            _, _, fluence_photons_cm2 = get_flu(
+                mas=mas,
+                voltage=tube.voltage_kv,
+                anode_degree=tube.anode_angle_deg,
+                anode_target_material=tube.anode_symbol,
+                filters=filters,
+                source_to_tube_collimator_mm=source_to_collimator_mm,
+                tube_type=tube.tube_type,
+                target_thickness_um=tube.target_thickness_um,
             )
 
-        # mA * s = mAs
-        mas = current * live_time
+            # Tube-collimator radius is configured in mm.
+            # SpekPy fluence is photons/cm², so convert radius to cm.
+            radius_cm = (
+                tube.tube_collimator_radius_mm / 10.0
+            )
 
-        _, _, fluence_photons_cm2 = get_flu(
-            mas=mas,
-            voltage=tube.voltage_kv,
-            anode_degree=tube.anode_angle_deg,
-            anode_target_material=tube.anode_symbol,
-            filters=filters,
-            source_to_tube_collimator_mm=source_to_collimator_mm,
-            tube_type=tube.tube_type,
-            target_thickness_um=tube.target_thickness_um,
-        )
+            area_cm2 = (
+                np.pi * radius_cm**2
+            )
 
-        # Tube-collimator radius is configured in mm.
-        # SpekPy fluence is photons/cm², so convert radius to cm.
-        radius_cm = (
-            tube.tube_collimator_radius_mm / 10.0
-        )
+            # photons/cm² * cm² = photons
+            number_of_photon = (
+                float(fluence_photons_cm2)
+                * area_cm2
+            )
+            self._last_mas = mas
 
-        area_cm2 = (
-            np.pi * radius_cm**2
-        )
 
-        # photons/cm² * cm² = photons
-        number_of_photon = (
-            float(fluence_photons_cm2)
-            * area_cm2
-        )
+            print("\n========== PHYSICAL ACQUISITION ==========")
+            print("Current:", current, "mA")
+            print("Live time:", live_time, "s")
+            print("Exposure:", mas, "mAs")
+            print(
+                "SpekPy fluence:",
+                fluence_photons_cm2,
+                "photons/cm²",
+            )
+            print(
+                "Collimator radius:",
+                tube.tube_collimator_radius_mm,
+                "mm",
+            )
+            print(
+                "Collimator area:",
+                area_cm2,
+                "cm²",
+            )
 
-        self._last_mas = mas
+        else:
+            tube,spectrum_file_path=other
+            number_of_photon=np.trapezoid(
+                self._fluence_list,
+                self._energy_bin*1000
+            )*live_time
+            
+            
+            
+
         self._last_incident_photons = number_of_photon
-
-        print("\n========== PHYSICAL ACQUISITION ==========")
-        print("Current:", current, "mA")
-        print("Live time:", live_time, "s")
-        print("Exposure:", mas, "mAs")
-        print(
-            "SpekPy fluence:",
-            fluence_photons_cm2,
-            "photons/cm²",
-        )
-        print(
-            "Collimator radius:",
-            tube.tube_collimator_radius_mm,
-            "mm",
-        )
-        print(
-            "Collimator area:",
-            area_cm2,
-            "cm²",
-        )
         print(
             "Physical photons through collimator:",
             number_of_photon,

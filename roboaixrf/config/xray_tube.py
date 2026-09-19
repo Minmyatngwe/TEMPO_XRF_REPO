@@ -340,7 +340,7 @@ class XRayTube(BaseModel):
         energy=df.iloc[:,0]
         intensity=df.iloc[:,1]
         
-        return energy,intensity,""
+        return energy,intensity
             
     
     
