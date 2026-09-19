@@ -59,6 +59,9 @@ class RoboAiXrfSimulation(BaseModel):
     _last_mas: float | None = PrivateAttr(default=None)
     _last_incident_photons: float | None = PrivateAttr(default=None)
     _run_done:threading.Event=PrivateAttr(    default_factory=threading.Event)
+    _tqdm_output:str|None=PrivateAttr(default="")
+    
+    
     
     
     @property
@@ -84,6 +87,11 @@ class RoboAiXrfSimulation(BaseModel):
     @property
     def last_incident_photons(self) -> float | None:
         return self._last_incident_photons
+    
+    @property
+    def get_latest_tqdm_output(self)->str|None:
+        return self._tqdm_output
+    
 
     def model_post_init(self, __context) -> None:
         self.config.validate_complete()
@@ -93,10 +101,11 @@ class RoboAiXrfSimulation(BaseModel):
             parents=True,
             exist_ok=True,
         )
+    
 
-    def _get_tube_spekpy_inputs(self):
+    def _get_tube_inputs(self):
         """
-        Collect the tube values needed by SpekPy.
+        Collect the tube values .
 
         Returns
         -------
@@ -108,14 +117,8 @@ class RoboAiXrfSimulation(BaseModel):
             Focal-spot-to-virtual-collimator distance in mm.
         """
         tube = self.config.xray_tube
-
         if tube is None:
-            raise ValueError("X-ray tube configuration is missing.")
-
-        filters = [
-            f.model_dump()
-            for f in tube.tube_filter_spekpy
-        ]
+                raise ValueError("X-ray tube configuration is missing.")
 
         source_to_sample_mm = tube.placement.position.distance_mm
 
@@ -124,23 +127,37 @@ class RoboAiXrfSimulation(BaseModel):
         window_to_collimator_mm = tube.tube_window_to_virtual_collimator_distance_mm
 
         tube_internal_length_mm = source_to_sample_mm- window_to_sample_mm
-
+        source_to_collimator_mm = tube_internal_length_mm+ window_to_collimator_mm
 
         if tube_internal_length_mm < 0:
-            raise ValueError(
-                "Focal-spot-to-sample distance cannot be smaller "
-                "than tube-window-to-sample distance."
-            )
-
-        source_to_collimator_mm = tube_internal_length_mm+ window_to_collimator_mm
-        
+                raise ValueError(
+                    "Focal-spot-to-sample distance cannot be smaller "
+                    "than tube-window-to-sample distance."
+                )
+            
 
         if source_to_collimator_mm <= 0:
-            raise ValueError(
-                "Focal-spot-to-collimator distance must be greater than 0."
-            )
+                raise ValueError(
+                    "Focal-spot-to-collimator distance must be greater than 0."
+                )
 
-        return tube, filters, source_to_collimator_mm
+        if tube.is_spekpy_tube:
+
+
+            filters = [
+                f.model_dump()
+                for f in tube.tube_filter_spekpy
+            ]
+
+            return tube.is_spekpy_tube, (tube, filters, source_to_collimator_mm)
+        else:
+            spectrum_file_path=tube.spectrum_file_path
+            
+            if spectrum_file_path is None:
+                raise ValueError("Spectrum file path should not be none")
+            
+            return tube.is_spekpy_tube,(tube,spectrum_file_path)
+        
 
     def write_spectrum_plot( self,energy_mev: np.ndarray, count: np.ndarray) -> Path:
         """
@@ -256,18 +273,28 @@ class RoboAiXrfSimulation(BaseModel):
         Actual current/time scaling is done later in detector_noise()
         by calling SpekPy again with the user's requested mAs.
         """
-        tube, filters, source_to_collimator_mm = self._get_tube_spekpy_inputs()
+        is_spekpy_tube,other = self._get_tube_inputs()
+        if is_spekpy_tube:
+            tube,filters,source_to_collimator_mm=other
+        
+            energy_bin_kev,fluence_list, _= get_flu(
+                            mas=1.0,
+                            voltage=tube.voltage_kv,
+                            anode_degree=tube.anode_angle_deg,
+                            anode_target_material=tube.anode_symbol,
+                            filters=filters,
+                            source_to_tube_collimator_mm=source_to_collimator_mm,
+                            tube_type=tube.tube_type,
+                            target_thickness_um=tube.target_thickness_um,
+                        )
+        else:
+            tube,spectrum_file_path=other 
+            energy_bin_kev,fluence_list,_=tube._read(spectrum_file_path)
+            
+            
+            
+            
 
-        energy_bin_kev,fluence_list, _= get_flu(
-                        mas=1.0,
-                        voltage=tube.voltage_kv,
-                        anode_degree=tube.anode_angle_deg,
-                        anode_target_material=tube.anode_symbol,
-                        filters=filters,
-                        source_to_tube_collimator_mm=source_to_collimator_mm,
-                        tube_type=tube.tube_type,
-                        target_thickness_um=tube.target_thickness_um,
-                    )
 
         self._energy_bin = np.asarray(
             energy_bin_kev,
@@ -279,22 +306,23 @@ class RoboAiXrfSimulation(BaseModel):
             dtype=np.float64,
         )
 
+
         if self._energy_bin.size == 0:
-            raise ValueError("SpekPy returned no energy bins.")
+            raise ValueError(" Returned no energy bins.")
 
         if self._fluence_list.size != self._energy_bin.size:
             raise ValueError(
-                "SpekPy energy and fluence arrays have different lengths."
+                " Energy and fluence arrays have different lengths."
             )
 
         if not np.all(np.isfinite(self._fluence_list)):
             raise ValueError(
-                "SpekPy source spectrum contains non-finite values."
+                " Source spectrum contains non-finite values."
             )
 
         if np.sum(self._fluence_list) <= 0:
             raise ValueError(
-                "SpekPy source spectrum has zero total fluence."
+                " Source spectrum has zero total fluence."
             )
 
         write_json(
@@ -423,6 +451,7 @@ class RoboAiXrfSimulation(BaseModel):
             self.config_path / "config.json"
         )
 
+
         root_file = (
             self.config_path / "simulation.root"
         )
@@ -454,6 +483,8 @@ class RoboAiXrfSimulation(BaseModel):
             text=True
             
         )
+            
+
         def _watch_background_run()->None:
             last_number=0
 
@@ -467,6 +498,7 @@ class RoboAiXrfSimulation(BaseModel):
                                 event_number-last_number
                             )
                             last_number=event_number
+                            self._tqdm_output=last_number
                             
             return_code=process.wait()
             
@@ -592,9 +624,10 @@ class RoboAiXrfSimulation(BaseModel):
                 "mca_channels must be greater than 0."
             )
 
-        tube, filters, source_to_collimator_mm = (
-            self._get_tube_spekpy_inputs()
+        _, other= (
+            self._get_tube_inputs()
         )
+        tube,filters, source_to_collimator_mm=other
 
         if current is None:
             current = float(tube.current_ma)
@@ -726,9 +759,7 @@ class RoboAiXrfSimulation(BaseModel):
             col=1,
         )
 
-        # -------------------------
         # AFTER detector noise
-        # -------------------------
         fig.add_trace(
             go.Scatter(
                 x=final_energy_centers,
