@@ -366,9 +366,6 @@ class RoboAiXrfSimulation(BaseModel):
             self._energy_bin,
             self._fluence_list,
         )
-
-        # show_vis() can create/overwrite simulation.root, so invalidate
-        # the quantitative response state. The user must call run() next.
         self._beam_on = 0
 
         process=subprocess.run(
@@ -417,103 +414,6 @@ class RoboAiXrfSimulation(BaseModel):
 
         print(f"Visualization ready at : {viewer_url}")
         return viewer_url
-
-    # def start_run(self,beam_on: int,number_of_thread: int) -> subprocess.Popen:
-    #     """
-    #     Run the quantitative Geant4 response simulation.
-
-    #     Returns
-    #     -------
-    #     subprocess.Popen
-    #     """
-    #     self._run_done.clear()
-    #     self._run_output.clear()
-    #     if not self.is_compiled:
-    #         raise RuntimeError(
-    #             "Call simulation.compile() first."
-    #         )
-            
-    #     print_display=int(beam_on/1000)
-        
-        
-
-    #     _, macro_file_path = self.write_macro(
-    #         beam_on=beam_on,
-    #         number_of_thread=number_of_thread,
-    #         print_display=print_display,
-    #     )
-
-    #     config_file = (
-    #         self.config_path / "config.json"
-    #     )
-
-    #     root_file = (
-    #         self.config_path / "simulation.root"
-    #     )
-
-
-    #     self._beam_on = 0
-
-    #     if root_file.exists():
-    #         root_file.unlink()
-    #     bar=tqdm(
-    #         total=beam_on,
-    #         desc="RoboAI XRF Simulation",
-    #         unit="Event",
-    #         colour="green",
-    #     )
-    #     process=subprocess.Popen(
-    #         [
-    #             "./sim",
-    #             str(config_file),
-    #             str(macro_file_path),
-    #         ],
-    #         cwd=(
-    #             self.ROOTPATH.parent
-    #             / "geant4_code"
-    #             / "build"
-    #         ),
-    #         start_new_session=True,
-    #         stdout=subprocess.PIPE,
-    #         text=True
-            
-    #     )
-    #     def _watch_background_run()->None:
-    #         last_number=0
-
-    #         if process.stdout is not None:
-    #             for line in process.stdout:
-
-    #                 # Save exactly what Geant4 printed
-    #                 self._run_output.append(
-    #                     line.rstrip()
-    #                 )
-
-    #                 match=re.search(
-    #                     r"Event\s+(\d+)",
-    #                     line
-    #                 )
-
-    #                 if match:
-    #                     event_number=int(match.group(1))
-
-    #                     if event_number>last_number:
-    #                         bar.update(
-    #                             event_number-last_number
-    #                         )
-    #                         last_number=event_number
-                            
-    #         return_code=process.wait()
-            
-    #         if return_code==0 and root_file.is_file():
-    #             self._beam_on=int(beam_on)
-    #         else:
-    #             self._beam_on=0
-    #         self._run_done.set()
-
-    #     threading.Thread(target=_watch_background_run,daemon=True).start()
-    #     # _watch_background_run()
-    #     return process
 
     def start_run(
         self,
@@ -829,15 +729,8 @@ class RoboAiXrfSimulation(BaseModel):
             spectrum_se,
         ) = apply_detectornoise(
             root_path=root_file,
-
-            # Number of Monte Carlo primary histories used to estimate
-            # response/yield.
             beam_on=self._beam_on,
-
-            # Number of real photons for THIS requested acquisition.
             number_of_photon=number_of_photon,
-
-            # Kept separately because event rate/pile-up depends on time.
             live_time=live_time,
 
             fwhm=fwhm,
@@ -845,8 +738,6 @@ class RoboAiXrfSimulation(BaseModel):
 
             detector_zero_offset=detector_zero_offset,
 
-            # IMPORTANT: this pipeline works in keV.
-            # Example: 0.024 means 24 eV/channel.
             detector_gain=detector_gain_kev,
 
             pile_up_window=pile_up_window_us,
