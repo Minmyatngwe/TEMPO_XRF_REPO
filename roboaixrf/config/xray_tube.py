@@ -3,6 +3,11 @@ from .placement import Placement
 from .material import Material
 from .filter import Filter,SpekpyFilter
 from .window import TubeWindow
+from pathlib import Path
+
+import pandas as pd
+
+
 class TubePlacement(BaseModel):
     """
     Defines the geometric placement parameters of an X-ray tube
@@ -87,20 +92,28 @@ class XRayTube(BaseModel):
     
     
     placement:Placement
-    current_ma:float
-    voltage_kv:float
-    anode_angle_deg:float
-    anode_symbol:str 
-    focal_spot_diameter_mm:float
-    tube_window_to_virtual_collimator_distance_mm:float
-    tube_collimator_radius_mm:float
-    tube_window_to_sample_distance_mm:float
+    current_ma: float | None = None
+    voltage_kv: float | None = None
+    anode_angle_deg: float | None = None
+    anode_symbol: str | None = None
 
-    def __init__(self,*,_token=None,**data):
+    focal_spot_diameter_mm: float
+    tube_window_to_virtual_collimator_distance_mm: float
+    tube_collimator_radius_mm: float
+    tube_window_to_sample_distance_mm: float
+
+    spectrum_file_path: str | None = None
+    is_spekpy_tube: bool = True
+
+    def __init__(self, *, _token=None, **data):
         if _token is None:
-            raise ValueError("Create XRayTube using XRayTube.create()")
-        
+            raise ValueError(
+                "Create XRayTube using "
+                "XRayTube.create() or XRayTube.read_spectrum()"
+            )
+
         super().__init__(**data)
+
     def validate_complete(self):
         
         if self.tube_window is None:
@@ -128,17 +141,63 @@ class XRayTube(BaseModel):
             If the selected anode material is not supported by SpekPy.
         """
 
+        if self.tube_collimator_radius_mm <= 0:
+            raise ValueError(
+            "Virtual tube collimator radius must be greater than 0"
+        )
 
         spekpy_target_mat = ["Cr", "Cu", "Mo", "Rh", "Ag", "W", "Au"]
         print(self.to_dict())
-        if self.tube_collimator_radius_mm<=0:
-            raise ValueError("Virtual tube collimator radius must be greater than 0")
         if self.anode_symbol not in spekpy_target_mat:
             raise ValueError(
-                f"Unsupported SpekPy anode target: '{self.anode_symbol}'. "
-                f"Supported targets are: {', '.join(spekpy_target_mat)}. "
-                "Check the SpekPy documentation/website for the currently supported target materials."
-                )
+                f"Unsupported SpekPy anode target: "
+                f"'{self.anode_symbol}'. "
+                f"Supported targets are: "
+                f"{', '.join(spekpy_target_mat)}."
+            )
+
+    @classmethod
+    @validate_call
+    def read_spectrum(
+        cls,
+        spectrum_file_path: str | Path,
+        name: str,
+        focal_spot_diameter_mm: float,
+        tube_collimator_radius_mm: float,
+        tube_window_to_virtual_collimator_distance_mm: float,
+        tube_placement: TubePlacement,
+    ):
+
+        path = Path(spectrum_file_path).resolve()
+
+        if not path.is_file():
+            raise ValueError(
+                f"Spectrum file does not exist: {path}"
+            )
+
+        placement = Placement.face_sample(
+            distance_mm=(
+                tube_placement.focal_spot_to_sample_distance_mm
+            ),
+            elevation_deg=tube_placement.elevation_deg,
+            azimuth_deg=tube_placement.azimuth_deg,
+        )
+
+        return cls(
+            _token=True,
+            name=name,
+            spectrum_file_path=str(path),
+            focal_spot_diameter_mm=focal_spot_diameter_mm,
+            tube_collimator_radius_mm=tube_collimator_radius_mm,
+            tube_window_to_virtual_collimator_distance_mm=(
+                tube_window_to_virtual_collimator_distance_mm
+            ),
+            tube_window_to_sample_distance_mm=(
+                tube_placement.tube_window_to_sample_distance_mm
+            ),
+            placement=placement,
+            is_spekpy_tube=False,
+        )
     @classmethod
     @validate_call
 
@@ -276,3 +335,74 @@ class XRayTube(BaseModel):
         return f"XrfTube({super().__str__()})"
     
     
+    def _read(self, file_path: str | Path):
+
+        file_path = Path(file_path).resolve()
+
+        if not file_path.is_file():
+            raise ValueError(
+                f"Spectrum file does not exist: {file_path}"
+            )
+
+        if file_path.suffix.lower() not in {
+            ".csv",
+            ".txt",
+            ".dat",
+        }:
+            raise ValueError(
+                "Spectrum file must be .csv, .txt or .dat"
+            )
+
+        df = pd.read_csv(
+            file_path,
+            sep=None,
+            engine="python",
+            header=None,
+            comment="#",
+        )
+
+        if df.shape[1] != 2:
+            raise ValueError(
+                "Spectrum file must contain exactly 2 columns: "
+                "energy_keV and photons/s/keV"
+            )
+
+        df.columns = ["energy_kev", "intensity"]
+
+        # Also allows a header row such as:
+        # energy_kev,intensity
+        df["energy_kev"] = pd.to_numeric(
+            df["energy_kev"],
+            errors="coerce",
+        )
+        df["intensity"] = pd.to_numeric(
+            df["intensity"],
+            errors="coerce",
+        )
+
+        df = df.dropna()
+
+        if len(df) < 2:
+            raise ValueError(
+                "Spectrum must contain at least two valid points."
+            )
+
+        if (df["energy_kev"] <= 0).any():
+            raise ValueError(
+                "Spectrum energies must be greater than 0 keV."
+            )
+
+        if (df["intensity"] < 0).any():
+            raise ValueError(
+                "Spectrum intensities cannot be negative."
+            )
+
+        if not df["energy_kev"].is_monotonic_increasing:
+            raise ValueError(
+                "Spectrum energies must be in increasing order."
+            )
+
+        return (
+            df["energy_kev"],
+            df["intensity"],
+        )

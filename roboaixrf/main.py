@@ -117,53 +117,80 @@ class RoboAiXrfSimulation(BaseModel):
             exist_ok=True,
         )
 
-    def _get_tube_spekpy_inputs(self):
+    def _get_tube_inputs(self):
         """
-        Collect the tube values needed by SpekPy.
+        Collect the X-ray tube source inputs.
 
         Returns
         -------
-        tube
-            X-ray tube configuration.
-        filters
-            SpekPy filter dictionaries.
-        source_to_collimator_mm
-            Focal-spot-to-virtual-collimator distance in mm.
+        tuple
+            (True, (...)) for a SpekPy-generated source.
+            (False, (...)) for a user-provided spectrum file.
         """
         tube = self.config.xray_tube
 
         if tube is None:
-            raise ValueError("X-ray tube configuration is missing.")
-
-        filters = [
-            f.model_dump()
-            for f in tube.tube_filter_spekpy
-        ]
-
-        source_to_sample_mm = tube.placement.position.distance_mm
-
-        window_to_sample_mm = tube.tube_window_to_sample_distance_mm
-    
-        window_to_collimator_mm = tube.tube_window_to_virtual_collimator_distance_mm
-
-        tube_internal_length_mm = source_to_sample_mm- window_to_sample_mm
-
-
-        if tube_internal_length_mm < 0:
             raise ValueError(
-                "Focal-spot-to-sample distance cannot be smaller "
-                "than tube-window-to-sample distance."
+                "X-ray tube configuration is missing."
             )
 
-        source_to_collimator_mm = tube_internal_length_mm+ window_to_collimator_mm
-        
-
-        if source_to_collimator_mm <= 0:
-            raise ValueError(
-                "Focal-spot-to-collimator distance must be greater than 0."
+        if tube.is_spekpy_tube:
+            source_to_sample_mm = (
+                tube.placement.position.distance_mm
             )
 
-        return tube, filters, source_to_collimator_mm
+            window_to_sample_mm = (
+                tube.tube_window_to_sample_distance_mm
+            )
+
+            window_to_collimator_mm = (
+                tube.tube_window_to_virtual_collimator_distance_mm
+            )
+
+            tube_internal_length_mm = (
+                source_to_sample_mm
+                - window_to_sample_mm
+            )
+
+            if tube_internal_length_mm < 0:
+                raise ValueError(
+                    "Focal-spot-to-sample distance cannot be "
+                    "smaller than tube-window-to-sample distance."
+                )
+
+            source_to_collimator_mm = (
+                tube_internal_length_mm
+                + window_to_collimator_mm
+            )
+
+            if source_to_collimator_mm <= 0:
+                raise ValueError(
+                    "Focal-spot-to-collimator distance must be "
+                    "greater than 0."
+                )
+
+            filters = [
+                f.model_dump()
+                for f in tube.tube_filter_spekpy
+            ]
+
+            return True, (
+                tube,
+                filters,
+                source_to_collimator_mm,
+            )
+
+        spectrum_file_path = tube.spectrum_file_path
+
+        if spectrum_file_path is None:
+            raise ValueError(
+                "Spectrum file path is missing."
+            )
+
+        return False, (
+            tube,
+            spectrum_file_path,
+        )
 
     def write_spectrum_plot( self,energy_mev: np.ndarray, count: np.ndarray) -> Path:
         """
@@ -273,29 +300,49 @@ class RoboAiXrfSimulation(BaseModel):
         """
         Prepare the source spectrum and Geant4 JSON configuration.
 
-        The source spectrum is generated at 1 mAs because mAs changes
-        intensity, not the normalized source-energy shape.
+        For a SpekPy source, the spectrum shape is generated at 1 mAs.
 
-        Actual current/time scaling is done later in detector_noise()
-        by calling SpekPy again with the user's requested mAs.
+        For an uploaded spectrum, the two-column file is read directly:
+            energy [keV]
+            intensity [photons/s/keV]
+
+        Both source types are converted into the same Geant4 GPS
+        energy histogram.
         """
-        tube, filters, source_to_collimator_mm = self._get_tube_spekpy_inputs()
+        is_spekpy_tube, other = self._get_tube_inputs()
 
-        energy_bin_kev,fluence_list, _= get_flu(
-                        mas=1.0,
-                        voltage=tube.voltage_kv,
-                        anode_degree=tube.anode_angle_deg,
-                        anode_target_material=tube.anode_symbol,
-                        filters=filters,
-                        source_to_tube_collimator_mm=source_to_collimator_mm,
-                        tube_type=tube.tube_type,
-                        target_thickness_um=tube.target_thickness_um,
-                    )
+        if is_spekpy_tube:
+            (
+                tube,
+                filters,
+                source_to_collimator_mm,
+            ) = other
 
+            energy_bin_kev, fluence_list, _ = get_flu(
+                mas=1.0,
+                voltage=tube.voltage_kv,
+                anode_degree=tube.anode_angle_deg,
+                anode_target_material=tube.anode_symbol,
+                filters=filters,
+                source_to_tube_collimator_mm=(
+                    source_to_collimator_mm
+                ),
+                tube_type=tube.tube_type,
+                target_thickness_um=tube.target_thickness_um,
+            )
+
+        else:
+            tube, spectrum_file_path = other
+
+            energy_bin_kev, fluence_list = tube._read(
+                spectrum_file_path
+            )
+
+        # Geant4 GPS energy values are stored in MeV.
         self._energy_bin = np.asarray(
             energy_bin_kev,
             dtype=np.float64,
-        ) / 1000.0 
+        ) / 1000.0
 
         self._fluence_list = np.asarray(
             fluence_list,
@@ -303,21 +350,39 @@ class RoboAiXrfSimulation(BaseModel):
         )
 
         if self._energy_bin.size == 0:
-            raise ValueError("SpekPy returned no energy bins.")
+            raise ValueError(
+                "Source spectrum returned no energy bins."
+            )
 
         if self._fluence_list.size != self._energy_bin.size:
             raise ValueError(
-                "SpekPy energy and fluence arrays have different lengths."
+                "Source spectrum energy and intensity arrays "
+                "have different lengths."
+            )
+
+        if not np.all(np.isfinite(self._energy_bin)):
+            raise ValueError(
+                "Source spectrum contains non-finite energy values."
             )
 
         if not np.all(np.isfinite(self._fluence_list)):
             raise ValueError(
-                "SpekPy source spectrum contains non-finite values."
+                "Source spectrum contains non-finite intensity values."
+            )
+
+        if np.any(self._energy_bin <= 0):
+            raise ValueError(
+                "Source spectrum energies must be greater than 0."
+            )
+
+        if np.any(self._fluence_list < 0):
+            raise ValueError(
+                "Source spectrum intensities cannot be negative."
             )
 
         if np.sum(self._fluence_list) <= 0:
             raise ValueError(
-                "SpekPy source spectrum has zero total fluence."
+                "Source spectrum has zero total intensity."
             )
 
         write_json(
@@ -329,6 +394,7 @@ class RoboAiXrfSimulation(BaseModel):
         self._last_mas = None
         self._last_incident_photons = None
         self._is_compiled = True
+
     def port_is_open(self,port_number: int) -> bool:
         with socket.socket(
             socket.AF_INET,
@@ -512,8 +578,6 @@ class RoboAiXrfSimulation(BaseModel):
 
                             last_number = event_number
                             self._tqdm_output = str(bar)
-                            with open("tqdm_output.txt", "a") as f:
-                                f.write(self._tqdm_output + "\n")                                
             return_code = process.wait()
 
             if return_code == 0 and root_file.is_file():
@@ -597,24 +661,36 @@ class RoboAiXrfSimulation(BaseModel):
 
         
 
-    def detector_noise(self,*,fwhm: float,fwhm_energy_kev: float,detector_zero_offset: float,detector_gain_kev: float,
-                        live_time: float, pile_up_window_us: float,current: float | None = None,fano_factor: float = 0.115,
-                        pair_creation_energy_ev: float = 3.6,mca_channels: int = 2048,chunk_size: int = 3_000_000,number_of_buckets: int = 65, ):
+    def detector_noise(
+        self,
+        *,
+        fwhm: float,
+        fwhm_energy_kev: float,
+        detector_zero_offset: float,
+        detector_gain_kev: float,
+        live_time: float,
+        pile_up_window_us: float,
+        current: float | None = None,
+        fano_factor: float = 0.115,
+        pair_creation_energy_ev: float = 3.6,
+        mca_channels: int = 2048,
+        chunk_size: int = 3_000_000,
+        number_of_buckets: int = 65,
+    ):
         """
         Create the physical detector spectrum for a requested acquisition.
 
-        Important
-        ---------
-        Current and live time do NOT change the stored Geant4 source shape.
-        Instead:
+        SpekPy source
+        -------------
+        The physical photon count is recalculated from tube current and
+        live time using SpekPy.
 
-            mAs = current[mA] * live_time[s]
+        Uploaded spectrum
+        -----------------
+        The uploaded second column is treated as photons/s/keV.
+        Current is therefore not used. The physical photon count is:
 
-        SpekPy is called again with that mAs to obtain the physical fluence.
-        That fluence is multiplied by the tube-collimator area to obtain
-        the physical number of incident photons.
-
-        The current defaults to config.xray_tube.current_ma when current=None.
+            integral(intensity dE) * live_time
         """
         if not self.is_compiled:
             raise RuntimeError(
@@ -628,7 +704,6 @@ class RoboAiXrfSimulation(BaseModel):
             )
 
         root_file = self.config_path / "simulation.root"
-        
 
         if not root_file.is_file():
             raise FileNotFoundError(
@@ -650,70 +725,133 @@ class RoboAiXrfSimulation(BaseModel):
                 "mca_channels must be greater than 0."
             )
 
-        tube, filters, source_to_collimator_mm = (
-            self._get_tube_spekpy_inputs()
-        )
-
-        if current is None:
-            current = float(tube.current_ma)
-
-        if current <= 0:
-            raise ValueError(
-                "current must be greater than 0 mA."
+        if (
+            self._energy_bin is None
+            or self._fluence_list is None
+        ):
+            raise RuntimeError(
+                "Source spectrum is missing. "
+                "Call simulation.compile() first."
             )
 
-        # mA * s = mAs
-        mas = current * live_time
+        is_spekpy_tube, other = self._get_tube_inputs()
 
-        _, _, fluence_photons_cm2 = get_flu(
-            mas=mas,
-            voltage=tube.voltage_kv,
-            anode_degree=tube.anode_angle_deg,
-            anode_target_material=tube.anode_symbol,
-            filters=filters,
-            source_to_tube_collimator_mm=source_to_collimator_mm,
-            tube_type=tube.tube_type,
-            target_thickness_um=tube.target_thickness_um,
+        if is_spekpy_tube:
+            (
+                tube,
+                filters,
+                source_to_collimator_mm,
+            ) = other
+
+            if current is None:
+                current = float(tube.current_ma)
+
+            if current <= 0:
+                raise ValueError(
+                    "current must be greater than 0 mA."
+                )
+
+            # mA * s = mAs
+            mas = current * live_time
+
+            _, _, fluence_photons_cm2 = get_flu(
+                mas=mas,
+                voltage=tube.voltage_kv,
+                anode_degree=tube.anode_angle_deg,
+                anode_target_material=tube.anode_symbol,
+                filters=filters,
+                source_to_tube_collimator_mm=(
+                    source_to_collimator_mm
+                ),
+                tube_type=tube.tube_type,
+                target_thickness_um=tube.target_thickness_um,
+            )
+
+            # SpekPy fluence is photons/cm².
+            # Convert configured collimator radius from mm to cm.
+            radius_cm = (
+                tube.tube_collimator_radius_mm / 10.0
+            )
+
+            area_cm2 = np.pi * radius_cm**2
+
+            number_of_photon = (
+                float(fluence_photons_cm2)
+                * area_cm2
+            )
+
+            self._last_mas = mas
+
+            acquisition_title = (
+                f"{current:g} mA, {live_time:g} s"
+            )
+
+            print(
+                "\n========== PHYSICAL ACQUISITION =========="
+            )
+            print("Spectrum source: SpekPy")
+            print("Current:", current, "mA")
+            print("Live time:", live_time, "s")
+            print("Exposure:", mas, "mAs")
+            print(
+                "SpekPy fluence:",
+                fluence_photons_cm2,
+                "photons/cm²",
+            )
+            print(
+                "Collimator radius:",
+                tube.tube_collimator_radius_mm,
+                "mm",
+            )
+            print(
+                "Collimator area:",
+                area_cm2,
+                "cm²",
+            )
+
+        else:
+            tube, spectrum_file_path = other
+
+            # _energy_bin is stored in MeV, so convert it back to keV.
+            energy_kev = self._energy_bin * 1000.0
+
+            # Uploaded intensity is photons/s/keV.
+            photon_rate = float(
+                np.trapezoid(
+                    self._fluence_list,
+                    energy_kev,
+                )
+            )
+
+            number_of_photon = (
+                photon_rate * live_time
+            )
+
+            self._last_mas = None
+
+            acquisition_title = (
+                f"uploaded spectrum, {live_time:g} s"
+            )
+
+            print(
+                "\n========== PHYSICAL ACQUISITION =========="
+            )
+            print("Spectrum source: uploaded file")
+            print(
+                "Spectrum file:",
+                spectrum_file_path,
+            )
+            print("Live time:", live_time, "s")
+            print(
+                "Integrated photon rate:",
+                photon_rate,
+                "photons/s",
+            )
+
+        self._last_incident_photons = (
+            number_of_photon
         )
 
-        # Tube-collimator radius is configured in mm.
-        # SpekPy fluence is photons/cm², so convert radius to cm.
-        radius_cm = (
-            tube.tube_collimator_radius_mm / 10.0
-        )
-
-        area_cm2 = (
-            np.pi * radius_cm**2
-        )
-
-        # photons/cm² * cm² = photons
-        number_of_photon = (
-            float(fluence_photons_cm2)
-            * area_cm2
-        )
-
-        self._last_mas = mas
-        self._last_incident_photons = number_of_photon
-
-        print("\n========== PHYSICAL ACQUISITION ==========")
-        print("Current:", current, "mA")
-        print("Live time:", live_time, "s")
-        print("Exposure:", mas, "mAs")
-        print(
-            "SpekPy fluence:",
-            fluence_photons_cm2,
-            "photons/cm²",
-        )
-        print(
-            "Collimator radius:",
-            tube.tube_collimator_radius_mm,
-            "mm",
-        )
-        print(
-            "Collimator area:",
-            area_cm2,
-            "cm²",
-        )
         print(
             "Physical photons through collimator:",
             number_of_photon,
@@ -737,9 +875,7 @@ class RoboAiXrfSimulation(BaseModel):
             fwhm_energy=fwhm_energy_kev,
 
             detector_zero_offset=detector_zero_offset,
-
             detector_gain=detector_gain_kev,
-
             pile_up_window=pile_up_window_us,
 
             fano_factor=fano_factor,
@@ -761,9 +897,6 @@ class RoboAiXrfSimulation(BaseModel):
             ),
         )
 
-        # -------------------------
-        # BEFORE detector noise
-        # -------------------------
         fig.add_trace(
             go.Scatter(
                 x=final_energy_centers,
@@ -775,9 +908,6 @@ class RoboAiXrfSimulation(BaseModel):
             col=1,
         )
 
-        # -------------------------
-        # AFTER detector noise
-        # -------------------------
         fig.add_trace(
             go.Scatter(
                 x=final_energy_centers,
@@ -816,7 +946,7 @@ class RoboAiXrfSimulation(BaseModel):
         fig.update_layout(
             title=(
                 "XRF Simulated Spectrum "
-                f"({current:g} mA, {live_time:g} s)"
+                f"({acquisition_title})"
             ),
             template="plotly_white",
             height=600,
@@ -846,6 +976,7 @@ class RoboAiXrfSimulation(BaseModel):
             spectrum_yield_avg,
             spectrum_se,
         )
+
     @property
     def tqdm_output(self) -> str:
         return self._tqdm_output
