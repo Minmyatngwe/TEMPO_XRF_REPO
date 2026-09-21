@@ -202,94 +202,6 @@ def _running_simulation_panel():
     _finalize_finished_process()
 
     st.rerun()
-
-# @st.fragment(run_every="2s")
-# def _running_simulation_panel():
-
-    # process = st.session_state.get(
-    #     "geant4_process"
-    # )
-
-    # if process is None:
-    #     return
-
-    # # ======================================================
-    # # READ ONLY LAST TQDM LINE
-    # # ======================================================
-
-    # output = read_last_line(
-    #     TQDM_FILE
-    # )
-
-    # # ======================================================
-    # # GET PERCENTAGE
-    # # ======================================================
-
-    # match = re.search(
-    #     r"(\d+)%\|",
-    #     output,
-    # )
-
-    # if match:
-
-    #     percent = int(
-    #         match.group(1)
-    #     )
-
-    #     st.session_state[
-    #         "last_geant4_percent"
-    #     ] = percent
-
-    # else:
-
-    #     percent = st.session_state.get(
-    #         "last_geant4_percent",
-    #         0,
-    #     )
-
-    # # ======================================================
-    # # PROGRESS BAR
-    # # ======================================================
-
-    # st.progress(
-    #     percent / 100,
-    #     text=f"Geant4: {percent}%",
-    # )
-
-    # # ======================================================
-    # # STILL RUNNING
-    # # ======================================================
-
-    # if process.poll() is None:
-
-    #     if st.button(
-    #         "■ Stop simulation",
-    #         type="primary",
-    #         width="stretch",
-    #         key="stop_geant4_live",
-    #     ):
-
-    #         stop_geant4_process()
-    #         st.rerun()
-
-    #     return
-
-    # sim = st.session_state.get("simulation")
-
-    # empty=st.empty()
-    # sim = st.session_state.get("simulation")
-
-    # st.write("sim:", sim)
-    # st.write("tqdm repr:", repr(sim._tqdm_output))
-    # empty.write(sim._tqdm_output,)
-
-    # # ======================================================
-    # # FINISHED
-    # # ======================================================
-
-    # _finalize_finished_process()
-
-    # st.rerun()
 def render_run_page():
     cfg = st.session_state.ui_config
     run = cfg["run"]
@@ -302,10 +214,6 @@ def render_run_page():
         "Compile creates config.json and the SpekPy source. "
         "Run executes the Geant4 backend through the roboaixrf package.",
     )
-
-    # ==========================================================
-    # RUN SETTINGS
-    # ==========================================================
 
     with st.form("run_settings_form"):
 
@@ -395,10 +303,6 @@ def render_run_page():
 
     st.divider()
 
-    # ==========================================================
-    # ACTION BUTTONS
-    # ==========================================================
-
     build_disabled = st.session_state.get(
         "geant4_running",
         False,
@@ -419,10 +323,6 @@ def render_run_page():
             False,
         )
     )
-
-    # ----------------------------------------------------------
-    # BUTTON ROW
-    # ----------------------------------------------------------
 
     c1, c2, c3 = st.columns(3)
 
@@ -452,14 +352,6 @@ def render_run_page():
             "Configuration compiled.",
             width="stretch",
         )
-
-    # ==========================================================
-    # FULL-WIDTH ACTION / STATUS AREA
-    # ==========================================================
-
-    # ----------------------------------------------------------
-    # 1. BUILD & COMPILE
-    # ----------------------------------------------------------
 
     if build_clicked:
 
@@ -491,19 +383,11 @@ def render_run_page():
             # Clear old visualization
             st.session_state.viewer_url = None
 
-            # st.success(
-            #     "Configuration compiled.",
-            #     width="stretch",
-            # )
             st.session_state.build_success = True
 
             st.rerun()
         except Exception as exc:
             st.exception(exc)
-
-    # ----------------------------------------------------------
-    # 2. OPEN VISUALIZATION
-    # ----------------------------------------------------------
 
     if vis_clicked:
 

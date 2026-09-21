@@ -18,7 +18,29 @@
       "thickness_mm": 0.001
     },
     "name": "xrftube",
-    "tube_filters_geant4": [],
+    "tube_filters_geant4": [
+      {
+        "name": "ass",
+        "geometry": {
+          "shape": "Circular",
+          "thickness_mm": 11.0,
+          "radius_mm": 11.0
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_W"
+        },
+        "placement": {
+          "position": {
+            "reference": "tube_window",
+            "distance_mm": 11.0
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
+      }
+    ],
     "tube_filter_spekpy": [
       {
         "element": "Al",
@@ -180,9 +202,108 @@
             "mode": "inherient"
           }
         }
+      },
+      {
+        "name": "as",
+        "geometry": {
+          "shape": "Rectangular aperture",
+          "aperture_shape": "Rectangular",
+          "aperture_width_mm": 3.9,
+          "aperture_height_mm": 3.9,
+          "outer_width_mm": 4.0,
+          "outer_height_mm": 4.0,
+          "length_mm": 0.01
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Cu"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 0.1
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
+      },
+      {
+        "name": "asss",
+        "geometry": {
+          "shape": "Rectangular aperture",
+          "aperture_shape": "Rectangular",
+          "aperture_width_mm": 3.0,
+          "aperture_height_mm": 3.0,
+          "outer_width_mm": 4.0,
+          "outer_height_mm": 4.0,
+          "length_mm": 4.0
+        },
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Zn"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 1.0
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        }
       }
     ],
-    "detector_collimators": []
+    "detector_collimators": [
+      {
+        "name": "p",
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Ag"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 4.0
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        },
+        "geometry": {
+          "shape": "Circular aperture",
+          "outer_radius_mm": 4.0,
+          "aperture_shape": "Circular",
+          "aperture_radius_mm": 2.0,
+          "length_mm": 4.0
+        }
+      },
+      {
+        "name": "pp",
+        "material": {
+          "material_type": "geant4",
+          "material_name": "G4_Cr"
+        },
+        "placement": {
+          "position": {
+            "reference": "detector",
+            "distance_mm": 7.0
+          },
+          "orientation": {
+            "mode": "inherient"
+          }
+        },
+        "geometry": {
+          "shape": "Rectangular aperture",
+          "aperture_shape": "Rectangular",
+          "aperture_width_mm": 4.0,
+          "aperture_height_mm": 4.0,
+          "outer_width_mm": 7.0,
+          "outer_height_mm": 7.0,
+          "length_mm": 7.0
+        }
+      }
+    ]
   },
   "physics": {
     "interaction_bias_use": true,

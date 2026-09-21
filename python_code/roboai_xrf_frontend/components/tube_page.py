@@ -20,6 +20,12 @@ def render_tube_page():
     )
 
     with tab_basic:
+        tube_type = st.selectbox(
+            "Tube type",
+            ["reflection", "transmission"],
+            index=0 if tube["tube_type"] == "reflection" else 1,
+    )
+    
         with st.form("tube_basic_form"):
             c1, c2, c3 = st.columns(3)
             name = c1.text_input("Tube name", value=tube["name"])
@@ -79,17 +85,27 @@ def render_tube_page():
                 "Azimuth (deg)", value=float(tube["azimuth_deg"])
             )
 
-            c1, c2 = st.columns(2)
-            tube_type = c1.selectbox(
-                "Tube type",
-                ["reflection", "transmission"],
-                index=0 if tube["tube_type"] == "reflection" else 1,
-            )
-            target_thickness = c2.number_input(
-                "Target thickness (µm)",
-                min_value=0.0,
-                value=float(tube["target_thickness_um"]),
-            )
+            # c1, c2 = st.columns(2)
+            # tube_type = c1.selectbox(
+            #     "Tube type",
+            #     ["reflection", "transmission"],
+            #     index=0 if tube["tube_type"] == "reflection" else 1,
+            # )
+            # target_thickness = c2.number_input(
+            #     "Target thickness (µm)",
+            #     min_value=0.0,
+            #     value=float(tube["target_thickness_um"]),
+            # )
+
+
+            if tube_type == "transmission":
+                target_thickness = st.number_input(
+                    "Target thickness (µm)",
+                    min_value=0.0,
+                    value=float(tube["target_thickness_um"]),
+                )
+            else:
+                target_thickness = 0.0
 
             if st.form_submit_button("Save tube", type="primary"):
                 tube.update(
