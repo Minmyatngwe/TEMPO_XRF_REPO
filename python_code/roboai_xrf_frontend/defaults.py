@@ -25,6 +25,9 @@ DEFAULT_CONFIG = {
         "thickness_mm": 0.1,
     },
     "tube": {
+        "source_mode": "spekpy",
+        "spectrum_file_path": "None",
+        "spectrum_file_name": "None",
         "name": "xrftube",
         "current_ma": 1.0,
         "voltage_kv": 50.0,
@@ -139,8 +142,8 @@ DEFAULT_CONFIG = {
     },
     "run": {
         "run_name": "full_xrf_example",
-        "beam_on": 10_000_000,
-        "number_of_thread": 15,
+        "beam_on": 100_000,
+        "number_of_thread": 6,
         "print_display": 100_000,
         "vis_beam_on": 100,
         "vis_threads": 1,

@@ -1,4 +1,4 @@
-/run/numberOfThreads 1
+/run/numberOfThreads 6
 /run/initialize
 /gps/particle gamma
 /gps/ene/type User
@@ -102,4 +102,4 @@
 /gps/hist/point 0.04925 7897289.251635897
 /gps/hist/point 0.04975 3126040.884048516
 /run/printProgress 100
-/run/beamOn 100
+/run/beamOn 100000

@@ -4,6 +4,12 @@ import streamlit as st
 
 from components.common import page_header, records_editor, clean_records
 from state import invalidate_simulation
+from pathlib import Path
+
+
+
+
+SPECTRUM_UPLOAD_DIR = Path(__file__).resolve().parent.parent / "uploads" / "spectra"
 
 
 def render_tube_page():
@@ -20,114 +26,305 @@ def render_tube_page():
     )
 
     with tab_basic:
-        tube_type = st.selectbox(
-            "Tube type",
-            ["reflection", "transmission"],
-            index=0 if tube["tube_type"] == "reflection" else 1,
-    )
-    
-        with st.form("tube_basic_form"):
-            c1, c2, c3 = st.columns(3)
-            name = c1.text_input("Tube name", value=tube["name"])
-            voltage = c2.number_input(
-                "Voltage (kV)", min_value=1.0, value=float(tube["voltage_kv"])
-            )
-            current = c3.number_input(
-                "Current (mA)", min_value=0.000001, value=float(tube["current_ma"])
+
+        source_mode = st.radio(
+            "Spectrum source",
+            options=["spekpy", "file"],
+            index=0 if tube.get("source_mode", "spekpy") == "spekpy" else 1,
+            format_func=lambda value: (
+                "Generate with SpekPy"
+                if value == "spekpy"
+                else "Upload spectrum file"
+            ),
+            horizontal=True,
+        )
+
+        # --------------------------------------------------
+        # Uploaded spectrum
+        # --------------------------------------------------
+
+        uploaded_spectrum = None
+
+        if source_mode == "file":
+            st.caption(
+                "Upload a two-column spectrum: "
+                "energy [keV], intensity [photons/s/keV]."
             )
 
+            uploaded_spectrum = st.file_uploader(
+                "Spectrum file",
+                type=["csv", "txt", "dat"],
+                key="tube_spectrum_upload",
+            )
+
+            if tube.get("spectrum_file_name"):
+                st.caption(
+                    f"Current file: {tube['spectrum_file_name']}"
+                )
+
+        # --------------------------------------------------
+        # Tube form
+        # --------------------------------------------------
+
+        with st.form("tube_basic_form"):
+
+            name = st.text_input(
+                "Tube name",
+                value=tube["name"],
+            )
+
+            # ==============================================
+            # SPEKPY ONLY
+            # ==============================================
+
+            if source_mode == "spekpy":
+
+                c1, c2, c3 = st.columns(3)
+
+                voltage = c1.number_input(
+                    "Voltage (kV)",
+                    min_value=1.0,
+                    value=float(tube["voltage_kv"]),
+                )
+
+                current = c2.number_input(
+                    "Current (mA)",
+                    min_value=0.000001,
+                    value=float(tube["current_ma"]),
+                )
+
+                target = c3.selectbox(
+                    "Anode",
+                    ["Cr", "Cu", "Mo", "Rh", "Ag", "W", "Au"],
+                    index=[
+                        "Cr",
+                        "Cu",
+                        "Mo",
+                        "Rh",
+                        "Ag",
+                        "W",
+                        "Au",
+                    ].index(tube["anode_symbol"]),
+                )
+
+                c1, c2 = st.columns(2)
+
+                angle = c1.number_input(
+                    "Anode angle (deg)",
+                    value=float(tube["anode_angle_deg"]),
+                )
+
+                tube_type = c2.selectbox(
+                    "Tube type",
+                    ["reflection", "transmission"],
+                    index=(
+                        0
+                        if tube["tube_type"] == "reflection"
+                        else 1
+                    ),
+                )
+
+                if tube_type == "transmission":
+                    target_thickness = st.number_input(
+                        "Target thickness (µm)",
+                        min_value=0.0,
+                        value=float(
+                            tube["target_thickness_um"]
+                        ),
+                    )
+                else:
+                    target_thickness = 0.0
+
+            # ==============================================
+            # COMMON GEOMETRY
+            # ==============================================
+
             c1, c2, c3 = st.columns(3)
-            target = c1.selectbox(
-                "Anode",
-                ["Cr", "Cu", "Mo", "Rh", "Ag", "W", "Au"],
-                index=["Cr", "Cu", "Mo", "Rh", "Ag", "W", "Au"].index(
-                    tube["anode_symbol"]
-                ),
-            )
-            angle = c2.number_input(
-                "Anode angle (deg)", value=float(tube["anode_angle_deg"])
-            )
-            focal = c3.number_input(
+
+            focal = c1.number_input(
                 "Focal spot diameter (mm)",
                 min_value=0.000001,
-                value=float(tube["focal_spot_diameter_mm"]),
+                value=float(
+                    tube["focal_spot_diameter_mm"]
+                ),
                 format="%.6f",
             )
 
-            c1, c2, c3 = st.columns(3)
-            source_sample = c1.number_input(
+            source_sample = c2.number_input(
                 "Focal spot → sample (mm)",
                 min_value=0.000001,
-                value=float(tube["focal_spot_to_sample_distance_mm"]),
+                value=float(
+                    tube[
+                        "focal_spot_to_sample_distance_mm"
+                    ]
+                ),
             )
-            window_sample = c2.number_input(
+
+            window_sample = c3.number_input(
                 "Window → sample (mm)",
                 min_value=0.000001,
-                value=float(tube["tube_window_to_sample_distance_mm"]),
-            )
-            window_coll = c3.number_input(
-                "Window → virtual collimator (mm)",
-                min_value=0.0,
-                value=float(tube["tube_window_to_virtual_collimator_distance_mm"]),
+                value=float(
+                    tube[
+                        "tube_window_to_sample_distance_mm"
+                    ]
+                ),
             )
 
             c1, c2, c3 = st.columns(3)
-            coll_radius = c1.number_input(
+
+            window_coll = c1.number_input(
+                "Window → virtual collimator (mm)",
+                min_value=0.0,
+                value=float(
+                    tube[
+                        "tube_window_to_virtual_collimator_distance_mm"
+                    ]
+                ),
+            )
+
+            coll_radius = c2.number_input(
                 "Virtual collimator radius (mm)",
                 min_value=0.000001,
-                value=float(tube["tube_collimator_radius_mm"]),
+                value=float(
+                    tube["tube_collimator_radius_mm"]
+                ),
                 format="%.6f",
             )
-            elevation = c2.number_input(
-                "Elevation (deg)", value=float(tube["elevation_deg"])
+
+            elevation = c3.number_input(
+                "Elevation (deg)",
+                value=float(tube["elevation_deg"]),
             )
-            azimuth = c3.number_input(
-                "Azimuth (deg)", value=float(tube["azimuth_deg"])
+
+            azimuth = st.number_input(
+                "Azimuth (deg)",
+                value=float(tube["azimuth_deg"]),
             )
 
-            # c1, c2 = st.columns(2)
-            # tube_type = c1.selectbox(
-            #     "Tube type",
-            #     ["reflection", "transmission"],
-            #     index=0 if tube["tube_type"] == "reflection" else 1,
-            # )
-            # target_thickness = c2.number_input(
-            #     "Target thickness (µm)",
-            #     min_value=0.0,
-            #     value=float(tube["target_thickness_um"]),
-            # )
+            # ==============================================
+            # SAVE
+            # ==============================================
 
+            submitted = st.form_submit_button(
+                "Save tube",
+                type="primary",
+            )
 
-            if tube_type == "transmission":
-                target_thickness = st.number_input(
-                    "Target thickness (µm)",
-                    min_value=0.0,
-                    value=float(tube["target_thickness_um"]),
-                )
-            else:
-                target_thickness = 0.0
+            if submitted:
 
-            if st.form_submit_button("Save tube", type="primary"):
-                tube.update(
-                    {
-                        "name": name.strip(),
-                        "voltage_kv": voltage,
-                        "current_ma": current,
-                        "anode_symbol": target,
-                        "anode_angle_deg": angle,
-                        "focal_spot_diameter_mm": focal,
-                        "focal_spot_to_sample_distance_mm": source_sample,
-                        "tube_window_to_sample_distance_mm": window_sample,
-                        "tube_window_to_virtual_collimator_distance_mm": window_coll,
-                        "tube_collimator_radius_mm": coll_radius,
-                        "elevation_deg": elevation,
-                        "azimuth_deg": azimuth,
-                        "tube_type": tube_type,
-                        "target_thickness_um": target_thickness,
-                    }
-                )
-                invalidate_simulation()
-                st.success("Tube saved.")
+                # ------------------------------------------
+                # File spectrum validation
+                # ------------------------------------------
+
+                if (
+                    source_mode == "file"
+                    and uploaded_spectrum is None
+                    and not tube.get("spectrum_file_path")
+                ):
+                    st.error(
+                        "Please upload a spectrum file."
+                    )
+
+                else:
+
+                    spectrum_path = tube.get(
+                        "spectrum_file_path"
+                    )
+
+                    spectrum_name = tube.get(
+                        "spectrum_file_name"
+                    )
+
+                    # --------------------------------------
+                    # Save uploaded file
+                    # --------------------------------------
+
+                    if (
+                        source_mode == "file"
+                        and uploaded_spectrum is not None
+                    ):
+
+                        SPECTRUM_UPLOAD_DIR.mkdir(
+                            parents=True,
+                            exist_ok=True,
+                        )
+
+                        filename = Path(
+                            uploaded_spectrum.name
+                        ).name
+
+                        path = (
+                            SPECTRUM_UPLOAD_DIR
+                            / filename
+                        )
+
+                        path.write_bytes(
+                            uploaded_spectrum.getvalue()
+                        )
+
+                        spectrum_path = str(
+                            path.resolve()
+                        )
+
+                        spectrum_name = filename
+
+                    # --------------------------------------
+                    # Common values
+                    # --------------------------------------
+
+                    tube.update(
+                        {
+                            "source_mode": source_mode,
+                            "spectrum_file_path": (
+                                spectrum_path
+                                if source_mode == "file"
+                                else None
+                            ),
+                            "spectrum_file_name": (
+                                spectrum_name
+                                if source_mode == "file"
+                                else None
+                            ),
+                            "name": name.strip(),
+                            "focal_spot_diameter_mm": focal,
+                            "focal_spot_to_sample_distance_mm": (
+                                source_sample
+                            ),
+                            "tube_window_to_sample_distance_mm": (
+                                window_sample
+                            ),
+                            "tube_window_to_virtual_collimator_distance_mm": (
+                                window_coll
+                            ),
+                            "tube_collimator_radius_mm": (
+                                coll_radius
+                            ),
+                            "elevation_deg": elevation,
+                            "azimuth_deg": azimuth,
+                        }
+                    )
+
+                    # --------------------------------------
+                    # SpekPy values
+                    # --------------------------------------
+
+                    if source_mode == "spekpy":
+                        tube.update(
+                            {
+                                "voltage_kv": voltage,
+                                "current_ma": current,
+                                "anode_symbol": target,
+                                "anode_angle_deg": angle,
+                                "tube_type": tube_type,
+                                "target_thickness_um": (
+                                    target_thickness
+                                ),
+                            }
+                        )
+
+                    invalidate_simulation()
+
+                    st.success("Tube saved.")
 
     with tab_window:
         window = tube["window"]
