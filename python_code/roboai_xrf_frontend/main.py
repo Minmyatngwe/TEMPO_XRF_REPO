@@ -5,9 +5,10 @@ import streamlit as st
 
 from theme import apply_roboai_libs_theme
 from state import (
+    configuration_fingerprint,
     init_state,
     reset_all,
-    configuration_fingerprint,
+    update_geant4_process_state,
 )
 
 from components.setup_page import render_setup_page
@@ -19,10 +20,6 @@ from components.results_page import render_results_page
 from components.docs_page import render_docs_page
 
 
-# ==========================================================
-# PAGE CONFIG
-# ==========================================================
-
 st.set_page_config(
     page_title="RoboAI XRF",
     page_icon="⚛",
@@ -31,28 +28,33 @@ st.set_page_config(
 )
 
 
-# ==========================================================
-# LOGO HELPERS
-# ==========================================================
-
 BASE_DIR = Path(__file__).resolve().parent
 LOGO_PATH = BASE_DIR / "assets" / "roboai_logo.png"
 
 
+PAGES = {
+    "Setup": render_setup_page,
+    "X-ray tube": render_tube_page,
+    "Detector": render_detector_page,
+    "Physics": render_physics_page,
+    "Build & run": render_run_page,
+    "Results": render_results_page,
+}
+
+
+@st.cache_data
 def _logo_base64() -> str:
     return base64.b64encode(
         LOGO_PATH.read_bytes()
     ).decode("utf-8")
 
 
-def render_main_logo():
-    logo = _logo_base64()
-
+def render_logo(css_class: str) -> None:
     st.markdown(
         f"""
-        <div class="roboai-main-logo">
+        <div class="{css_class}">
             <img
-                src="data:image/png;base64,{logo}"
+                src="data:image/png;base64,{_logo_base64()}"
                 alt="RoboAI"
             >
         </div>
@@ -61,255 +63,151 @@ def render_main_logo():
     )
 
 
-def render_sidebar_logo():
-    logo = _logo_base64()
-
-    st.markdown(
-        f"""
-        <div class="roboai-sidebar-logo">
-            <img
-                src="data:image/png;base64,{logo}"
-                alt="RoboAI"
-            >
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+def _open_docs() -> None:
+    st.session_state.show_docs = True
 
 
-# ==========================================================
-# THEME + SESSION
-# ==========================================================
-
-apply_roboai_libs_theme()
-init_state()
-
-
-# ==========================================================
-# DOCUMENTATION STATE
-# ==========================================================
-
-if "show_docs" not in st.session_state:
+def _leave_docs() -> None:
     st.session_state.show_docs = False
 
 
-def _leave_docs():
-    st.session_state.show_docs = False
-
-
-# ==========================================================
-# SIDEBAR
-# ==========================================================
-
-with st.sidebar:
-
-    render_sidebar_logo()
-
-    st.markdown(
-        '<div class="sidebar-product-name">XRF Simulation</div>',
-        unsafe_allow_html=True,
-    )
-
-    st.caption("Geant4 XRF simulation interface")
-
-    # ======================================================
-    # DOCUMENTATION
-    # ======================================================
-
-    if st.button(
-        "Documentation",
-        use_container_width=True,
-        key="open_documentation",
-    ):
-        st.session_state.show_docs = True
-        st.rerun()
-
-    st.divider()
-
-    # ======================================================
-    # NAVIGATION
-    # ======================================================
-
-    page = st.radio(
-        "Navigation",
-        [
-            "Setup",
-            "X-ray tube",
-            "Detector",
-            "Physics",
-            "Build & run",
-            "Results",
-        ],
-        label_visibility="collapsed",
-        key="navigation_page",
-        on_change=_leave_docs,
-    )
-
-    st.divider()
-
-    # ======================================================
-    # ACTIVE CONFIGURATION
-    # ======================================================
-
-    loaded_name = st.session_state.get(
-        "loaded_config_name"
-    )
-
-    config_was_imported = st.session_state.get(
-        "config_was_imported",
-        False,
-    )
-
+def _render_active_configuration() -> None:
     st.caption("Active configuration")
 
-    if config_was_imported and loaded_name:
+    loaded_name = st.session_state.loaded_config_name
+    imported = st.session_state.config_was_imported
 
-        st.markdown(
-            f"**📄 {loaded_name}**"
-        )
+    if imported and loaded_name:
+        st.markdown(f"**📄 {loaded_name}**")
+        st.caption("Imported RoboAI configuration")
+        return
 
-        st.caption(
-            "Imported RoboAI configuration"
-        )
+    st.markdown("**Example defaults**")
+    st.caption("Using frontend default configuration")
 
-    else:
 
-        st.markdown(
-            "**Example defaults**"
-        )
+def _simulation_is_current() -> bool:
+    simulation = st.session_state.simulation
+    compiled_fingerprint = st.session_state.compiled_fingerprint
 
-        st.caption(
-            "Using frontend default configuration"
-        )
+    if simulation is None or compiled_fingerprint is None:
+        return False
 
-    st.divider()
-
-    # ======================================================
-    # SIMULATION STATUS
-    # ======================================================
-
-    sim = st.session_state.get(
-        "simulation"
-    )
-
-    geant4_running = st.session_state.get(
-        "geant4_running",
-        False,
-    )
-
-    geant4_stopped = st.session_state.get(
-        "geant4_stopped",
-        False,
-    )
-
-    run_complete = st.session_state.get(
-        "run_complete",
-        False,
-    )
-
-    compiled_fingerprint = st.session_state.get(
-        "compiled_fingerprint"
-    )
-
-    is_current = (
-        sim is not None
-        and compiled_fingerprint
+    return (
+        compiled_fingerprint
         == configuration_fingerprint(
             st.session_state.ui_config
         )
     )
 
+
+def _render_simulation_status() -> None:
     st.caption("Simulation status")
 
-    if geant4_running:
+    simulation = st.session_state.simulation
 
-        process = st.session_state.get(
-            "geant4_process"
-        )
+    if st.session_state.geant4_running:
+        process = st.session_state.geant4_process
 
         if process is not None:
             st.markdown(
                 f"🟣 **Running** · PID {process.pid}"
             )
         else:
-            st.markdown(
-                "🟣 **Running**"
-            )
+            st.markdown("🟣 **Running**")
 
-    elif sim is None:
+        return
 
-        st.markdown(
-            "⚪ **Not compiled**"
-        )
+    if simulation is None:
+        st.markdown("⚪ **Not compiled**")
+        return
 
-    elif not is_current:
-
-        st.markdown(
-            "🟡 **Configuration changed**"
-        )
-
+    if not _simulation_is_current():
+        st.markdown("🟡 **Configuration changed**")
         st.caption(
             "Build & compile again before running."
         )
+        return
 
-    elif geant4_stopped:
+    if st.session_state.geant4_stopped:
+        st.markdown("🟠 **Previous run stopped**")
+        return
+
+    if st.session_state.run_complete:
+        st.markdown("🟢 **Quantitative run complete**")
+        return
+
+    st.markdown("🔵 **Compiled**")
+
+
+def _render_sidebar() -> str:
+    with st.sidebar:
+        render_logo("roboai-sidebar-logo")
 
         st.markdown(
-            "🟠 **Previous run stopped**"
+            '<div class="sidebar-product-name">'
+            "XRF Simulation"
+            "</div>",
+            unsafe_allow_html=True,
         )
 
-    elif run_complete:
-
-        st.markdown(
-            "🟢 **Quantitative run complete**"
+        st.caption(
+            "Geant4 XRF simulation interface"
         )
 
-    else:
-
-        st.markdown(
-            "🔵 **Compiled**"
+        st.button(
+            "Documentation",
+            use_container_width=True,
+            key="open_documentation",
+            on_click=_open_docs,
         )
 
-    st.divider()
+        st.divider()
 
-    if st.button(
-        "Reset to example defaults",
-        use_container_width=True,
-    ):
+        page = st.radio(
+            "Navigation",
+            options=list(PAGES),
+            label_visibility="collapsed",
+            key="navigation_page",
+            on_change=_leave_docs,
+        )
 
-        reset_all()
-        st.rerun()
+        st.divider()
+
+        _render_active_configuration()
+
+        st.divider()
+
+        _render_simulation_status()
+
+        st.divider()
+
+        st.button(
+            "Reset to example defaults",
+            use_container_width=True,
+            on_click=reset_all,
+        )
+
+    return page
 
 
-# ==========================================================
-# MAIN LOGO
-# ==========================================================
+def main() -> None:
+    apply_roboai_libs_theme()
+    init_state()
 
-render_main_logo()
+    # Refresh subprocess state whenever Streamlit reruns.
+    update_geant4_process_state()
+
+    page = _render_sidebar()
+
+    render_logo("roboai-main-logo")
+
+    if st.session_state.show_docs:
+        render_docs_page()
+        return
+
+    PAGES[page]()
 
 
-# ==========================================================
-# PAGE ROUTING
-# ==========================================================
-
-if st.session_state.get("show_docs", False):
-
-    render_docs_page()
-
-elif page == "Setup":
-    render_setup_page()
-
-elif page == "X-ray tube":
-    render_tube_page()
-
-elif page == "Detector":
-    render_detector_page()
-
-elif page == "Physics":
-    render_physics_page()
-
-elif page == "Build & run":
-    render_run_page()
-
-elif page == "Results":
-    render_results_page()
+if __name__ == "__main__":
+    main()

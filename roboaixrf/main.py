@@ -60,9 +60,11 @@ class RoboAiXrfSimulation(BaseModel):
     _last_incident_photons: float | None = PrivateAttr(default=None)
 
     _run_done: threading.Event = PrivateAttr(
-        default_factory=threading.Event
-    )
-    _tqdm_output: str = PrivateAttr(default="")
+    default_factory=threading.Event
+)
+
+    _run_progress: int = PrivateAttr(default=0)
+    _run_total: int = PrivateAttr(default=0)
 
     # ======================================================
     # GEANT4 LIVE PROGRESS
@@ -487,14 +489,10 @@ class RoboAiXrfSimulation(BaseModel):
         number_of_thread: int,
         show_progress_terminal: bool = False,
     ) -> subprocess.Popen:
-        with open(
-            "tqdm_output.txt",
-            "w",
-            encoding="utf-8",
-        ) as f:
-            pass
+        
         self._run_done.clear()
-
+        self._run_progress = 0
+        self._run_total = int(beam_on)
         if not self.is_compiled:
             raise RuntimeError(
                 "Call simulation.compile() first."
@@ -577,7 +575,11 @@ class RoboAiXrfSimulation(BaseModel):
                             )
 
                             last_number = event_number
-                            self._tqdm_output = str(bar)
+
+                            self._run_progress = min(
+                                event_number,
+                                beam_on,
+                            )
             return_code = process.wait()
 
             if return_code == 0 and root_file.is_file():
@@ -588,6 +590,7 @@ class RoboAiXrfSimulation(BaseModel):
                     )
 
                 self._beam_on = int(beam_on)
+                self._run_progress = int(beam_on)
 
             else:
                 self._beam_on = 0
@@ -623,7 +626,9 @@ class RoboAiXrfSimulation(BaseModel):
         valid quantitative response.
         """
         
-        self._beam_on=0
+        self._beam_on = 0
+        self._run_progress = 0
+        self._run_total = 0
         if process is not None and process.poll() is None:
             try:
                 os.killpg(
@@ -977,9 +982,7 @@ class RoboAiXrfSimulation(BaseModel):
             spectrum_se,
         )
 
-    @property
-    def tqdm_output(self) -> str:
-        return self._tqdm_output
+    
 
 if __name__=="__main__":
     pass

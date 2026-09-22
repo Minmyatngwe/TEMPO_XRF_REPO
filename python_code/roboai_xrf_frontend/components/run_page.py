@@ -110,51 +110,9 @@ def _finalize_finished_process() -> None:
         root_file
     )
 
-from pathlib import Path
 
-
-from pathlib import Path
-import time
-
-
-
-
-TQDM_FILE = Path(
-    "/home/user/persistent/xrftest/TEMPO_XRF_REPO/"
-    "python_code/roboai_xrf_frontend/tqdm_output.txt"
-)
-
-
-import re
-from pathlib import Path
-
-TQDM_FILE = Path(
-    "/home/user/persistent/xrftest/TEMPO_XRF_REPO/"
-    "python_code/roboai_xrf_frontend/tqdm_output.txt"
-)
-
-last_percent=0  
-def read_last_line(path):
-    if not path.exists():
-        return ""
-
-    with open(
-        path,
-        "r",
-        encoding="utf-8",
-        errors="replace",
-    ) as f:
-
-        lines = f.read().splitlines()
-
-    if not lines:
-        return ""
-
-    return lines[-1]
 @st.fragment(run_every="1s")
 def _running_simulation_panel():
-
-    st.write("FRAGMENT IS RUNNING")
 
     sim = st.session_state.get("simulation")
     process = st.session_state.get(
@@ -168,24 +126,20 @@ def _running_simulation_panel():
     if sim is None:
         st.warning("No simulation object")
         return
-
-    match = re.search(
-        r"(\d+)%\|",
-        sim._tqdm_output,
-    )
-
-    if match:
-        
-        percent = int(
-            match.group(1)
+    if sim.run_total > 0:
+        percent = min(
+            100,
+            int(
+                sim.run_progress
+                / sim.run_total
+                * 100
+            ),
         )
 
-
-
         st.progress(
-                percent / 100,
-                text=f"Geant4: {percent}%",
-            )
+            percent / 100,
+            text=f"Geant4: {percent}%",
+        )
     if process.poll() is None:
 
         if st.button(

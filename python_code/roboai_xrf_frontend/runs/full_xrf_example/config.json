@@ -52,7 +52,7 @@
     "name": "sample",
     "material": {
       "material_type": "geant4",
-      "material_name": "G4_W"
+      "material_name": "G4_Fe"
     },
     "geometry": {
       "shape": "Rectangular",

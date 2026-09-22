@@ -1,23 +1,82 @@
+# =========================
+# Python
+# =========================
 .venv/
 venv/
 __pycache__/
 *.py[cod]
 
+# =========================
+# IDE
+# =========================
 .vscode/
 
+# =========================
+# Geant4 / CMake build
+# =========================
 /geant4_code/build/
 CMakeFiles/
 cmake_install.cmake
 Makefile
+
+# =========================
+# Simulation outputs
+# =========================
 *.root
 simulation_spectrum.html
-
 updated_config.json
+tqdm_output.txt
 
+# Runtime simulation directories
+/python_code/roboai_xrf_frontend/runs/
+
+# Uploaded spectra
+/python_code/roboai_xrf_frontend/uploads/
+
+# Generated visualization files
+/roboaixrf/vis/public/xrf_geometry_vis.json
+/roboaixrf/vis/public/xrf_tracks.json
+/roboaixrf/vis/public/runs/
+
+# =========================
+# Node
+# =========================
+node_modules/
+
+# =========================
+# Temporary / OS files
+# =========================
 *.log
 *.tmp
 *~
 .DS_Store
 Thumbs.db
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# C/C++ / Geant4
+build/
+cmake-build-*/
+CMakeFiles/
+*.o
+*.so
+
+# Node
 node_modules/
+
+# Streamlit frontend runtime data
+python_code/roboai_xrf_frontend/uploads/
+python_code/roboai_xrf_frontend/tqdm_output.txt
+python_code/roboai_xrf_frontend/runs/
+
+# Generated visualization data
+roboaixrf/vis/public/xrf_geometry_vis.json
+roboaixrf/vis/public/xrf_tracks.json
+roboaixrf/vis/public/runs/
