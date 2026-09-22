@@ -80,3 +80,5 @@ python_code/roboai_xrf_frontend/runs/
 roboaixrf/vis/public/xrf_geometry_vis.json
 roboaixrf/vis/public/xrf_tracks.json
 roboaixrf/vis/public/runs/
+
+/config/
