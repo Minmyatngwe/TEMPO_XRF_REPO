@@ -52,7 +52,7 @@
     "name": "sample",
     "material": {
       "material_type": "geant4",
-      "material_name": "G4_Fe"
+      "material_name": "G4_W"
     },
     "geometry": {
       "shape": "Rectangular",
@@ -189,7 +189,7 @@
     "interaction_bias_use": true,
     "secondary_splitting_use": true,
     "flu_use": true,
-    "auger_use": false,
+    "auger_use": true,
     "pixe_use": false,
     "ignore_cut_use": true,
     "flu_dataset_name": "ANSTO",

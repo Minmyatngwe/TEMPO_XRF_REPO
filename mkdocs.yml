@@ -1,0 +1,54 @@
+site_name: RoboAI XRF Documentation
+
+repo_url: https://github.com/Minmyatngwe/TEMPO_XRF_REPO
+repo_name: Minmyatngwe/TEMPO_XRF_REPO
+
+edit_uri: edit/front/docs/
+theme:
+  name: material
+
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+
+  - Configuration:
+      - Materials: materials.md
+      - Geometry: geometry.md
+      - Placement: placement.md
+      - Sample: sample.md
+      - X-ray Tube: xray_tube.md
+      - Filters: filters.md
+      - Detector: detector.md
+      - Collimators: collimators.md
+      - Detector Housing: housing.md
+      - Internal Masks: internal_masks.md
+      - Physics: physics.md
+      - XRF Configuration: xrf_configuration.md
+
+  - Simulation:
+      - Running a Simulation: simulation.md
+      - Detector Response and Noise: detector_noise.md
