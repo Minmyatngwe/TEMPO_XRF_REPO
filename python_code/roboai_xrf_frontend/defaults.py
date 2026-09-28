@@ -127,7 +127,7 @@ DEFAULT_CONFIG = {
         "interaction_bias_use": True,
         "secondary_splitting_use": True,
         "flu_use": True,
-        "auger_use": False,
+        "auger_use": True,
         "pixe_use": False,
         "ignore_cut_use": True,
         "flu_dataset_name": "ANSTO",

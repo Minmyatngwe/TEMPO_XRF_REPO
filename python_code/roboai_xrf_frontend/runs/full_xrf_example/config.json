@@ -51,23 +51,8 @@
   "sample": {
     "name": "sample",
     "material": {
-      "material_type": "custom",
-      "material_name": "AgCuAu",
-      "density_g_cm3": 12.18,
-      "compositions": [
-        {
-          "element": "Ag",
-          "mass_fraction": 0.59
-        },
-        {
-          "element": "Cu",
-          "mass_fraction": 0.08
-        },
-        {
-          "element": "Au",
-          "mass_fraction": 0.33000000000000007
-        }
-      ]
+      "material_type": "geant4",
+      "material_name": "G4_Fe"
     },
     "geometry": {
       "shape": "Rectangular",
@@ -204,7 +189,7 @@
     "interaction_bias_use": true,
     "secondary_splitting_use": true,
     "flu_use": true,
-    "auger_use": true,
+    "auger_use": false,
     "pixe_use": false,
     "ignore_cut_use": true,
     "flu_dataset_name": "ANSTO",
