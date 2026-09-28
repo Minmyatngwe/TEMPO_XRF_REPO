@@ -128,33 +128,32 @@ class XRayTube(BaseModel):
     def model_post_init(self, __context):
         """
         Perform additional validation after Pydantic initialization.
-
-        This validates the virtual collimator radius and ensures that
-        the selected anode material is supported by SpekPy.
-
-        Raises
-        ------
-        ValueError
-            If the virtual collimator radius is not greater than zero.
-
-        ValueError
-            If the selected anode material is not supported by SpekPy.
         """
 
         if self.tube_collimator_radius_mm <= 0:
             raise ValueError(
-            "Virtual tube collimator radius must be greater than 0"
-        )
-
-        spekpy_target_mat = ["Cr", "Cu", "Mo", "Rh", "Ag", "W", "Au"]
-        print(self.to_dict())
-        if self.anode_symbol not in spekpy_target_mat:
-            raise ValueError(
-                f"Unsupported SpekPy anode target: "
-                f"'{self.anode_symbol}'. "
-                f"Supported targets are: "
-                f"{', '.join(spekpy_target_mat)}."
+                "Virtual tube collimator radius must be greater than 0"
             )
+
+        # These parameters only exist/are relevant for a SpekPy tube.
+        if self.is_spekpy_tube:
+            spekpy_target_mat = [
+                "Cr",
+                "Cu",
+                "Mo",
+                "Rh",
+                "Ag",
+                "W",
+                "Au",
+            ]
+
+            if self.anode_symbol not in spekpy_target_mat:
+                raise ValueError(
+                    f"Unsupported SpekPy anode target: "
+                    f"'{self.anode_symbol}'. "
+                    f"Supported targets are: "
+                    f"{', '.join(spekpy_target_mat)}."
+                )
 
     @classmethod
     @validate_call
@@ -336,7 +335,6 @@ class XRayTube(BaseModel):
     
     
     def _read(self, file_path: str | Path):
-
         file_path = Path(file_path).resolve()
 
         if not file_path.is_file():
@@ -353,38 +351,69 @@ class XRayTube(BaseModel):
                 "Spectrum file must be .csv, .txt or .dat"
             )
 
+        # Supports:
+        # 3.0,1.25e6
+        # 3.0;1.25e6
+        # 3.0    1.25e6
+        # 3.0\t1.25e6
+        #
+        # Only the first two columns are used:
+        # column 0 = energy [keV]
+        # column 1 = intensity [photons/s/keV]
+
         df = pd.read_csv(
             file_path,
-            sep=None,
+            sep=r"[\s,;]+",
             engine="python",
             header=None,
             comment="#",
         )
 
-        if df.shape[1] != 2:
+        df = df.dropna(
+            axis=1,
+            how="all",
+        ).dropna(
+            axis=0,
+            how="all",
+        )
+
+        if df.shape[1] < 2:
             raise ValueError(
-                "Spectrum file must contain exactly 2 columns: "
-                "energy_keV and photons/s/keV"
+                "Spectrum file must contain at least 2 columns: "
+                "energy_keV and photons/s/keV."
             )
 
-        df.columns = ["energy_kev", "intensity"]
+        # Ignore column 3 and anything after it
+        df = df.iloc[:, :2].copy()
 
-        # Also allows a header row such as:
-        # energy_kev,intensity
+        df.columns = [
+            "energy_kev",
+            "intensity",
+        ]
+
+        # Convert the first two columns to numbers
         df["energy_kev"] = pd.to_numeric(
             df["energy_kev"],
             errors="coerce",
         )
+
         df["intensity"] = pd.to_numeric(
             df["intensity"],
             errors="coerce",
         )
 
-        df = df.dropna()
+        # Remove rows that were not valid numeric data
+        # This also allows a text header row.
+        df = df.dropna(
+            subset=[
+                "energy_kev",
+                "intensity",
+            ]
+        )
 
         if len(df) < 2:
             raise ValueError(
-                "Spectrum must contain at least two valid points."
+                "Spectrum must contain at least two valid data points."
             )
 
         if (df["energy_kev"] <= 0).any():
@@ -402,7 +431,16 @@ class XRayTube(BaseModel):
                 "Spectrum energies must be in increasing order."
             )
 
-        return (
-            df["energy_kev"],
-            df["intensity"],
+        energy_kev = df[
+            "energy_kev"
+        ].to_numpy(
+            dtype=float
         )
+
+        intensity = df[
+            "intensity"
+        ].to_numpy(
+            dtype=float
+        )
+
+        return energy_kev, intensity

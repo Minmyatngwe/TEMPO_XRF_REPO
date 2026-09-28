@@ -1,8 +1,7 @@
 site_name: RoboAI XRF Documentation
 
 repo_url: https://github.com/Minmyatngwe/TEMPO_XRF_REPO
-repo_name: Minmyatngwe/TEMPO_XRF_REPO
-
+repo_name: Geant4-Repo
 edit_uri: edit/front/docs/
 theme:
   name: material
