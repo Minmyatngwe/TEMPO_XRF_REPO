@@ -101,5 +101,5 @@
 /gps/hist/point 0.04875 12240268.211788308
 /gps/hist/point 0.04925 7897289.251635897
 /gps/hist/point 0.04975 3126040.884048516
-/run/printProgress 100
-/run/beamOn 100000
+/run/printProgress 1000
+/run/beamOn 1000000

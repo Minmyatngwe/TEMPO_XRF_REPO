@@ -1,5 +1,6 @@
 from __future__ import annotations
-
+import pandas as pd
+import io
 import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
@@ -7,8 +8,16 @@ import streamlit as st
 from components.common import page_header
 
 
-def _spectrum_figure(energy, before, after):
+def _spectrum_figure(
+    energy,
+    before,
+    after,
+    comparison_energy=None,
+    comparison_counts=None,
+    comparison_name="Uploaded spectrum",
+):
     fig = go.Figure()
+
     fig.add_trace(
         go.Scatter(
             x=energy,
@@ -17,6 +26,7 @@ def _spectrum_figure(energy, before, after):
             name="Before detector noise",
         )
     )
+
     fig.add_trace(
         go.Scatter(
             x=energy,
@@ -25,6 +35,18 @@ def _spectrum_figure(energy, before, after):
             name="After detector noise",
         )
     )
+
+    if comparison_energy is not None and comparison_counts is not None:
+        fig.add_trace(
+            go.Scatter(
+                x=comparison_energy,
+                y=comparison_counts,
+                mode="lines",
+                name=comparison_name,
+                line=dict(dash="dash"),
+            )
+        )
+
     fig.update_layout(
         template="plotly_dark",
         height=560,
@@ -36,9 +58,53 @@ def _spectrum_figure(energy, before, after):
         plot_bgcolor="rgba(0,0,0,0)",
         hovermode="x unified",
     )
+
     return fig
+def _read_comparison_spectrum(uploaded_file):
+    uploaded_file.seek(0)
 
+    df = pd.read_csv(
+        io.BytesIO(uploaded_file.getvalue()),
+        sep=r"[\s,;]+",
+        engine="python",
+        comment="#",
+        header=None,
+    )
 
+    df = (
+        df.dropna(axis=0, how="all")
+        .dropna(axis=1, how="all")
+    )
+
+    if df.shape[1] < 2:
+        raise ValueError(
+            "Comparison spectrum must contain at least two columns: "
+            "energy and counts."
+        )
+
+    # Only first two columns are needed
+    df = df.iloc[:, :2].copy()
+
+    # Convert to numbers.
+    # If the file contains a header like:
+    # energy_kev,counts
+    # it will automatically be removed here.
+    df[0] = pd.to_numeric(df[0], errors="coerce")
+    df[1] = pd.to_numeric(df[1], errors="coerce")
+
+    df = df.dropna()
+
+    if df.empty:
+        raise ValueError(
+            "No valid numerical energy/count data found in the uploaded file."
+        )
+
+    energy = df[0].to_numpy(dtype=float)
+    counts = df[1].to_numpy(dtype=float)
+
+    order = np.argsort(energy)
+
+    return energy[order], counts[order]
 def render_results_page():
     cfg = st.session_state.ui_config
     noise = cfg["noise"]
@@ -197,11 +263,60 @@ def render_results_page():
     )
     c4.metric("Total counts", f"{np.sum(final_count):,.0f}")
 
+    st.subheader("Spectrum comparison")
+
+    comparison_file = st.file_uploader(
+        "Upload a spectrum to compare",
+        type=["csv", "txt", "dat"],
+        key="comparison_spectrum_upload",
+        help="The first column should contain energy in keV and the second column counts.",
+    )
+
+    comparison_energy = None
+    comparison_counts = None
+    comparison_name = "Uploaded spectrum"
+
+    if comparison_file is not None:
+        try:
+            comparison_energy, comparison_counts = _read_comparison_spectrum(
+                comparison_file
+            )
+
+            comparison_name = comparison_file.name
+
+            st.success(
+                f"Loaded comparison spectrum: "
+                f"{len(comparison_energy):,} points"
+            )
+
+        except Exception as exc:
+            st.error(f"Could not read comparison spectrum: {exc}")
+
+    normalize_comparison = st.checkbox(
+        "Scale uploaded spectrum to simulation",
+        value=False,
+        help="Scales the uploaded spectrum so its maximum matches the simulated spectrum.",
+    )
+
+    if (
+        normalize_comparison
+        and comparison_counts is not None
+        and np.max(comparison_counts) > 0
+        and np.max(final_count) > 0
+    ):
+        comparison_counts = (
+            comparison_counts
+            / np.max(comparison_counts)
+            * np.max(final_count)
+        )
     st.plotly_chart(
         _spectrum_figure(
             final_energy_centers,
             scaled_count,
             final_count,
+            comparison_energy=comparison_energy,
+            comparison_counts=comparison_counts,
+            comparison_name=comparison_name,
         ),
         use_container_width=True,
     )

@@ -31,7 +31,7 @@ def render_physics_page():
         ignore_cut = c4.checkbox("Ignore cuts", value=physics["ignore_cut_use"])
 
         c1, c2 = st.columns(2)
-        dataset_options = ["ANSTO", "Bearden", "XDB_EADL", "ROBOAI"]
+        dataset_options = ["ANSTO", "Bearden", "XDB_EADL", "RoboAI"]
         current_dataset = physics["flu_dataset_name"]
         if current_dataset not in dataset_options:
             dataset_options.append(current_dataset)
@@ -42,7 +42,7 @@ def render_physics_page():
             index=dataset_options.index(current_dataset),
         )
         maximum_energy = c2.number_input(
-            "Maximum energy",
+            "Maximum energy (keV)",
             min_value=0.0,
             value=float(physics["maximum_energy"]),
         )

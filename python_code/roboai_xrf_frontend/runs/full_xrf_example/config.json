@@ -51,8 +51,23 @@
   "sample": {
     "name": "sample",
     "material": {
-      "material_type": "geant4",
-      "material_name": "G4_W"
+      "material_type": "custom",
+      "material_name": "AgCuAu",
+      "density_g_cm3": 12.18,
+      "compositions": [
+        {
+          "element": "Ag",
+          "mass_fraction": 0.59
+        },
+        {
+          "element": "Cu",
+          "mass_fraction": 0.08
+        },
+        {
+          "element": "Au",
+          "mass_fraction": 0.33000000000000007
+        }
+      ]
     },
     "geometry": {
       "shape": "Rectangular",

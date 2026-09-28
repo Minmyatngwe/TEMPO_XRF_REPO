@@ -26,8 +26,8 @@ DEFAULT_CONFIG = {
     },
     "tube": {
         "source_mode": "spekpy",
-        "spectrum_file_path": "None",
-        "spectrum_file_name": "None",
+        "spectrum_file_path": None,
+        "spectrum_file_name": None,
         "name": "xrftube",
         "current_ma": 1.0,
         "voltage_kv": 50.0,

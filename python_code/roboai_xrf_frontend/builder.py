@@ -166,54 +166,150 @@ def build_tube(config: dict) -> XRayTube:
         azimuth_deg=float(spec["azimuth_deg"]),
     )
 
-    tube = XRayTube.create(
-        name=spec["name"],
-        current_ma=float(spec["current_ma"]),
-        voltage_kv=float(spec["voltage_kv"]),
-        anode_angle_deg=float(spec["anode_angle_deg"]),
-        anode_symbol=spec["anode_symbol"],
-        focal_spot_diameter_mm=float(spec["focal_spot_diameter_mm"]),
-        tube_collimator_radius_mm=float(spec["tube_collimator_radius_mm"]),
-        tube_window_to_virtual_collimator_distance_mm=float(
-            spec["tube_window_to_virtual_collimator_distance_mm"]
-        ),
-        tube_placement=tube_placement,
-    )
+    # SOURCE
 
-    tube.tube_type = spec["tube_type"]
-    tube.target_thickness_um = float(spec["target_thickness_um"])
+    source_mode = str(
+        spec.get("source_mode", "spekpy")
+    ).strip().lower()
+
+    # SPEKPY SOURCE
+
+    if source_mode == "spekpy":
+
+        tube = XRayTube.create(
+            name=spec["name"],
+            current_ma=float(spec["current_ma"]),
+            voltage_kv=float(spec["voltage_kv"]),
+            anode_angle_deg=float(
+                spec["anode_angle_deg"]
+            ),
+            anode_symbol=spec["anode_symbol"],
+            focal_spot_diameter_mm=float(
+                spec["focal_spot_diameter_mm"]
+            ),
+            tube_collimator_radius_mm=float(
+                spec["tube_collimator_radius_mm"]
+            ),
+            tube_window_to_virtual_collimator_distance_mm=float(
+                spec[
+                    "tube_window_to_virtual_collimator_distance_mm"
+                ]
+            ),
+            tube_placement=tube_placement,
+        )
+
+        tube.tube_type = spec["tube_type"]
+        tube.target_thickness_um = float(
+            spec["target_thickness_um"]
+        )
+
+    # USER-UPLOADED SPECTRUM
+
+    elif source_mode == "file":
+
+        spectrum_file_path = spec.get(
+            "spectrum_file_path"
+        )
+
+        if (
+            spectrum_file_path is None
+            or not str(spectrum_file_path).strip()
+            or str(spectrum_file_path).strip().lower()
+            == "none"
+        ):
+            raise ValueError(
+                "Spectrum source is set to 'file', "
+                "but no spectrum file was uploaded."
+            )
+
+        tube = XRayTube.read_spectrum(
+            spectrum_file_path=spectrum_file_path,
+            name=spec["name"],
+            focal_spot_diameter_mm=float(
+                spec["focal_spot_diameter_mm"]
+            ),
+            tube_collimator_radius_mm=float(
+                spec["tube_collimator_radius_mm"]
+            ),
+            tube_window_to_virtual_collimator_distance_mm=float(
+                spec[
+                    "tube_window_to_virtual_collimator_distance_mm"
+                ]
+            ),
+            tube_placement=tube_placement,
+        )
+
+    else:
+        raise ValueError(
+            f"Unsupported X-ray tube source mode: "
+            f"{source_mode!r}"
+        )
+
+    # TUBE WINDOW
+
 
     window_spec = spec["window"]
+
     tube.set_window(
         TubeWindow(
             name=window_spec["name"],
-            material=build_material(window_spec["material"], custom),
-            thickness_mm=float(window_spec["thickness_mm"]),
+            material=build_material(
+                window_spec["material"],
+                custom,
+            ),
+            thickness_mm=float(
+                window_spec["thickness_mm"]
+            ),
         )
     )
 
-    for item in spec["spekpy_filters"]:
-        if not str(item.get("element", "")).strip():
-            continue
-        tube.add_filter_spekpy(
-            {
-                "element": str(item["element"]).strip(),
-                "thickness_mm": float(item["thickness_mm"]),
-            }
-        )
+    # SPEKPY FILTERS
+    
+
+    if source_mode == "spekpy":
+
+        for item in spec["spekpy_filters"]:
+
+            if not str(
+                item.get("element", "")
+            ).strip():
+                continue
+
+            tube.add_filter_spekpy(
+                {
+                    "element": str(
+                        item["element"]
+                    ).strip(),
+                    "thickness_mm": float(
+                        item["thickness_mm"]
+                    ),
+                }
+            )
+
+    # PHYSICAL GEANT4 FILTERS
 
     for item in spec["geant4_filters"]:
+
         if not bool(item.get("enabled", True)):
             continue
 
         geometry = _solid_geometry(item)
+
         tube_filter = Filter(
             name=str(item["name"]),
             geometry=geometry,
-            material=build_material(str(item["material"]), custom),
-            placement=_front_of_tube_window(float(item["distance_mm"])),
+            material=build_material(
+                str(item["material"]),
+                custom,
+            ),
+            placement=_front_of_tube_window(
+                float(item["distance_mm"])
+            ),
         )
-        tube.add_filter_geant4(tube_filter)
+
+        tube.add_filter_geant4(
+            tube_filter
+        )
 
     return tube
 

@@ -400,7 +400,6 @@ def render_run_page():
 
         except Exception as exc:
             st.exception(exc)
-
     # ----------------------------------------------------------
     # PERSISTENT VISUALIZATION LINK
     # ----------------------------------------------------------
