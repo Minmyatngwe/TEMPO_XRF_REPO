@@ -281,7 +281,7 @@ fi
 # or:
 #   nullptr == tmpSecondaries[kk]
 if ! grep -Eq \
-    'tmpSecondaries\\[kk\\][[:space:]]*==[[:space:]]*nullptr|nullptr[[:space:]]*==[[:space:]]*tmpSecondaries\\[kk\\]' \
+    'tmpSecondaries\[kk\][[:space:]]*==[[:space:]]*nullptr|nullptr[[:space:]]*==[[:space:]]*tmpSecondaries\[kk\]' \
     "$BIASING_SOURCE"; then
     echo
     echo "ERROR: Mandatory directional-splitting patch was NOT detected."
@@ -511,7 +511,7 @@ for name in modules:
 PY
 # Verify the mandatory patch one final time after installation.
 if grep -Eq \
-    'tmpSecondaries\\[kk\\][[:space:]]*==[[:space:]]*nullptr|nullptr[[:space:]]*==[[:space:]]*tmpSecondaries\\[kk\\]' \
+    'tmpSecondaries\[kk\][[:space:]]*==[[:space:]]*nullptr|nullptr[[:space:]]*==[[:space:]]*tmpSecondaries\[kk\]' \
     "$BIASING_SOURCE"; then
     echo "Geant4 patch: VERIFIED"
 else
