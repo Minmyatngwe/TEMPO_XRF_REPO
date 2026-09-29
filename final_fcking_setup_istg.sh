@@ -217,50 +217,7 @@ echo "Node: $(node --version)"
 echo "npm : $(npm --version)"
 echo "npx : $(npx --version)"
 
-# ---------------------------------------------------------------------------
-# 3. Locate or clone TEMPO_XRF_REPO
-# ---------------------------------------------------------------------------
 
-banner "Preparing TEMPO_XRF_REPO"
-
-if [[ -n "${REPO_DIR:-}" ]]; then
-    REPO_DIR="$(realpath -m "$REPO_DIR")"
-else
-    REPO_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null || true)"
-
-    if [[ -z "$REPO_DIR" ]]; then
-        REPO_DIR="$(git -C "$PWD" rev-parse --show-toplevel 2>/dev/null || true)"
-    fi
-
-    if [[ -z "$REPO_DIR" ]]; then
-        REPO_DIR="$HOME/TEMPO_XRF_REPO"
-    fi
-fi
-
-if [[ ! -d "$REPO_DIR/.git" ]]; then
-    if [[ -e "$REPO_DIR" && -n "$(ls -A "$REPO_DIR" 2>/dev/null || true)" ]]; then
-        echo "ERROR: $REPO_DIR exists but is not an empty Git repository directory."
-        exit 1
-    fi
-
-    rm -rf "$REPO_DIR"
-    git clone "$REPO_URL" "$REPO_DIR"
-fi
-
-cd "$REPO_DIR"
-git fetch --all --prune
-
-if git show-ref --verify --quiet "refs/heads/$REPO_BRANCH"; then
-    git switch "$REPO_BRANCH"
-elif git show-ref --verify --quiet "refs/remotes/origin/$REPO_BRANCH"; then
-    git switch -c "$REPO_BRANCH" --track "origin/$REPO_BRANCH"
-else
-    echo "ERROR: Branch '$REPO_BRANCH' was not found locally or on origin."
-    exit 1
-fi
-
-echo "Repository : $REPO_DIR"
-echo "Branch     : $(git branch --show-current)"
 
 # ---------------------------------------------------------------------------
 # 4. Build/install xraylib C/C++ library
