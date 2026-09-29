@@ -331,7 +331,7 @@ cmake \
     -DGEANT4_USE_QT_QT5=ON \
     -DGEANT4_USE_OPENGL_X11=ON \
     -DGEANT4_USE_VTK=OFF
-cmake --build "$GEANT4_BUILD_DIR" -j"$(nproc)"
+cmake --build "$GEANT4_BUILD_DIR" -j8
 cmake --install "$GEANT4_BUILD_DIR"
 if [[ ! -f "$GEANT4_INSTALL_DIR/bin/geant4.sh" ]]; then
     echo "ERROR: Geant4 environment script was not installed:"
