@@ -246,32 +246,22 @@ echo "npm : $(npm --version)"
 echo "npx : $(npx --version)"
 
 # -----------------------------------------------------------------------------
-# 3. Clone/update TEMPO_XRF_REPO
+# 3. Use existing TEMPO_XRF_REPO
 # -----------------------------------------------------------------------------
-log "Preparing TEMPO_XRF_REPO"
+log "Using existing TEMPO_XRF_REPO"
 
-if [[ ! -d "$REPO_DIR/.git" ]]; then
-    git clone --branch "$REPO_BRANCH" --single-branch "$REPO_URL" "$REPO_DIR"
-else
-    echo "Repository already exists: $REPO_DIR"
-    git -C "$REPO_DIR" fetch origin "$REPO_BRANCH"
-
-    if git -C "$REPO_DIR" show-ref --verify --quiet "refs/heads/$REPO_BRANCH"; then
-        git -C "$REPO_DIR" switch "$REPO_BRANCH"
-    else
-        git -C "$REPO_DIR" switch --track -c "$REPO_BRANCH" "origin/$REPO_BRANCH"
-    fi
-
-    if [[ -z "$(git -C "$REPO_DIR" status --porcelain)" ]]; then
-        git -C "$REPO_DIR" pull --ff-only origin "$REPO_BRANCH"
-    else
-        echo "WARNING: repository has local changes; not pulling over them."
-    fi
+# Do NOT clone, fetch, pull, checkout, switch, stash, reset, or modify Git state.
+if [[ ! -d "$REPO_DIR" ]]; then
+    echo "ERROR: Repository directory does not exist: $REPO_DIR" >&2
+    exit 1
 fi
 
 echo "Repository: $REPO_DIR"
-echo "Branch    : $(git -C "$REPO_DIR" branch --show-current)"
-echo "Commit    : $(git -C "$REPO_DIR" rev-parse --short HEAD)"
+
+if [[ -d "$REPO_DIR/.git" ]]; then
+    echo "Branch    : $(git -C "$REPO_DIR" branch --show-current 2>/dev/null || true)"
+    echo "Commit    : $(git -C "$REPO_DIR" rev-parse --short HEAD 2>/dev/null || true)"
+fi
 
 # Current branch paths first; older repo layouts remain supported as fallbacks.
 if [[ -f "$REPO_DIR/python_code/frontend/main.py" ]]; then
