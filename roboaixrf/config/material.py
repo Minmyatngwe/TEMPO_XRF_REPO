@@ -1,5 +1,5 @@
 from pydantic import BaseModel,model_validator,ValidationInfo
-
+import math
 class Composition(BaseModel):
     element:str 
     mass_fraction:float 
@@ -57,7 +57,7 @@ class Material(BaseModel):
         
         total=sum([i.mass_fraction for i in self.compositions])
         
-        if total != 1.0:
+        if not math.isclose(total,1.0):
             raise ValueError(
                 f"Mass fractions must add up to 1.0, got {total}"
             )

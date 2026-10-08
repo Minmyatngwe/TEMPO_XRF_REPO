@@ -573,7 +573,7 @@ class RoboAiXrfSimulation(BaseModel):
 
     def detector_noise(self,*,fwhm: float,fwhm_energy_kev: float,detector_zero_offset: float,detector_gain_kev: float,
                         live_time: float, pile_up_window_us: float,current: float | None = None,fano_factor: float = 0.115,
-                        pair_creation_energy_ev: float = 3.6,mca_channels: int = 2048,chunk_size: int = 3_000_000,number_of_buckets: int = 65, ):
+                        pair_creation_energy_ev: float = 3.6,mca_channels: int = 2048,chunk_size: int = 3_000_000,number_of_buckets: int = 65,simulation_time_s:int=30):
         """
         Create the physical detector spectrum for a requested acquisition.
 
@@ -639,7 +639,7 @@ class RoboAiXrfSimulation(BaseModel):
                 )
 
             # mA * s = mAs
-            mas = current * live_time
+            mas = current *simulation_time_s
 
             _, _, fluence_photons_cm2 = get_flu(
                 mas=mas,
@@ -695,7 +695,7 @@ class RoboAiXrfSimulation(BaseModel):
             number_of_photon=np.trapezoid(
                 self._fluence_list,
                 self._energy_bin*1000
-            )*live_time
+            )
             
             
             
@@ -725,7 +725,7 @@ class RoboAiXrfSimulation(BaseModel):
             number_of_photon=number_of_photon,
 
             # Kept separately because event rate/pile-up depends on time.
-            live_time=live_time,
+            live_time=simulation_time_s,
 
             fwhm=fwhm,
             fwhm_energy=fwhm_energy_kev,
@@ -747,6 +747,11 @@ class RoboAiXrfSimulation(BaseModel):
             chunk_size=chunk_size,
             number_of_buckets=number_of_buckets,
         )
+        scaling_factor=live_time/simulation_time_s
+        final_count=final_count.astype(np.float64)
+        scaled_count=scaled_count.astype(np.float64)
+        final_count*=scaling_factor
+        scaled_count*=scaling_factor
 
         fig = make_subplots(
             rows=1,

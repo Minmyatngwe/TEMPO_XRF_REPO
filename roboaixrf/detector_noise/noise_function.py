@@ -5,7 +5,7 @@ import pandas as pd
 import uproot 
 import tempfile
 import os 
-
+from numba import njit
 
 def calculate_channel_yield_and_se(
     root_path:str,
@@ -194,7 +194,7 @@ def calculate_channel_yield_and_se(
 
 
 
-
+@njit
 def calculate_electronic_noise_var(
     fwhm_ev,
     fwhm_energy_kev,
@@ -232,7 +232,7 @@ def calculate_electronic_noise_var(
 
     return electronic_variance_ev2
 
-
+@njit
 def broaden_energy(
     measured_energy_kev,
     fwhm_ev,
@@ -254,7 +254,7 @@ def broaden_energy(
         pair_creation_energy_ev=pair_creation_energy_ev
     )
 
-    energy_kev = np.asarray(measured_energy_kev, dtype=float)
+    energy_kev = np.asarray(measured_energy_kev, dtype=np.float32)
     energy_ev = energy_kev * 1000.0
 
     fano_variance_ev2 = (
@@ -270,11 +270,17 @@ def broaden_energy(
 
     sigma_total_kev = sigma_total_ev / 1000.0
 
-    broadened_energy_kev = np.random.normal(
-        loc=energy_kev,
-        scale=sigma_total_kev
-    )
+    # broadened_energy_kev = np.random.normal(
+    #     loc=energy_kev,
+    #     scale=sigma_total_kev
+    # )
+    broadened_energy_kev = np.empty(energy_kev.size, dtype=np.float64)
 
+    for i in range(energy_kev.size):
+        broadened_energy_kev[i] = np.random.normal(
+            energy_kev[i],
+            sigma_total_kev[i],
+        )
     return broadened_energy_kev
     
     

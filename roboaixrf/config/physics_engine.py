@@ -13,8 +13,8 @@ class Physics(BaseModel):
     
     maximum_energy:float=1000
     
-    phot_factor:int=100
-    compt_factor:int=100
+    phot_factor:int=10
+    compt_factor:int=10
     rayl_factor:int=100
     
     electron_cut:float=0.01
